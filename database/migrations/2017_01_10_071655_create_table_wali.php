@@ -20,7 +20,7 @@ class CreateTableWali extends Migration
             $table->date('tanggal_lahir');
             $table->string('pendidikan',20);
             $table->string('pekerjaan',20);
-            $table->string('gaji',20);
+            $table->string('gaji',20)->nullable();
             $table->string('telepon')->nullable();
             $table->string('no_hp')->nullabel();
             $table->text('alamat');
