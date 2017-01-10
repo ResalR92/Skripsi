@@ -84,7 +84,7 @@
                     <a href="#}"><i class="fa fa-fw fa-book"></i> Peserta</a>
                 </li>
                 <li >
-                    <a href="#"><i class="fa fa-fw fa-th-large"></i> Jurusan</a>
+                    <a href="{{ url('admin/jurusan') }}"><i class="fa fa-fw fa-th-large"></i> Jurusan</a>
                 </li>
                 <li >
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> Pengumuman</a>

@@ -48,7 +48,7 @@ Route::get('/biodata', function(){
 });
 
 Route::group(['prefix'=>'admin'],function(){
-	Route::get('/admin',function(){ //masuk ke UserController edit/update
+	Route::get('/',function(){ //masuk ke UserController edit/update
 	    return view('dashboard.admin');
 	});
 
