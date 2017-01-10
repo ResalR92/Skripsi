@@ -15,6 +15,17 @@ class CreateTablePeserta extends Migration
     {
         Schema::create('peserta', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_jurusan')->unsigned();
+            $table->string('nama',30);
+            $table->string('tempat_lahir',20);
+            $table->enum('jenis_kelamin',['L','P']);
+            $table->integer('id_agama')->unsigned();
+            $table->date('tanggal_lahir');
+            $table->text('alamat');
+            $table->string('telepon')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->string('tahun_lulus');
+            $table->string('foto');
             $table->timestamps();
         });
     }

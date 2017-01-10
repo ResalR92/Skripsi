@@ -14,9 +14,17 @@ class CreateTableSekolah extends Migration
     public function up()
     {
         Schema::create('sekolah', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('id_peserta')->unsigned()->primary('id_peserta');
+            $table->string('nama',50);
+            $table->text('alamat');
             $table->timestamps();
-        });
+
+            $table->foreign('id_peserta')
+                  ->references('id')
+                  ->on('peserta')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
+        });           
     }
 
     /**

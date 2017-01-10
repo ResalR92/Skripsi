@@ -15,6 +15,8 @@ class CreateTableProsedur extends Migration
     {
         Schema::create('prosedur', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('judul',50);
+            $table->text('isi');
             $table->timestamps();
         });
     }

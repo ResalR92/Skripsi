@@ -15,7 +15,16 @@ class CreateTableJurusan extends Migration
     {
         Schema::create('jurusan', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama',20);
             $table->timestamps();
+        });
+
+        Schema::table('peserta',function(Blueprint $table){
+            $table->foreign('id_jurusan')
+                  ->references('id')
+                  ->on('jurusan')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 
@@ -26,6 +35,9 @@ class CreateTableJurusan extends Migration
      */
     public function down()
     {
+        Schema::table('peserta',function(Blueprint $table){
+            $table->dropForeign('peserta_id_jurusan_foreign');
+        });
         Schema::dropIfExists('jurusan');
     }
 }
