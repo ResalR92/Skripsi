@@ -18,9 +18,8 @@
 		        </ol>
 		    </div>
 		</div>
-		<form method="post" role="form">
-		{!! Form::open(['url'=>route('jurusan.store')],['role'=>'form']) !!}
-            @include('admin.jurusan._form')
+		{!! Form::open(['url'=>'admin/jurusan']) !!}
+            @include('admin.jurusan._form',['submitButtonText'=>'Tambah'])
         {!! Form::close() !!}	
 	</div>
 @stop

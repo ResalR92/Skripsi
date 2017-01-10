@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Jurusan;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
+use Session;
 
 class JurusanController extends Controller
 {
@@ -44,7 +45,11 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['nama'=>'required|max:50|unique:jurusan']);
+        $jurusan = Jurusan::create($request->all());
+
+        Session::flash('flash_message','Data Jurusan berhasil disimpan.');
+        return redirect('admin/jurusan');
     }
 
     /**
