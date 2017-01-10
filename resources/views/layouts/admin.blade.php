@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Dashboard Website Skripsi UNJ</a>
+            <a class="navbar-brand" href="index.php">Dashboard PSB SMK Panjatek</a>
         </div>
         <!-- Top Menu Items -->
         <div class="collapse navbar-collapse" id="app-navbar-collapse">

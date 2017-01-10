@@ -9,20 +9,18 @@
 		            <li>
 		                <i class="fa fa-dashboard"></i> Dashboard
 		            </li>
-		            <li class="active">
+		            <li>
 		                Jurusan
+		            </li>
+		            <li class="active">
+		                Tambah
 		            </li>
 		        </ol>
 		    </div>
 		</div>
-		
-
-			<p><a href="{{ route('jurusan.create') }}" class="btn btn-primary"> + Tambah</a></p>
-			{!! $html->table(['class'=>'table-striped']) !!}
-		
+		<form method="post" role="form">
+		{!! Form::open(['url'=>route('jurusan.store')],['role'=>'form']) !!}
+            @include('admin.jurusan._form')
+        {!! Form::close() !!}	
 	</div>
 @stop
-
-@section('scripts')
-	{!! $html->scripts() !!}
-@endsection
