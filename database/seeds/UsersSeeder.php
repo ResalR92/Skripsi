@@ -12,12 +12,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $user = [
-        	['name'=>'Administrator','email'=>'admin@panjatek.com','password'=>bcrypt('rahasia'),'level'=>'admin'],
-        	['name'=>'Operator','email'=>'operator@panjatek.com','password'=>bcrypt('rahasia'),'level'=>'operator'],
-        	['name'=>'Taylor Otwell','email'=>'taylor@gmail.com','password'=>bcrypt('rahasia')],
-        ];
-
         //membuat sample admin
         $admin = new User();
         $admin->name ='Administrator';
