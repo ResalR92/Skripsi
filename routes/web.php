@@ -47,9 +47,15 @@ Route::get('/biodata', function(){
 	return view('peserta.biodata.index');
 });
 
-Route::get('/admin',function(){ //masuk ke UserController edit/update
-    return view('dashboard.admin');
+Route::group(['prefix'=>'admin'],function(){
+	Route::get('/admin',function(){ //masuk ke UserController edit/update
+	    return view('dashboard.admin');
+	});
+
+	Route::resource('jurusan','JurusanController');
 });
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
