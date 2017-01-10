@@ -48,5 +48,5 @@ Route::get('/biodata', function(){
 });
 
 Route::get('/admin',function(){ //masuk ke UserController edit/update
-    return view('admin.index');
+    return view('dashboard.admin');
 });
