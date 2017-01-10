@@ -15,8 +15,12 @@
 		        </ol>
 		    </div>
 		</div>
-		<div class="row">
-		    
+		<div class="container">
+			{!! $html->table(['class'=>'table-striped']) !!}
 		</div>
 	</div>
 @stop
+
+@section('scripts')
+	{!! $html->scripts() !!}
+@endsection

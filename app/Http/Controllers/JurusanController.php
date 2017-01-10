@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Jurusan;
+use Yajra\Datatables\Html\Builder;
+use Yajra\Datatables\Datatables;
 
 class JurusanController extends Controller
 {
@@ -11,9 +14,16 @@ class JurusanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        return view('admin.jurusan.index');
+        if($request->ajax()){
+            $jurusan = Jurusan::select(['id','nama']);
+            return Datatables::of($jurusan)->make(true);
+        }
+        $html = $htmlBuilder
+            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan']);
+
+        return view('admin.jurusan.index',compact('html'));
     }
 
     /**
