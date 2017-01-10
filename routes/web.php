@@ -50,3 +50,6 @@ Route::get('/biodata', function(){
 Route::get('/admin',function(){ //masuk ke UserController edit/update
     return view('dashboard.admin');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
