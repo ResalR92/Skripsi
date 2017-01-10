@@ -17,7 +17,7 @@ class CreateTableJadwal extends Migration
             $table->increments('id');
             $table->string('kegiatan',50);
             $table->date('awal');
-            $table->date('akhir');
+            $table->date('akhir')->nullable();
             $table->timestamps();
         });
     }
