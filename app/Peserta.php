@@ -17,4 +17,8 @@ class Peserta extends Model
     {
     	return $this->belongsTo('App\Jurusan','id_jurusan');
     }
+    public function sekolah()
+    {
+    	return $this->hasOne('App\Sekolah','id_peserta');
+    }
 }

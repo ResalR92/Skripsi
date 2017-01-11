@@ -24,13 +24,14 @@ class PesertaController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $peserta = Peserta::select(['id','nama']);
+            $peserta = Peserta::with(['sekolah']);
             return Datatables::of($peserta)->make(true);
         }
 
         $html = $htmlBuilder
             ->addColumn(['data'=>'id','name'=>'id','title'=>'NISN'])
-            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta']);
+            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
+            ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal']);
         return view('admin.peserta.index',compact('html'));
     }
 
