@@ -21,4 +21,19 @@ class Peserta extends Model
     {
     	return $this->hasOne('App\Sekolah','id_peserta');
     }
+
+    public function ayah()
+    {
+        return $this->hasOne('App\Ayah','id_peserta');
+    }
+
+    public function ibu()
+    {
+        return $this->hasOne('App\Ibu','id_peserta');
+    }
+
+    public function wali()
+    {
+        return $this->hasOne('App\Wali','id_peserta');
+    }
 }
