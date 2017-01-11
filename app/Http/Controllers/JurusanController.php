@@ -22,6 +22,8 @@ class JurusanController extends Controller
             return Datatables::of($jurusan)
                 ->addColumn('action',function($jurusan){
                     return view('datatable._action',[
+                        'model' => $jurusan,
+                        'form_url' => route('jurusan.destroy',$jurusan->id),
                         'edit_url' => route('jurusan.edit',$jurusan->id),
                     ]);
                 })->make(true);
@@ -108,6 +110,9 @@ class JurusanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Jurusan::destroy($id);
+        Session::flash('flash_message','Data Jurusan berhasil dihapus.');
+        Session::flash('penting',true);
+        return redirect('admin/jurusan');
     }
 }
