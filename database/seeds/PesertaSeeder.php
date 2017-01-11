@@ -24,7 +24,7 @@ class PesertaSeeder extends Seeder
     	$paulus->tempat_lahir = 'Tarsus';
     	$paulus->tanggal_lahir = '1998-08-08';
     	$paulus->jenis_kelamin = 'L';
-    	$paulus->id_agama = 1;
+    	$paulus->agama = 'Kristen';
     	$paulus->alamat = 'Jln. Tarsus, Indonesia';
     	$paulus->telepon = '02124020675';
     	$paulus->no_hp = '082124020675';
@@ -89,7 +89,7 @@ class PesertaSeeder extends Seeder
     	$yakobus->tempat_lahir = 'Galilea';
     	$yakobus->tanggal_lahir = '1998-08-08';
     	$yakobus->jenis_kelamin = 'L';
-    	$yakobus->id_agama = 2;
+    	$yakobus->agama = 'Kristen';
     	$yakobus->alamat = 'Jln. Galilea, Indonesia';
     	$yakobus->telepon = '02124020675';
     	$yakobus->no_hp = '082124020675';

@@ -20,7 +20,7 @@ class CreateTablePeserta extends Migration
             $table->string('tempat_lahir',20);
             $table->date('tanggal_lahir');
             $table->enum('jenis_kelamin',['L','P']);
-            $table->integer('id_agama')->unsigned();
+            $table->string('agama',20);
             $table->text('alamat');
             $table->string('telepon')->nullable();
             $table->string('no_hp')->nullable();
