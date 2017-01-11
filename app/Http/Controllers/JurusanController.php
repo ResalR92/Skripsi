@@ -19,10 +19,16 @@ class JurusanController extends Controller
     {
         if($request->ajax()){
             $jurusan = Jurusan::select(['id','nama']);
-            return Datatables::of($jurusan)->make(true);
+            return Datatables::of($jurusan)
+                ->addColumn('action',function($jurusan){
+                    return view('datatable._action',[
+                        'edit_url' => route('jurusan.edit',$jurusan->id),
+                    ]);
+                })->make(true);
         }
         $html = $htmlBuilder
-            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan']);
+            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan'])
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.jurusan.index',compact('html'));
     }
@@ -71,7 +77,8 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+        return view('admin.jurusan.edit',compact('jurusan'));
     }
 
     /**
@@ -83,7 +90,14 @@ class JurusanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+
+        $this->validate($request, ['nama'=>'required|max:50|unique:jurusan,nama,'.$id]);
+
+        $jurusan->update($request->all());
+
+        Session::flash('flash_message','Data Jurusan berhasil diupdate.');
+        return redirect('admin/jurusan');
     }
 
     /**

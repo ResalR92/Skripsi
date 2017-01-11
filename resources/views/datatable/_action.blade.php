@@ -1,0 +1,1 @@
+<a href="{{ $edit_url }}" class="btn btn-warning btn-sm"><i class="glyphicon glyphicon-edit"></i></a>

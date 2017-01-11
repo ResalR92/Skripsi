@@ -4,25 +4,22 @@
     	<div class="row">
 		    <div class="col-lg-12">
 		        <h1 class="page-header">Jurusan</h1>
-		        @include('_partial.flash_message')
+		        
 		        <ol class="breadcrumb">
 		            <li>
 		                <i class="fa fa-dashboard"></i> Dashboard
 		            </li>
-		            <li class="active">
+		            <li>
 		                Jurusan
+		            </li>
+		            <li class="active">
+		                Edit
 		            </li>
 		        </ol>
 		    </div>
 		</div>
-		
-
-			<p><a href="{{ route('jurusan.create') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a></p>
-			{!! $html->table(['class'=>'table-striped']) !!}
-		
+		{!! Form::model($jurusan, ['method'=>'PATCH','action'=>['JurusanController@update',$jurusan->id]]) !!}
+            @include('admin.jurusan._form',['submitButtonText'=>'Update'])
+        {!! Form::close() !!}	
 	</div>
 @stop
-
-@section('scripts')
-	{!! $html->scripts() !!}
-@endsection
