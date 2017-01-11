@@ -15,6 +15,10 @@
 		        </ol>
 		    </div>
 		</div>
-		
+		{!! $html->table(['class'=>'table-striped']) !!}
 	</div>
 @stop
+
+@section('scripts')
+	{!! $html->scripts() !!}
+@endsection

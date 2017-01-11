@@ -3,6 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Peserta;
+use App\User;
+use App\Jurusan;
+use App\Sekolah;
+use App\Ayah;
+use App\Ibu;
+use App\Wali;
+use Yajra\Datatables\Html\Builder;
+use Yajra\Datatables\Datatables;
+use Session;
 
 class PesertaController extends Controller
 {
@@ -11,9 +21,17 @@ class PesertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        return view('admin.peserta.index');
+        if($request->ajax()){
+            $peserta = Peserta::select(['id','nama']);
+            return Datatables::of($peserta)->make(true);
+        }
+
+        $html = $htmlBuilder
+            ->addColumn(['data'=>'id','name'=>'id','title'=>'NISN'])
+            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta']);
+        return view('admin.peserta.index',compact('html'));
     }
 
     /**
