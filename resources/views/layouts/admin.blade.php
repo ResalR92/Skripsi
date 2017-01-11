@@ -81,7 +81,7 @@
                     <a href="{{ url('admin') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
                 <li >
-                    <a href="#}"><i class="fa fa-fw fa-book"></i> Peserta</a>
+                    <a href="{{ url('admin/peserta') }}"><i class="fa fa-fw fa-book"></i> Peserta</a>
                 </li>
                 <li >
                     <a href="{{ url('admin/jurusan') }}"><i class="fa fa-fw fa-th-large"></i> Jurusan</a>
