@@ -25,13 +25,23 @@ class PesertaController extends Controller
     {
         if($request->ajax()){
             $peserta = Peserta::with(['sekolah']);
-            return Datatables::of($peserta)->make(true);
+            return Datatables::of($peserta)
+                ->addColumn('action',function($peserta){
+                    return view('datatable._cetak',[
+                        'model' => $peserta,
+                        'form_url' => route('peserta.destroy',$peserta->id),
+                        'edit_url' => route('peserta.edit',$peserta->id),
+                        'cetak_url' => '',
+                        'confirm_message'=>'Apakah Anda yakin menghapus Jurusan '.$peserta->nama.'?'
+                    ]);
+                })->make(true);
         }
 
         $html = $htmlBuilder
             ->addColumn(['data'=>'id','name'=>'id','title'=>'NISN'])
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
-            ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal']);
+            ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
         return view('admin.peserta.index',compact('html'));
     }
 

@@ -4,5 +4,8 @@
 	</a> | 
 	<button type="submit" class="btn btn-danger btn-xs">
 		<i class="glyphicon glyphicon-trash"></i>
-	</button>
+	</button> | 
+	<a href="{{ $cetak_url }}" class="btn btn-success btn-xs">
+		<i class="glyphicon glyphicon-print"></i>
+	</a>
 {!! Form::close() !!}
