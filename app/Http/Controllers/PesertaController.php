@@ -26,6 +26,22 @@ class PesertaController extends Controller
         if($request->ajax()){
             $peserta = Peserta::with(['sekolah']);
             return Datatables::of($peserta)
+                ->addColumn('verifikasi',function($peserta){
+                    return view('datatable._verifikasi',[
+                        'model'=>$peserta,
+                        'valid_url'=>'',
+                        'no_valid_url'=>'',
+                        'confirm_message'=>'Apakah Anda yakin '.$peserta->nama.' valid ?'
+                    ]);
+                })
+                ->addColumn('lulus',function($peserta){
+                    return view('datatable._lulus',[
+                        'model'=>$peserta,
+                        'lulus_url'=>'',
+                        'no_lulus_url'=>'',
+                        'confirm_message'=>'Apakah Anda yakin '.$peserta->nama.' lulus ?'
+                    ]);
+                })
                 ->addColumn('action',function($peserta){
                     return view('datatable._cetak',[
                         'model' => $peserta,
@@ -41,6 +57,8 @@ class PesertaController extends Controller
             ->addColumn(['data'=>'id','name'=>'id','title'=>'NISN'])
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
+            ->addColumn(['data'=>'verifikasi','name'=>'verifikasi','title'=>'Verifikasi'])
+            ->addColumn(['data'=>'lulus','name'=>'lulus','title'=>'Lulus'])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
         return view('admin.peserta.index',compact('html'));
     }
