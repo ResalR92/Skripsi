@@ -25,6 +25,7 @@ class JurusanController extends Controller
                         'model' => $jurusan,
                         'form_url' => route('jurusan.destroy',$jurusan->id),
                         'edit_url' => route('jurusan.edit',$jurusan->id),
+                        'confirm_message'=>'Apakah Anda yakin menghapus Jurusan '.$jurusan->nama.'?'
                     ]);
                 })->make(true);
         }

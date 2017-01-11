@@ -116,6 +116,7 @@
     <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/selectize.min.js') }}"></script>
     <script src="{{ asset('js/laravelapp.js') }}"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     @yield('scripts')
 </body>
 </html>
