@@ -51,6 +51,7 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('/',function(){ //masuk ke UserController edit/update
 	    return view('dashboard.admin');
 	});
+	Route::resource('peserta','PesertaController');
 	Route::resource('jurusan','JurusanController');
 });
 
