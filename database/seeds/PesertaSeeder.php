@@ -19,6 +19,7 @@ class PesertaSeeder extends Seeder
         //membuat sample peserta
     	$paulus = new Peserta();
     	$paulus->id = 1;
+        $paulus->user_id = 4;
     	$paulus->id_jurusan = 1;
     	$paulus->nama = 'Paulus';
     	$paulus->tempat_lahir = 'Tarsus';
@@ -84,6 +85,7 @@ class PesertaSeeder extends Seeder
     	//membuat sample peserta
     	$yakobus = new Peserta();
     	$yakobus->id = 2;
+        $yakobus->user_id = 5;
     	$yakobus->id_jurusan = 2;
     	$yakobus->nama = 'Yakobus';
     	$yakobus->tempat_lahir = 'Galilea';
