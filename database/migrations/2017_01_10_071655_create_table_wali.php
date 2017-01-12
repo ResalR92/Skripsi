@@ -15,16 +15,16 @@ class CreateTableWali extends Migration
     {
         Schema::create('wali', function (Blueprint $table) {
             $table->integer('id_peserta')->unsigned()->primary('id_peserta');
-            $table->string('nama',30);
-            $table->string('tempat_lahir',20);
-            $table->date('tanggal_lahir');
-            $table->string('agama',20);
-            $table->string('pendidikan',20);
-            $table->string('pekerjaan',20);
+            $table->string('nama',30)->nullable();
+            $table->string('tempat_lahir',20)->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('agama',20)->nullable();
+            $table->string('pendidikan',20)->nullable();
+            $table->string('pekerjaan',20)->nullable();
             $table->string('gaji',20)->nullable();
             $table->string('telepon')->nullable();
             $table->string('no_hp')->nullabel();
-            $table->string('alamat');
+            $table->string('alamat')->nullable();
             $table->timestamps();
 
             $table->foreign('id_peserta')

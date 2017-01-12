@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PesertaRequest;
 use App\Peserta;
 use App\User;
 use App\Jurusan;
@@ -80,7 +81,7 @@ class PesertaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PesertaRequest $request)
     {
         $peserta = $request->all();
         return $peserta;
