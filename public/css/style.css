@@ -43,7 +43,9 @@ body{
     /*background: #4f4f4f;*/
     margin-bottom: 70px; /* Space untuk #footer */
 }
-
+.form{
+    margin-bottom: 5px;
+}
 .form-control{
     -webkit-border-radius: 0;
     -moz-border-radius: 0;

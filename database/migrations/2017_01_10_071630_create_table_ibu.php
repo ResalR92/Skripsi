@@ -18,12 +18,13 @@ class CreateTableIbu extends Migration
             $table->string('nama',30);
             $table->string('tempat_lahir',20);
             $table->date('tanggal_lahir');
+            $table->string('agama',20);
             $table->string('pendidikan',20);
             $table->string('pekerjaan',20);
             $table->string('gaji',20)->nullable();
             $table->string('telepon')->nullable();
             $table->string('no_hp')->nullabel();
-            $table->text('alamat');
+            $table->string('alamat');
             $table->timestamps();
 
             $table->foreign('id_peserta')

@@ -18,7 +18,7 @@
 		        </ol>
 		    </div>
 		</div>
-		{!! Form::open(['url'=>'admin/peserta']) !!}
+		{!! Form::open(['url'=>'admin/peserta','files'=>true]) !!}
             @include('admin.peserta._form',['submitButtonText'=>'Tambah'])
         {!! Form::close() !!}	
 	</div>

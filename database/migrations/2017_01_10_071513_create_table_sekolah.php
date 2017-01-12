@@ -16,7 +16,7 @@ class CreateTableSekolah extends Migration
         Schema::create('sekolah', function (Blueprint $table) {
             $table->integer('id_peserta')->unsigned()->primary('id_peserta');
             $table->string('nama',50);
-            $table->text('alamat');
+            $table->string('alamat');
             $table->timestamps();
 
             $table->foreign('id_peserta')

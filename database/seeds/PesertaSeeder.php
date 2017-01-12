@@ -41,6 +41,7 @@ class PesertaSeeder extends Seeder
     	$ayah_paulus->nama = 'Ayah Paulus';
     	$ayah_paulus->tempat_lahir = 'Roma';
     	$ayah_paulus->tanggal_lahir= '1960-06-01';
+        $ayah_paulus->agama = 'Kristen';
     	$ayah_paulus->pendidikan = 'S1';
     	$ayah_paulus->pekerjaan = 'Wiraswasta';
     	$ayah_paulus->gaji = '15000000';
@@ -55,6 +56,7 @@ class PesertaSeeder extends Seeder
     	$ibu_paulus->nama = 'Ibu Paulus';
     	$ibu_paulus->tempat_lahir = 'Roma';
     	$ibu_paulus->tanggal_lahir= '1971-03-02';
+        $ibu_paulus->agama = 'Kristen';
     	$ibu_paulus->pendidikan = 'SMA';
     	$ibu_paulus->pekerjaan = 'Ibu Rumah Tangga';
     	$ibu_paulus->telepon = '02124020675';
@@ -68,6 +70,7 @@ class PesertaSeeder extends Seeder
     	$wali_paulus->nama = 'Wali Paulus';
     	$wali_paulus->tempat_lahir = 'Roma';
     	$wali_paulus->tanggal_lahir= '1992-05-30';
+        $wali_paulus->agama = 'Kristen';
     	$wali_paulus->pendidikan = 'SMA';
     	$wali_paulus->pekerjaan = 'Mahasiswa';
     	$wali_paulus->telepon = '02124020675';
@@ -107,6 +110,7 @@ class PesertaSeeder extends Seeder
     	$ayah_yakobus->nama = 'Ayah Yakobus';
     	$ayah_yakobus->tempat_lahir = 'Roma';
     	$ayah_yakobus->tanggal_lahir= '1960-06-01';
+        $ayah_yakobus->agama = 'Kristen';
     	$ayah_yakobus->pendidikan = 'S1';
     	$ayah_yakobus->pekerjaan = 'Wiraswasta';
     	$ayah_yakobus->gaji = '15000000';
@@ -121,6 +125,7 @@ class PesertaSeeder extends Seeder
     	$ibu_yakobus->nama = 'Ibu Yakobus';
     	$ibu_yakobus->tempat_lahir = 'Roma';
     	$ibu_yakobus->tanggal_lahir= '1971-03-02';
+        $ibu_yakobus->agama = 'Kristen';
     	$ibu_yakobus->pendidikan = 'SMA';
     	$ibu_yakobus->pekerjaan = 'Ibu Rumah Tangga';
     	$ibu_yakobus->telepon = '02124020675';
@@ -134,6 +139,7 @@ class PesertaSeeder extends Seeder
     	$wali_yakobus->nama = 'Wali Yakobus';
     	$wali_yakobus->tempat_lahir = 'Roma';
     	$wali_yakobus->tanggal_lahir= '1992-05-30';
+        $wali_yakobus->agama = 'Kristen';
     	$wali_yakobus->pendidikan = 'SMA';
     	$wali_yakobus->pekerjaan = 'Mahasiswa';
     	$wali_yakobus->telepon = '02124020675';
