@@ -8,6 +8,8 @@ class Ibu extends Model
 {
     protected $table = 'ibu';
 
+    protected $primaryKey = 'id_peserta';
+
     protected $fillable = [
     	'id_peserta',
     	'nama',

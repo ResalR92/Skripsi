@@ -25,13 +25,15 @@ class PesertaRequest extends FormRequest
     {
         //Cek apakah CREATE atau UPDATE
         if ($this->method() == 'PATCH') {
+            $foto_rules = 'sometimes|image|max:500|mimes:jpeg,jpg,bmp,png';
             $hp_rules = 'sometimes|numeric|digits_between:10,15|unique:peserta,no_hp,'.$this->get('id');
         } else {
+            $foto_rules = 'required|image|max:500|mimes:jpeg,jpg,bmp,png';
             $hp_rules = 'sometimes|numeric|digits_between:10,15|unique:peserta,no_hp';
         }
         return [
             'id_jurusan' => 'required',
-            'foto' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png',
+            'foto' => $foto_rules,
             'nama' => 'required|string|max:30',
             'tempat_lahir' => 'required|string|max:20',
             'tanggal_lahir' => 'required|date',

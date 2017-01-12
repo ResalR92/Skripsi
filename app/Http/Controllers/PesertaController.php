@@ -14,6 +14,7 @@ use App\Wali;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use Storage;
 
 class PesertaController extends Controller
 {
@@ -172,7 +173,7 @@ class PesertaController extends Controller
         $peserta->nama_ayah = $peserta->ayah->nama;
         $peserta->tempat_lahir_ayah = $peserta->ayah->tempat_lahir;
         $peserta->tanggal_lahir_ayah = $peserta->ayah->tanggal_lahir;
-        $peserta->agama_ayah = $peserta->ayah->agama_ayah;
+        $peserta->agama_ayah = $peserta->ayah->agama;
         $peserta->pendidikan_ayah = $peserta->ayah->pendidikan;
         $peserta->pekerjaan_ayah = $peserta->ayah->pekerjaan;
         $peserta->gaji_ayah = $peserta->ayah->gaji;
@@ -214,9 +215,73 @@ class PesertaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PesertaRequest $request, $id)
     {
-        //
+        $peserta = Peserta::findOrFail($id);
+        $input = $request->all();
+
+        // return var_dump($input);
+
+        if($request->hasFile('foto')){
+            //Hapus foto lama jika ada foto baru
+            $this->hapusFoto($peserta);
+            //Upload foto baru
+            $input['foto'] = $this->uploadFoto($request);
+        }
+        //Update data peserta
+        $peserta->update($input);
+        
+        //Update data sekolah
+        $sekolah = $peserta->sekolah;
+        $sekolah->nama = $request->input('nama_sekolah');
+        $sekolah->alamat = $request->input('alamat_sekolah');
+        $peserta->sekolah()->save($sekolah);
+
+        //Update data ayah
+        $ayah = $peserta->ayah;
+        $ayah->nama = $request->input('nama_ayah');
+        $ayah->tempat_lahir = $request->input('tempat_lahir_ayah');
+        $ayah->tanggal_lahir = $request->input('tanggal_lahir_ayah');
+        $ayah->agama = $request->input('agama_ayah');
+        $ayah->pendidikan = $request->input('pendidikan_ayah');
+        $ayah->pekerjaan = $request->input('pekerjaan_ayah');
+        $ayah->gaji = $request->input('gaji_ayah');
+        $ayah->telepon = $request->input('telepon_ayah');
+        $ayah->no_hp = $request->input('no_hp_ayah');
+        $ayah->alamat = $request->input('alamat_ayah');
+        $peserta->ayah()->save($ayah);
+
+        //Update data ibu
+        $ibu = $peserta->ibu;
+        $ibu->nama = $request->input('nama_ibu');
+        $ibu->tempat_lahir = $request->input('tempat_lahir_ibu');
+        $ibu->tanggal_lahir = $request->input('tanggal_lahir_ibu');
+        $ibu->agama = $request->input('agama_ibu');
+        $ibu->pendidikan = $request->input('pendidikan_ibu');
+        $ibu->pekerjaan = $request->input('pekerjaan_ibu');
+        $ibu->gaji = $request->input('gaji_ibu');
+        $ibu->telepon = $request->input('telepon_ibu');
+        $ibu->no_hp = $request->input('no_hp_ibu');
+        $ibu->alamat = $request->input('alamat_ibu');
+        $peserta->ibu()->save($ibu);
+
+        //Update data wali
+        $wali = $peserta->wali;
+        $wali->nama = $request->input('nama_wali');
+        $wali->tempat_lahir = $request->input('tempat_lahir_wali');
+        $wali->tanggal_lahir = $request->input('tanggal_lahir_wali');
+        $wali->agama = $request->input('agama_wali');
+        $wali->pendidikan = $request->input('pendidikan_wali');
+        $wali->pekerjaan = $request->input('pekerjaan_wali');
+        $wali->gaji = $request->input('gaji_wali');
+        $wali->telepon = $request->input('telepon_wali');
+        $wali->no_hp = $request->input('no_hp_wali');
+        $wali->alamat = $request->input('alamat_wali');
+        $peserta->wali()->save($wali);
+
+        Session::flash('flash_message','Biodata Peserta berhasil diupdate.');
+
+        return redirect('admin/peserta');
     }
 
     /**
@@ -245,9 +310,8 @@ class PesertaController extends Controller
         return false;
     }
 
-    private function hapusFoto($id)
+    private function hapusFoto(Peserta $peserta)
     {
-        $peserta = Peserta::findOrFail($id);
         $exist = Storage::disk('foto')->exists($peserta->foto);
         if(isset($peserta->foto) && $exist){
             $delete = Storage::disk('foto')->delete($peserta->foto);

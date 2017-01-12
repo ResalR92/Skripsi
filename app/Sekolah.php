@@ -8,6 +8,8 @@ class Sekolah extends Model
 {
     protected $table = 'sekolah';
 
+    protected $primaryKey = 'id_peserta';
+
     protected $fillable = [
     	'id_peserta',
     	'nama',

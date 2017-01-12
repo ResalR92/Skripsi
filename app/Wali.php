@@ -8,6 +8,8 @@ class Wali extends Model
 {
     protected $table = 'wali';
 
+    protected $primaryKey = 'id_peserta';
+
     protected $fillable = [
     	'id_peserta',
     	'nama',

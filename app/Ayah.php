@@ -8,6 +8,8 @@ class Ayah extends Model
 {
     protected $table = 'ayah';
 
+    protected $primaryKey = 'id_peserta';
+
     protected $fillable = [
     	'id_peserta',
     	'nama',
