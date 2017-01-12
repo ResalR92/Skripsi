@@ -9,16 +9,22 @@
 @endif
         <table class="table-responsive table">
             <tbody>
-                <tr>
-                    <td style="width: 200px;">{!! Form::label('nama', 'Nama Lengkap', ['class'=>'control-label']) !!}</td>
-                    <td style="width: 1px;">:</td>
-                    <td>
-                        {!! Form::text('nama', null, ['class'=>'form-control']) !!}
-                        @if($errors->has('nama'))
-                            <span class="help-block">{{ $errors->first('nama') }}</span>
-                        @endif
-                    </td>
-                </tr>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4><b>A. IDENTITAS PRIBADI CALON SISWA</b></h4>
+                        <tr>
+                            <td style="width: 200px;">{!! Form::label('nama', 'Nama Lengkap', ['class'=>'control-label']) !!}</td>
+                            <td style="width: 1px;">:</td>
+                            <td>
+                                {!! Form::text('nama', null, ['class'=>'form-control']) !!}
+                                @if($errors->has('nama'))
+                                    <span class="help-block">{{ $errors->first('nama') }}</span>
+                                @endif
+                            </td>
+                        </tr>
+                    </div>
+                </div>
+                
                 <tr>
                     <td></td>
                     <td></td>
