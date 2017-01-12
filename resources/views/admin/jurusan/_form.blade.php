@@ -1,34 +1,28 @@
 @if(isset($jurusan))
     {!! Form::hidden('id', $jurusan->id) !!}
 @endif
+<div class="row">
+    @if($errors->any())
+        <div class="form-group {{ $errors->has('nama') ? 'has-error' : 'has-success' }}">
+    @else
+        <div class="form-group">
+    @endif
+            {!! Form::label('nama', 'Nama Jurusan', ['class'=>'col-md-2 control-label']) !!}
+            <div class="col-md-10">
+                {!! Form::text('nama', null, ['class'=>'form-control']) !!}
+                @if($errors->has('nama'))
+                    <span class="help-block">{{ $errors->first('nama') }}</span>
+                @endif
+            </div>
+        </div>
+    <br><br>
+</div>
 
-@if($errors->any())
-    <div class="form-group {{ $errors->has('nama') ? 'has-error' : 'has-success' }}">
-@else
+<div class="row">
     <div class="form-group">
-@endif
-        <table class="table-responsive table">
-            <tbody>
-                <tr>
-                    <td style="width: 200px;">{!! Form::label('nama', 'Nama Jurusan', ['class'=>'control-label']) !!}</td>
-                    <td style="width: 1px;">:</td>
-                    <td>
-                        {!! Form::text('nama', null, ['class'=>'form-control']) !!}
-                        @if($errors->has('nama'))
-                            <span class="help-block">{{ $errors->first('nama') }}</span>
-                        @endif
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    {{-- <td>{!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}</td> --}}
-                    <td>
-                        <div class="col-md-2">
-                            {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary form-control']) !!}
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>  
+        <div class="col-md-2 col-md-offset-2">
+            {!! Form::submit($submitButtonText, ['class'=>'btn btn-primary form-control']) !!}
+        </div>
+    </div>
+</div>
+    
