@@ -8,6 +8,23 @@ class Peserta extends Model
 {
     protected $table = 'peserta';
 
+    protected $fillable = [
+        'user_id',
+        'id_jurusan',
+        'nama',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'agama',
+        'alamat',
+        'telepon',
+        'no_hp',
+        'tahun_lulus',
+        'foto',
+        'verifikasi',
+        'lulus',
+    ];
+
     public function user()
     {
     	return $this->belongsTo('App\User');

@@ -34,8 +34,8 @@ class CreateTablePeserta extends Migration
             $table->string('no_hp')->nullable();
             $table->string('tahun_lulus');
             $table->string('foto');
-            $table->enum('verifikasi',['0','1'])->default('0');
-            $table->enum('lulus',['0','1'])->default('0');
+            $table->boolean('verifikasi')->default(false);
+            $table->boolean('lulus')->default(false);
             $table->timestamps();
         });
     }
