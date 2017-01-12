@@ -24,7 +24,7 @@ class PesertaController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $peserta = Peserta::with(['sekolah']);
+            $peserta = Peserta::with(['sekolah','jurusan']);
             return Datatables::of($peserta)
                 ->addColumn('verifikasi',function($peserta){
                     return view('datatable._verifikasi',[
@@ -56,6 +56,7 @@ class PesertaController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'id','name'=>'id','title'=>'NISN'])
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
+            ->addColumn(['data'=>'jurusan.nama','name'=>'jurusan.nama','title'=>'Program Keahlian'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
             ->addColumn(['data'=>'verifikasi','name'=>'verifikasi','title'=>'Verifikasi'])
             ->addColumn(['data'=>'lulus','name'=>'lulus','title'=>'Lulus'])
