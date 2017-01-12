@@ -131,4 +131,32 @@ class PesertaController extends Controller
     {
         //
     }
+
+    private function uploadFoto(SiswaRequest $request)
+    {
+        $foto = $request->file('foto');
+        $ext  = $foto->getClientOriginalExtension();
+
+        if($request->file('foto')->isValid()){
+            $foto_name = date('YmdHis').".$ext";
+            $upload_path = 'fotoupload';
+            $request->file('foto')->move($upload_path, $foto_name);
+            
+            return $foto_name;
+        }
+        return false;
+    }
+
+    private function hapusFoto(Siswa $siswa)
+    {
+        $exist = Storage::disk('foto')->exists($siswa->foto);
+        if(isset($siswa->foto) && $exist){
+            $delete = Storage::disk('foto')->delete($siswa->foto);
+
+            if($delete){
+                return true;
+            }
+            return false;
+        }
+    }
 }
