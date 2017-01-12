@@ -49,14 +49,14 @@ class PesertaController extends Controller
                         'model' => $peserta,
                         'form_url' => route('peserta.destroy',$peserta->id),
                         'edit_url' => route('peserta.edit',$peserta->id),
-                        'cetak_url' => '',
+                        'cetak_url' => route('peserta.show',$peserta->id),
                         'confirm_message'=>'Apakah Anda yakin menghapus Jurusan '.$peserta->nama.'?'
                     ]);
                 })->make(true);
         }
 
         $html = $htmlBuilder
-            ->addColumn(['data'=>'id','name'=>'id','title'=>'NISN'])
+            ->addColumn(['data'=>'id','name'=>'id','title'=>'No. Pendaftaran'])
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
             ->addColumn(['data'=>'jurusan.nama','name'=>'jurusan.nama','title'=>'Program Keahlian'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
@@ -155,7 +155,8 @@ class PesertaController extends Controller
      */
     public function show($id)
     {
-        //
+        $peserta = Peserta::findOrFail($id);
+        return view('admin.peserta.show',compact('peserta'));
     }
 
     /**
@@ -292,7 +293,14 @@ class PesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $peserta = Peserta::findOrFail($id);
+        $this->hapusFoto($peserta);
+        $peserta->delete();
+
+        Session::flash('flash_message','Biodata berhasil dihapus');
+        Session::flash('penting',true);
+
+        return redirect('admin/peserta');
     }
 
     private function uploadFoto(PesertaRequest $request)
