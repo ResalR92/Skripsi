@@ -34,6 +34,7 @@ class PesertaRequest extends FormRequest
             'alamat' => 'required|string|max:250',
             'telepon' => 'sometimes|numeric|digits_between:10,15',
             'no_hp' => 'sometimes|numeric|digits_between:10,15|unique:peserta,no_hp',
+            'tahun_lulus' => 'required|numeric|digits:4',
             
             'nama_sekolah' => 'required|string|max:50',
             'alamat_sekolah' => 'required|string',

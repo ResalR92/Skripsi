@@ -133,6 +133,18 @@
             @endif
         </div>
 
+    @if($errors->any())
+        <div class="form-group {{ $errors->has('tahun_lulus') ? 'has-error' : 'has-success' }}">
+    @else
+        <div class="form-group">
+    @endif
+            {!! Form::label('tahun_lulus', 'Tahun Lulus', ['class'=>'control-label']) !!}
+            {!! Form::text('tahun_lulus', null, ['class'=>'form-control']) !!}
+            @if($errors->has('tahun_lulus'))
+                <span class="help-block">{{ $errors->first('tahun_lulus') }}</span>
+            @endif
+        </div>
+
     <h4><b>B. IDENTITAS SEKOLAH ASAL</b></h4>
     @if($errors->any())
         <div class="form-group {{ $errors->has('nama_sekolah') ? 'has-error' : 'has-success' }}">

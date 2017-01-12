@@ -83,8 +83,67 @@ class PesertaController extends Controller
      */
     public function store(PesertaRequest $request)
     {
-        $peserta = $request->all();
-        return $peserta;
+        $input = $request->all();
+
+        if($request->hasFile('foto')){
+            $input['foto'] = $this->uploadFoto($request);
+        }
+
+        $input['user_id'] = '3';
+
+        $peserta = Peserta::create($input);
+
+        //Simpan data sekolah
+        $sekolah = new Sekolah;
+        $sekolah->nama = $request->input('nama_sekolah');
+        $sekolah->alamat = $request->input('alamat_sekolah');
+        $peserta->sekolah()->save($sekolah);
+
+        //Simpan data ayah
+        $ayah = new Ayah;
+        $ayah->nama = $request->input('nama_ayah');
+        $ayah->tempat_lahir = $request->input('tempat_lahir_ayah');
+        $ayah->tanggal_lahir = $request->input('tanggal_lahir_ayah');
+        $ayah->agama = $request->input('agama_ayah');
+        $ayah->pendidikan = $request->input('pendidikan_ayah');
+        $ayah->pekerjaan = $request->input('pekerjaan_ayah');
+        $ayah->gaji = $request->input('gaji_ayah');
+        $ayah->telepon = $request->input('telepon_ayah');
+        $ayah->no_hp = $request->input('no_hp_ayah');
+        $ayah->alamat = $request->input('alamat_ayah');
+        $peserta->ayah()->save($ayah);
+
+        //Simpan data ibu
+        $ibu = new Ibu;
+        $ibu->nama = $request->input('nama_ibu');
+        $ibu->tempat_lahir = $request->input('tempat_lahir_ibu');
+        $ibu->tanggal_lahir = $request->input('tanggal_lahir_ibu');
+        $ibu->agama = $request->input('agama_ibu');
+        $ibu->pendidikan = $request->input('pendidikan_ibu');
+        $ibu->pekerjaan = $request->input('pekerjaan_ibu');
+        $ibu->gaji = $request->input('gaji_ibu');
+        $ibu->telepon = $request->input('telepon_ibu');
+        $ibu->no_hp = $request->input('no_hp_ibu');
+        $ibu->alamat = $request->input('alamat_ibu');
+        $peserta->ibu()->save($ibu);
+
+        //Simpan data wali
+        $wali = new Wali;
+        $wali->nama = $request->input('nama_wali');
+        $wali->tempat_lahir = $request->input('tempat_lahir_wali');
+        $wali->tanggal_lahir = $request->input('tanggal_lahir_wali');
+        $wali->agama = $request->input('agama_wali');
+        $wali->pendidikan = $request->input('pendidikan_wali');
+        $wali->pekerjaan = $request->input('pekerjaan_wali');
+        $wali->gaji = $request->input('gaji_wali');
+        $wali->telepon = $request->input('telepon_wali');
+        $wali->no_hp = $request->input('no_hp_wali');
+        $wali->alamat = $request->input('alamat_wali');
+        $peserta->wali()->save($wali);
+
+        Session::flash('flash_message','Biodata Peserta berhasil disimpan.');
+
+        return redirect('admin/peserta');
     }
 
     /**
@@ -132,7 +191,7 @@ class PesertaController extends Controller
         //
     }
 
-    private function uploadFoto(SiswaRequest $request)
+    private function uploadFoto(PesertaRequest $request)
     {
         $foto = $request->file('foto');
         $ext  = $foto->getClientOriginalExtension();
@@ -147,11 +206,12 @@ class PesertaController extends Controller
         return false;
     }
 
-    private function hapusFoto(Siswa $siswa)
+    private function hapusFoto($id)
     {
-        $exist = Storage::disk('foto')->exists($siswa->foto);
-        if(isset($siswa->foto) && $exist){
-            $delete = Storage::disk('foto')->delete($siswa->foto);
+        $peserta = Peserta::findOrFail($id);
+        $exist = Storage::disk('foto')->exists($peserta->foto);
+        if(isset($peserta->foto) && $exist){
+            $delete = Storage::disk('foto')->delete($peserta->foto);
 
             if($delete){
                 return true;
