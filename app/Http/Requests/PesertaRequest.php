@@ -23,6 +23,12 @@ class PesertaRequest extends FormRequest
      */
     public function rules()
     {
+        //Cek apakah CREATE atau UPDATE
+        if ($this->method() == 'PATCH') {
+            $hp_rules = 'sometimes|numeric|digits_between:10,15|unique:peserta,no_hp,'.$this->get('id');
+        } else {
+            $hp_rules = 'sometimes|numeric|digits_between:10,15|unique:peserta,no_hp';
+        }
         return [
             'id_jurusan' => 'required',
             'foto' => 'required|image|max:500|mimes:jpeg,jpg,bmp,png',
@@ -33,7 +39,7 @@ class PesertaRequest extends FormRequest
             'agama' => 'required|string|max:20',
             'alamat' => 'required|string|max:250',
             'telepon' => 'sometimes|numeric|digits_between:10,15',
-            'no_hp' => 'sometimes|numeric|digits_between:10,15|unique:peserta,no_hp',
+            'no_hp' => $hp_rules,
             'tahun_lulus' => 'required|numeric|digits:4',
             
             'nama_sekolah' => 'required|string|max:50',

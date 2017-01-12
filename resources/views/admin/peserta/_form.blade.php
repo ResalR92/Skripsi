@@ -1,6 +1,6 @@
 @if(isset($peserta))
     {!! Form::hidden('id', $peserta->id) !!}
-    {!! Form::hidden('user_id', $peserta->user->id) !!}
+    {!! Form::hidden('user_id', $peserta->user_id) !!}
     {!! Form::hidden('verifikasi', $peserta->verifikasi) !!}
     {!! Form::hidden('lulus', $peserta->lulus) !!}
 @endif
