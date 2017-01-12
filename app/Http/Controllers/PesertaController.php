@@ -82,7 +82,8 @@ class PesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $peserta = $request->all();
+        return $peserta;
     }
 
     /**
