@@ -204,7 +204,7 @@ class PesertaController extends Controller
 
         // var_dump($peserta);
         // exit();
-        return view('admin.peserta.create',compact('peserta'));
+        return view('admin.peserta.edit',compact('peserta'));
     }
 
     /**

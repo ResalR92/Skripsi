@@ -30,6 +30,14 @@
     @endif
             {!! Form::label('foto', 'Foto:') !!}
             {!! Form::file('foto') !!}
+
+            &nbsp;
+            @if(isset($peserta) && $peserta->foto)
+                <p>
+                    {!! Html::image(asset('fotoupload/'.$peserta->foto),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
+                </p>
+            @endif
+
             @if($errors->has('foto'))
                 <span class="help-block">{{ $errors->first('foto') }}</span>
             @endif
