@@ -177,6 +177,7 @@
 			    </dl>
 			</div> <!-- jumbotron end -->
 
-		<p><a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Cetak</a></p>
+		{{-- <p><a href="{{route()}}" class="btn btn-primary"><i class="glyphicon glyphicon-print"></i> Cetak</a></p> --}}
+		{{ link_to('admin/peserta/pdf/'.$peserta->id,'Cetak',['class'=>'btn btn-success btn-sm']) }}
 	</div>
 @stop

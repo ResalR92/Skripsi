@@ -15,6 +15,7 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
 use Storage;
+use PDF;
 
 class PesertaController extends Controller
 {
@@ -301,6 +302,13 @@ class PesertaController extends Controller
         Session::flash('penting',true);
 
         return redirect('admin/peserta');
+    }
+
+    public function pdf($id)
+    {
+        $peserta = Peserta::findOrFail($id);
+        $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
+        return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
     }
 
     private function uploadFoto(PesertaRequest $request)
