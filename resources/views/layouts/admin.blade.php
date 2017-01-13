@@ -93,7 +93,7 @@
                     <a href="{{ url('admin/prosedur') }}"><i class="fa fa-fw fa-th-large"></i> Prosedur</a>
                 </li>
                 <li >
-                    <a href="#"><i class="fa fa-fw fa-th-large"></i> Jadwal</a>
+                    <a href="{{ url('admin/jadwal') }}"><i class="fa fa-fw fa-th-large"></i> Jadwal</a>
                 </li>
                 <li >
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> Kontak</a>
