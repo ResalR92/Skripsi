@@ -18,7 +18,7 @@ class PengumumanController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $pengumuman = Pengumuman::select(['judul','updated_at']);
+            $pengumuman = Pengumuman::orderBy('updated_at','desc');
             return Datatables::of($pengumuman)
                 ->addColumn('tanggal',function($pengumuman){
                     $tanggal = $pengumuman->updated_at->format('d-m-Y');
@@ -34,9 +34,8 @@ class PengumumanController extends Controller
                 })->make(true);
         }
         $html = $htmlBuilder
-            ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul Pengumuman'])
-            ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','searchable'=>false])
-
+            ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul Pengumuman','orderable'=>false])
+            ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.pengumuman.index',compact('html'));
