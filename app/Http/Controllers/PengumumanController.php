@@ -59,7 +59,12 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['judul'=>'required|max:50|unique:pengumuman','isi'=>'required']);
+        $pengumuman = Pengumuman::create($request->all());
+
+        // return $pengumuman;
+        Session::flash('flash_message','Data Pengumuman berhasil disimpan.');
+        return redirect('admin/pengumuman');
     }
 
     /**
