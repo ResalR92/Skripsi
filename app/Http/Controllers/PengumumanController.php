@@ -59,7 +59,7 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['judul'=>'required|max:50|unique:pengumuman','isi'=>'required']);
+        $this->validate($request, ['judul'=>'required|max:50|unique:pengumuman,judul','isi'=>'required']);
         $pengumuman = Pengumuman::create($request->all());
 
         // return $pengumuman;
@@ -86,7 +86,8 @@ class PengumumanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pengumuman = Pengumuman::findOrFail($id);
+        return view('admin.pengumuman.edit',compact('pengumuman'));
     }
 
     /**
@@ -98,7 +99,13 @@ class PengumumanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $pengumuman = Pengumuman::findOrFail($id);
+        $this->validate($request, ['judul'=>'required|max:50|unique:pengumuman,judul,'.$id,'isi'=>'required']);
+        $pengumuman->update($request->all());
+
+        // return $pengumuman;
+        Session::flash('flash_message','Data Pengumuman berhasil diupdate.');
+        return redirect('admin/pengumuman');
     }
 
     /**
