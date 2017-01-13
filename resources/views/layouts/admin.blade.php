@@ -117,6 +117,12 @@
     <script src="{{ asset('js/selectize.min.js') }}"></script>
     <script src="{{ asset('js/laravelapp.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+    <script src="{{ asset('tinymce/tinymce.min.js') }}"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: ".editor"
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>
