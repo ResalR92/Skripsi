@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pengumuman;
+use Yajra\Datatables\Html\Builder;
+use Yajra\Datatables\Datatables;
+use Session;
 
 class PengumumanController extends Controller
 {
@@ -11,9 +15,31 @@ class PengumumanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        return view('admin.pengumuman.index');
+        if($request->ajax()){
+            $pengumuman = Pengumuman::select(['judul','updated_at']);
+            return Datatables::of($pengumuman)
+                ->addColumn('tanggal',function($pengumuman){
+                    $tanggal = $pengumuman->updated_at->format('d-m-Y');
+                    return $tanggal;
+                })
+                ->addColumn('action',function($pengumuman){
+                    return view('datatable._action',[
+                        'model' => $pengumuman,
+                        'form_url' => route('pengumuman.destroy',$pengumuman->id),
+                        'edit_url' => route('pengumuman.edit',$pengumuman->id),
+                        'confirm_message'=>'Apakah Anda yakin menghapus pengumuman '.$pengumuman->judul.'?'
+                    ]);
+                })->make(true);
+        }
+        $html = $htmlBuilder
+            ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul Pengumuman'])
+            ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','searchable'=>false])
+
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+
+        return view('admin.pengumuman.index',compact('html'));
     }
 
     /**
