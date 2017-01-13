@@ -1,8 +1,8 @@
-@if(App\Peserta::where('verifikasi','0'))
+@if($verifikasi == false)
 	<a href="{{ $valid_url }}" class="btn btn-danger btn-xs">
 		<i class="glyphicon glyphicon-remove"></i>
 	</a>
-@elseif(App\Peserta::where('verifikasi','1'))
+@elseif($verifikasi == true)
 	<a href="{{ $no_valid_url }}" class="btn btn-success btn-xs">
 		<i class="glyphicon glyphicon-ok"></i>
 	</a>

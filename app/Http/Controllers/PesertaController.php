@@ -31,7 +31,7 @@ class PesertaController extends Controller
             return Datatables::of($peserta)
                 ->addColumn('verifikasi',function($peserta){
                     return view('datatable._verifikasi',[
-                        'model'=>$peserta,
+                        'verifikasi'=>$peserta->verifikasi,
                         'valid_url'=>'',
                         'no_valid_url'=>'',
                         'confirm_message'=>'Apakah Anda yakin '.$peserta->nama.' valid ?'
@@ -39,7 +39,7 @@ class PesertaController extends Controller
                 })
                 ->addColumn('lulus',function($peserta){
                     return view('datatable._lulus',[
-                        'model'=>$peserta,
+                        'lulus'=>$peserta->lulus,
                         'lulus_url'=>'',
                         'no_lulus_url'=>'',
                         'confirm_message'=>'Apakah Anda yakin '.$peserta->nama.' lulus ?'
@@ -57,7 +57,7 @@ class PesertaController extends Controller
         }
 
         $html = $htmlBuilder
-            ->addColumn(['data'=>'id','name'=>'id','title'=>'No. Pendaftaran'])
+            ->addColumn(['data'=>'id','name'=>'id','title'=>'No.'])
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
             ->addColumn(['data'=>'jurusan.nama','name'=>'jurusan.nama','title'=>'Program Keahlian'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
