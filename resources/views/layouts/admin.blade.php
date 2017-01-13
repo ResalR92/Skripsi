@@ -90,6 +90,9 @@
                     <a href="{{ url('admin/pengumuman') }}"><i class="fa fa-fw fa-th-large"></i> Pengumuman</a>
                 </li>
                 <li >
+                    <a href="{{ url('admin/prosedur') }}"><i class="fa fa-fw fa-th-large"></i> Prosedur</a>
+                </li>
+                <li >
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> Jadwal</a>
                 </li>
                 <li >
