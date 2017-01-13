@@ -54,6 +54,7 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::get('peserta/pdf/{peserta}','PesertaController@pdf');
 	Route::resource('peserta','PesertaController');
 	Route::resource('jurusan','JurusanController');
+	Route::resource('pengumuman','PengumumanController');
 });
 
 
