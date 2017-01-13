@@ -56,6 +56,7 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::resource('jurusan','JurusanController');
 	Route::resource('pengumuman','PengumumanController');
 	Route::resource('prosedur','ProsedurController');
+	Route::resource('jadwal','JadwalController');
 });
 
 
