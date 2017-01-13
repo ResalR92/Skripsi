@@ -43,7 +43,7 @@ class ProsedurController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.prosedur.create');
     }
 
     /**
@@ -54,7 +54,10 @@ class ProsedurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['judul'=>'required|max:50|unique:prosedur,judul','isi'=>'required']);
+        $peserta = Prosedur::create($request->all());
+        Session::flash('flash_message','Data Prosedur berhasil disimpan.');
+        return redirect('admin/prosedur');
     }
 
     /**
