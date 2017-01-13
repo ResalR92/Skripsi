@@ -107,6 +107,9 @@ class ProsedurController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Prosedur::destroy($id);
+        Session::flash('flash_message','Data Prosedur berhasil dihapus.');
+        Session::flash('penting',true);
+        return redirect('admin/prosedur');
     }
 }
