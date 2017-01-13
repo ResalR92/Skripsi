@@ -116,6 +116,9 @@ class PengumumanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Pengumuman::destroy($id);
+        Session::flash('flash_message','Data Pengumuman berhasil dihapus.');
+        Session::flash('penting',true);
+        return redirect('admin/pengumuman');
     }
 }
