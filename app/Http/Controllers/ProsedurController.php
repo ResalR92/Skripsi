@@ -79,7 +79,8 @@ class ProsedurController extends Controller
      */
     public function edit($id)
     {
-        //
+        $prosedur = Prosedur::findOrFail($id);
+        return view('admin.prosedur.edit',compact('prosedur'));
     }
 
     /**
@@ -91,7 +92,11 @@ class ProsedurController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $prosedur = Prosedur::findOrFail($id);
+        $this->validate($request, ['judul'=>'required|max:50|unique:prosedur,judul,'.$id,'isi'=>'required']);
+        $prosedur->update($request->all());
+        Session::flash('flash_message','Data Prosedur berhasil diupdate.');
+        return redirect('admin/prosedur');
     }
 
     /**
