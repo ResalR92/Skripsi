@@ -20,6 +20,14 @@ class JadwalController extends Controller
         if($request->ajax()){
             $jadwal = Jadwal::orderBy('awal','asc');
             return Datatables::of($jadwal)
+                ->addColumn('awal',function($jadwal){
+                    $awal = $jadwal->awal->format('d-m-Y');
+                    return $awal;
+                })
+                ->addColumn('akhir',function($jadwal){
+                    $akhir = $jadwal->akhir->format('d-m-Y');
+                    return $akhir;
+                })
                 ->addColumn('action',function($jadwal){
                     return view('datatable._action',[
                         'model' => $jadwal,
@@ -31,6 +39,8 @@ class JadwalController extends Controller
         }
         $html = $htmlBuilder
             ->addColumn(['data'=>'kegiatan','name'=>'kegiatan','title'=>'Kegiatan','orderable'=>false])
+            ->addColumn(['data'=>'awal','name'=>'awal','title'=>'Mulai Berlaku','orderable'=>false,'searchable'=>false])
+            ->addColumn(['data'=>'akhir','name'=>'akhir','title'=>'Berakhir','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.jadwal.index',compact('html'));
