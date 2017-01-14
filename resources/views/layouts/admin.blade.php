@@ -96,7 +96,7 @@
                     <a href="{{ url('admin/jadwal') }}"><i class="fa fa-fw fa-th-large"></i> Jadwal</a>
                 </li>
                 <li >
-                    <a href="#"><i class="fa fa-fw fa-th-large"></i> Kontak</a>
+                    <a href="{{ url('admin/kontak') }}"><i class="fa fa-fw fa-th-large"></i> Kontak</a>
                 </li>
                 <li >
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> User</a>
