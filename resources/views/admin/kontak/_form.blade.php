@@ -1,6 +1,3 @@
-@if(isset($kontak))
-    {!! Form::hidden('id', $kontak->id) !!}
-@endif
 <div class="row">
     @if($errors->any())
         <div class="form-group {{ $errors->has('nama') ? 'has-error' : 'has-success' }}">

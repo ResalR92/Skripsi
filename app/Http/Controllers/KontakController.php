@@ -104,7 +104,8 @@ class KontakController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kontak = Kontak::findOrFail($id);
+        return view('admin.kontak.edit',compact('kontak'));
     }
 
     /**

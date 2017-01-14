@@ -1,0 +1,25 @@
+@extends('layouts.admin')
+@section('content')
+	<div class="container-fluid">
+    	<div class="row">
+		    <div class="col-lg-12">
+		        <h1 class="page-header">Balas Kontak</h1>
+		        
+		        <ol class="breadcrumb">
+		            <li>
+		                <i class="fa fa-dashboard"></i> Dashboard
+		            </li>
+		            <li>
+		                Kontak
+		            </li>
+		            <li class="active">
+		                Balas
+		            </li>
+		        </ol>
+		    </div>
+		</div>
+		{!! Form::model($kontak, ['method'=>'PATCH','action'=>['KontakController@update',$kontak->id]]) !!}
+            @include('admin.kontak._form_balas',['submitButtonText'=>'Kirim'])
+        {!! Form::close() !!}	
+	</div>
+@stop
