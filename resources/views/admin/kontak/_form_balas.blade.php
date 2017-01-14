@@ -22,15 +22,15 @@
     </div>
     <br><br>
     @if($errors->any())
-        <div class="form-group {{ $errors->has('judul') ? 'has-error' : 'has-success' }}">
+        <div class="form-group {{ $errors->has('re_judul') ? 'has-error' : 'has-success' }}">
     @else
         <div class="form-group">
     @endif
-            {!! Form::label('judul', 'Judul', ['class'=>'col-md-2 control-label']) !!}
+            {!! Form::label('re_judul', 'Judul', ['class'=>'col-md-2 control-label']) !!}
             <div class="col-md-10">
-                {!! Form::text('judul', 'Re:'.$kontak->judul, ['class'=>'form-control']) !!}
-                @if($errors->has('judul'))
-                    <span class="help-block">{{ $errors->first('judul') }}</span>
+                {!! Form::text('re_judul', 'Re:'.$kontak->judul, ['class'=>'form-control']) !!}
+                @if($errors->has('re_judul'))
+                    <span class="help-block">{{ $errors->first('re_judul') }}</span>
                 @endif
             </div>
         </div>
@@ -43,7 +43,7 @@
     </div>
     <br><br>
     @if($errors->any())
-        <div class="form-group {{ $errors->has('isi') ? 'has-error' : 'has-success' }}">
+        <div class="form-group {{ $errors->has('balasan') ? 'has-error' : 'has-success' }}">
     @else
         <div class="form-group">
     @endif

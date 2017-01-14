@@ -7,6 +7,7 @@ use App\Kontak;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
+use Illuminate\Support\Facades\Mail;
 
 class KontakController extends Controller
 {
@@ -117,7 +118,30 @@ class KontakController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kontak = Kontak::findOrFail($id);
+
+        $this->validate($request, [
+            'nama'=>'required|max:30',
+            'email' => 'required|email|max:30',
+            'judul' => 'required|max:50',
+            'isi' =>'required',
+            're_judul' =>'required|max:50',
+            'balasan' => 'required'
+        ]);
+        if($kontak){
+            $kirim = Mail::send('admin.kontak.email', compact('balasan'), function ($m) use ($kontak){
+                        $m->to($kontak->email, $kontak->nama)->subject($kontak->re_judul);
+                    });
+            
+            if($kirim){
+                $kontak->update($request->all());
+                Session::flash('flash_message','Balasan Kontak berhasil dikirim.');
+                return redirect('admin/kontak');
+            }else{
+                Session::flash('flash_error','Balasan Kontak GAGAL dikirim.');
+                return redirect('admin/kontak');
+            }  
+        }
     }
 
     /**
