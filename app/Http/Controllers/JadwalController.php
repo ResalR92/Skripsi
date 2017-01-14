@@ -54,7 +54,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.jadwal.create');
     }
 
     /**
