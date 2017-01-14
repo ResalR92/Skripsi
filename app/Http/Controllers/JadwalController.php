@@ -126,6 +126,9 @@ class JadwalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Jadwal::destroy($id);
+        Session::flash('flash_message','Data Jadwal berhasil dihapus.');
+        Session::flash('penting',true);
+        return redirect('admin/jadwal');
     }
 }
