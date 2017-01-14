@@ -65,7 +65,14 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kegiatan'=>'required|max:50|unique:jadwal,kegiatan',
+            'awal'=>'required|date',
+            'akhir'=>'required|date'
+        ]);
+        $jadwal = Jadwal::create($request->all());
+        Session::flash('flash_message','Data Jadwal berhasil disimpan.');
+        return redirect('admin/jadwal');
     }
 
     /**
