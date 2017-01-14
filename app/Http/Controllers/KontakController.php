@@ -127,6 +127,9 @@ class KontakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kontak::destroy($id);
+        Session::flash('flash_message','Data Kontak berhasil dihapus.');
+        Session::flash('penting',true);
+        return redirect('admin/kontak');
     }
 }
