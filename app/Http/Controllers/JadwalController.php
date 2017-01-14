@@ -15,9 +15,26 @@ class JadwalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Builder $htmlBuilder)
     {
-        return view('admin.jadwal.index');
+        if($request->ajax()){
+            $jadwal = Jadwal::orderBy('awal','asc');
+            return Datatables::of($jadwal)
+                ->addColumn('action',function($jadwal){
+                    return view('datatable._action',[
+                        'model' => $jadwal,
+                        'form_url' => route('jadwal.destroy',$jadwal->id),
+                        'edit_url' => route('jadwal.edit',$jadwal->id),
+                        'confirm_message'=>'Apakah Anda yakin menghapus Jadwal '.$jadwal->kegiatan.'?'
+                    ]);
+                })->make(true);
+        }
+        $html = $htmlBuilder
+            ->addColumn(['data'=>'kegiatan','name'=>'kegiatan','title'=>'Kegiatan','orderable'=>false])
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+
+        return view('admin.jadwal.index',compact('html'));
+
     }
 
     /**
