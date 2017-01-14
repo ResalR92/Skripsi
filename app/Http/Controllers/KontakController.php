@@ -62,7 +62,7 @@ class KontakController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.kontak.create');
     }
 
     /**
@@ -73,7 +73,16 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama'=>'required|max:30',
+            'email' => 'required|email|max:30',
+            'judul' => 'required|max:50',
+            'isi' =>'required',
+        ]);
+        $kontak = Kontak::create($request->all());
+
+        Session::flash('flash_message','Data Kontak berhasil disimpan.');
+        return redirect('admin/kontak');
     }
 
     /**
