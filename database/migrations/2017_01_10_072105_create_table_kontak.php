@@ -19,7 +19,7 @@ class CreateTableKontak extends Migration
             $table->string('email',30);
             $table->string('judul',50);
             $table->text('isi');
-            $table->enum('dibalas',['0','1'])->default('0');
+            $table->boolean('dibalas')->default(false);
             $table->timestamps();
         });
     }
