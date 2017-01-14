@@ -23,7 +23,7 @@
     @endif
             {!! Form::label('awal', 'Mulai berlaku', ['class'=>'col-md-2 control-label']) !!}
             <div class="col-md-10">
-                {!! Form::date('awal', !empty($jadwal) ? $peserta->awal->format('Y-m-d') : null, ['class'=>'form-control','id'=>'awal']) !!}
+                {!! Form::date('awal', !empty($jadwal) ? $jadwal->awal->format('Y-m-d') : null, ['class'=>'form-control','id'=>'awal']) !!}
                 @if($errors->has('awal'))
                     <span class="help-block">{{ $errors->first('awal') }}</span>
                 @endif
@@ -37,7 +37,7 @@
     @endif
             {!! Form::label('akhir', 'Berakhir', ['class'=>'col-md-2 control-label']) !!}
             <div class="col-md-10">
-                {!! Form::date('akhir', !empty($jadwal) ? $peserta->akhir->format('Y-m-d') : null, ['class'=>'form-control','id'=>'akhir']) !!}
+                {!! Form::date('akhir', !empty($jadwal) ? $jadwal->akhir->format('Y-m-d') : null, ['class'=>'form-control','id'=>'akhir']) !!}
                 @if($errors->has('akhir'))
                     <span class="help-block">{{ $errors->first('akhir') }}</span>
                 @endif

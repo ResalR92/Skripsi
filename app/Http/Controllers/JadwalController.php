@@ -94,7 +94,8 @@ class JadwalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $jadwal = Jadwal::findOrFail($id);
+        return view('admin.jadwal.edit',compact('jadwal'));
     }
 
     /**
@@ -106,7 +107,15 @@ class JadwalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $jadwal = Jadwal::findOrFail($id);
+        $this->validate($request, [
+            'kegiatan'=>'required|max:50|unique:jadwal,kegiatan,'.$id,
+            'awal'=>'required|date',
+            'akhir'=>'required|date'
+        ]);
+        $jadwal->update($request->all());
+        Session::flash('flash_message','Data Jadwal berhasil diupdate.');
+        return redirect('admin/jadwal');
     }
 
     /**
