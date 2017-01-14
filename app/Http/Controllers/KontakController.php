@@ -18,8 +18,23 @@ class KontakController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $kontak = Kontak::select(['id','nama']);
+            $kontak = Kontak::orderBy('created_at','desc');
             return Datatables::of($kontak)
+                ->addColumn('tanggal',function($kontak){
+                        $tanggal = $kontak->created_at->format('d-m-Y');
+                        return $tanggal;
+                    })
+                ->addColumn('dibalas',function($kontak){
+                        if($kontak->dibalas == false){
+                            return '<a href="" class="btn btn-danger btn-xs" disabled>
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </a>';
+                        }elseif($kontak->dibalas == true){
+                            return '<a href="" class="btn btn-success btn-xs" disabled>
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    </a>';
+                        }
+                    })
                 ->addColumn('action',function($kontak){
                     return view('datatable._kontak',[
                         'model' => $kontak,
@@ -31,6 +46,10 @@ class KontakController extends Controller
         }
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama'])
+            ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
+            ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul'])
+            ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','orderable'=>false,'searchable'=>false])
+            ->addColumn(['data'=>'dibalas','name'=>'dibalas','title'=>'Respon'])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.kontak.index',compact('html'));
