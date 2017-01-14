@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->enum('level',['admin','operator','peserta'])->default('peserta');
             $table->timestamps();
         });
     }

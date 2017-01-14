@@ -17,7 +17,6 @@ class UsersSeeder extends Seeder
         $admin->name ='Administrator';
         $admin->email = 'admin@panjatek.com';
         $admin->password = bcrypt('rahasia');
-        $admin->level = 'admin';
         $admin->save();
 
         //membuat sample operator
@@ -25,7 +24,6 @@ class UsersSeeder extends Seeder
         $operator->name ='Operator';
         $operator->email = 'operator@panjatek.com';
         $operator->password = bcrypt('rahasia');
-        $operator->level = 'operator';
         $operator->save();  
 
         //membuat sample peserta
