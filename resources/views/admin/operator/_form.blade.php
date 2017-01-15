@@ -3,15 +3,15 @@
 @endif
 <div class="row">
     @if($errors->any())
-        <div class="form-group {{ $errors->has('nama') ? 'has-error' : 'has-success' }}">
+        <div class="form-group {{ $errors->has('name') ? 'has-error' : 'has-success' }}">
     @else
         <div class="form-group">
     @endif
-            {!! Form::label('nama', 'Nama', ['class'=>'col-md-2 control-label']) !!}
+            {!! Form::label('name', 'Nama', ['class'=>'col-md-2 control-label']) !!}
             <div class="col-md-10">
-                {!! Form::text('nama', null, ['class'=>'form-control']) !!}
-                @if($errors->has('nama'))
-                    <span class="help-block">{{ $errors->first('nama') }}</span>
+                {!! Form::text('name', null, ['class'=>'form-control']) !!}
+                @if($errors->has('name'))
+                    <span class="help-block">{{ $errors->first('name') }}</span>
                 @endif
             </div>
         </div>

@@ -56,7 +56,27 @@ class OperatorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'email'=> 'required|email|max:100|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        //Hash Password
+        $data['password'] = bcrypt($data['password']);
+
+        // return $data;
+        $operator = User::create($data);
+
+        //set role 
+        $operatorRole = Role::where('name','operator')->first();
+        $operator->attachRole($operatorRole);
+        
+        Session::flash('flash_message','Data user berhasil disimpan');
+
+        return redirect('admin/operator');
     }
 
     /**
