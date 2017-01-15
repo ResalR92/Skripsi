@@ -57,10 +57,7 @@ class SettingController extends Controller
     	$user->password = bcrypt($request->get('new_password'));
     	$user->save();
 
-    	Session::flash('flash_notification',[
-    		'level' => 'success',
-    		'message' => 'Password berhasil diubah'
-    	]);
+    	Session::flash('flash_message','Password berhasil diubah.');
     	return redirect('admin/password');
     }
 }
