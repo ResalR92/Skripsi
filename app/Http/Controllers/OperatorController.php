@@ -98,7 +98,8 @@ class OperatorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $operator = User::findOrFail($id);
+        return view('admin.operator.edit',compact('operator'));
     }
 
     /**
@@ -110,7 +111,28 @@ class OperatorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $data = $request->all();
+
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'email'=> 'required|email|max:100|unique:users,email,'.$id,
+            'password' => 'sometimes|confirmed|min:6',
+        ]);
+
+        if($request->has('password')){
+            //Hash password
+            $data['password'] = bcrypt($data['password']);
+        }else{
+            //Hapus password (password tidak diupdate)
+            $data = array_except($data,['password']);
+        }
+
+        $user->update($data);
+
+        Session::flash('flash_message','Data user berhasil diupdate');
+
+        return redirect('admin/operator');
     }
 
     /**
