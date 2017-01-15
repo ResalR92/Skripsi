@@ -30,6 +30,25 @@
             </div>
         </div>
     <br><br>
+    @if(isset($operator))
+        @if($errors->any())
+            <div class="form-group {{ $errors->has('is_blokir') ? 'has-error' : 'has-success' }}">
+        @else
+            <div class="form-group">
+        @endif
+                {!! Form::label('is_blokir','Status',['class'=>'col-md-2 control-label']) !!}
+                <div class="col-md-10">
+                    <div class="radio">
+                        <label>{{ Form::radio('is_blokir',false) }} Aktif</label>
+                    </div>
+                    <div class="radio">
+                        <label>{{ Form::radio('is_blokir',true) }} Blokir</label>
+                    </div>
+                </div>
+            </div>
+        <br><br>
+    @endif
+    
     {{--Password--}}
     @if($errors->any())
         <div class="form-group {{ $errors->has('password') ? 'has-error' : 'has-success' }}">

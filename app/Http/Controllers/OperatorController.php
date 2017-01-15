@@ -126,6 +126,7 @@ class OperatorController extends Controller
             'name' => 'required|max:255',
             'email'=> 'required|email|max:100|unique:users,email,'.$id,
             'password' => 'sometimes|confirmed|min:6',
+            'is_blokir' => 'required',
         ]);
 
         if($request->has('password')){
