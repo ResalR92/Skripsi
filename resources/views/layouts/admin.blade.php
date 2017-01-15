@@ -102,6 +102,9 @@
                     <a href="{{ url('admin/operator') }}"><i class="fa fa-fw fa-th-large"></i> Operator</a>
                 </li>
                 <li >
+                    <a href="{{ url('admin/akunpeserta') }}"><i class="fa fa-fw fa-th-large"></i> Akun Peserta</a>
+                </li>
+                <li >
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> My Admin</a>
                 </li>
 
