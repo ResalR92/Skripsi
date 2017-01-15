@@ -58,12 +58,10 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::resource('prosedur','ProsedurController');
 	Route::resource('jadwal','JadwalController');
 	Route::resource('kontak','KontakController');
+	Route::resource('operator','OperatorController');
 });
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
 
 Auth::routes();
 
