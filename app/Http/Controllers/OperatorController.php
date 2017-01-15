@@ -143,6 +143,14 @@ class OperatorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $operator = User::findOrFail($id);
+
+        if ($operator->hasRole('operator')) {
+            $operator->delete();
+            Session::flash('flash_message','Data Operator berhasil dihapus.');
+            Session::flash('penting',true);
+        }
+        
+        return redirect('admin/operator');
     }
 }
