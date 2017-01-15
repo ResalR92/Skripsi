@@ -46,7 +46,7 @@ class AkunpesertaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.akunpeserta.create');
     }
 
     /**
@@ -57,7 +57,27 @@ class AkunpesertaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'email'=> 'required|email|max:100|unique:users',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        //Hash Password
+        $data['password'] = bcrypt($data['password']);
+
+        // return $data;
+        $akunpeserta = User::create($data);
+
+        //set role 
+        $pesertaRole = Role::where('name','peserta')->first();
+        $akunpeserta->attachRole($pesertaRole);
+        
+        Session::flash('flash_message','Data user berhasil disimpan');
+
+        return redirect('admin/akunpeserta');
     }
 
     /**
