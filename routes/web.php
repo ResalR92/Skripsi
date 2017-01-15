@@ -46,7 +46,7 @@ Route::get('/kontak', function(){
 Route::get('/biodata', function(){
 	return view('peserta.biodata.index');
 });
-Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
+Route::group(['middleware'=>['auth']],function(){
 	Route::get('setting/password','SettingController@editPassword');
 	Route::post('setting/password','SettingController@updatePassword');
 	
@@ -64,10 +64,12 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','operator']],function(){
 	Route::resource('prosedur','ProsedurController');
 	Route::resource('jadwal','JadwalController');
 	Route::resource('kontak','KontakController');
+});
+
+Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
 	Route::resource('operator','OperatorController');
 	Route::resource('akunpeserta','AkunpesertaController');
 });
-
 
 
 Auth::routes();
