@@ -99,7 +99,7 @@
                     <a href="{{ url('admin/kontak') }}"><i class="fa fa-fw fa-th-large"></i> Kontak</a>
                 </li>
                 <li >
-                    <a href="#"><i class="fa fa-fw fa-th-large"></i> User</a>
+                    <a href="{{ url('admin/operator') }}"><i class="fa fa-fw fa-th-large"></i> Operator</a>
                 </li>
                 <li >
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> My Admin</a>
