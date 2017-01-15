@@ -144,6 +144,14 @@ class AkunpesertaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $akunpeserta = User::findOrFail($id);
+
+        if ($akunpeserta->hasRole('peserta')) {
+            $akunpeserta->delete();
+            Session::flash('flash_message','Data Akun Peserta berhasil dihapus.');
+            Session::flash('penting',true);
+        }
+        
+        return redirect('admin/akunpeserta');
     }
 }
