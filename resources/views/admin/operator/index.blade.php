@@ -15,6 +15,11 @@
 		        </ol>
 		    </div>
 		</div>
-		
+		<p><a href="{{ route('operator.create') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a></p>
+			{!! $html->table(['class'=>'table-striped']) !!}
 	</div>
 @stop
+
+@section('scripts')
+	{!! $html->scripts() !!}
+@endsection
