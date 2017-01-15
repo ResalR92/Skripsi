@@ -47,10 +47,15 @@ Route::get('/biodata', function(){
 	return view('peserta.biodata.index');
 });
 
+Route::get('setting/password','SettingController@editPassword');
+Route::post('setting/password','SettingController@updatePassword');
+
 Route::group(['prefix'=>'admin'],function(){
 	Route::get('/',function(){ //masuk ke UserController edit/update
 	    return view('dashboard.admin');
 	});
+	Route::get('password','SettingController@editPasswordAdmin');
+	Route::post('password','SettingController@updatePasswordAdmin');
 	Route::get('peserta/pdf/{peserta}','PesertaController@pdf');
 	Route::resource('peserta','PesertaController');
 	Route::resource('jurusan','JurusanController');
