@@ -59,6 +59,7 @@ Route::group(['prefix'=>'admin'],function(){
 	Route::resource('jadwal','JadwalController');
 	Route::resource('kontak','KontakController');
 	Route::resource('operator','OperatorController');
+	Route::resource('akunpeserta','AkunpesertaController');
 });
 
 
