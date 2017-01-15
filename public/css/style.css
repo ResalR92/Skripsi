@@ -46,19 +46,19 @@ body{
 .form{
     margin-bottom: 5px;
 }
-.form-control{
+/*.form-control{
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
-    outline: none;
+    outline: none;*/
 }
 
-.btn-primary{
+/*.btn-primary{
     font-family: "Web-Segoe-UI";
     font-weight: normal;
     border-radius: 0;
     background: #1b88c5;
-}
+}*/
 .text-header h1{
     font-size: 19px;
     font-family: "Web-Droid-Sans-Bold";
