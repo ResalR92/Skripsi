@@ -37,6 +37,7 @@ class UsersSeeder extends Seeder
         $admin->name ='Administrator';
         $admin->email = 'admin@panjatek.com';
         $admin->password = bcrypt('rahasia');
+        $admin->is_blokir = false;
         $admin->save();
         $admin->attachRole($adminRole);
 
@@ -45,6 +46,7 @@ class UsersSeeder extends Seeder
         $operator->name ='Operator';
         $operator->email = 'operator@panjatek.com';
         $operator->password = bcrypt('rahasia');
+        $operator->is_blokir = false;
         $operator->save(); 
         $operator->attachRole($operatorRole); 
 
@@ -53,6 +55,7 @@ class UsersSeeder extends Seeder
         $peserta->name ='Taylor';
         $peserta->email = 'taylor@mail.com';
         $peserta->password = bcrypt('rahasia');
+        $peserta->is_blokir = true;
         $peserta->save();
         $peserta->attachRole($pesertaRole);
 
@@ -61,6 +64,7 @@ class UsersSeeder extends Seeder
         $paulus->name ='Paulus';
         $paulus->email = 'paulus@mail.com';
         $paulus->password = bcrypt('rahasia');
+        $paulus->is_blokir = false;
         $paulus->save();
         $paulus->attachRole($pesertaRole);
 
@@ -69,6 +73,7 @@ class UsersSeeder extends Seeder
         $yakobus->name ='Yakobus';
         $yakobus->email = 'yakobus@mail.com';
         $yakobus->password = bcrypt('rahasia');
+        $yakobus->is_blokir = false;
         $yakobus->save();
         $yakobus->attachRole($pesertaRole);
     }
