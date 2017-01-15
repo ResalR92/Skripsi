@@ -21,6 +21,13 @@ class OperatorController extends Controller
         if($request->ajax()){
             $operator = Role::where('name','operator')->first()->users;
             return Datatables::of($operator)
+                ->addColumn('blokir',function($operator){
+                        if($operator->is_blokir == true){
+                            return '<span class="label label-danger">Blokir</span>';
+                        }elseif($operator->is_blokir == false){
+                            return '<span class="label label-success">Aktif</span>';
+                        }
+                    })
                 ->addColumn('action',function($operator){
                     return view('datatable._action',[
                         'model' => $operator,
@@ -33,6 +40,7 @@ class OperatorController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama'])
             ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
+            ->addColumn(['data'=>'blokir','name'=>'blokir','title'=>'Status','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.operator.index',compact('html'));

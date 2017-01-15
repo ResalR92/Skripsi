@@ -22,6 +22,13 @@ class AkunpesertaController extends Controller
         if($request->ajax()){
             $akunpeserta = Role::where('name','peserta')->first()->users;
             return Datatables::of($akunpeserta)
+                ->addColumn('blokir',function($akunpeserta){
+                        if($akunpeserta->is_blokir == true){
+                            return '<span class="label label-danger">Blokir</span>';
+                        }elseif($akunpeserta->is_blokir == false){
+                            return '<span class="label label-success">Aktif</span>';
+                        }
+                    })
                 ->addColumn('action',function($akunpeserta){
                     return view('datatable._action',[
                         'model' => $akunpeserta,
@@ -34,6 +41,7 @@ class AkunpesertaController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama'])
             ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
+            ->addColumn(['data'=>'blokir','name'=>'blokir','title'=>'Status','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.akunpeserta.index',compact('html'));

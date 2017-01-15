@@ -27,13 +27,9 @@ class KontakController extends Controller
                     })
                 ->addColumn('dibalas',function($kontak){
                         if($kontak->dibalas == false){
-                            return '<a href="" class="btn btn-danger btn-xs" disabled>
-                                        <i class="glyphicon glyphicon-remove"></i>
-                                    </a>';
+                            return '<span class="label label-danger"><i class="glyphicon glyphicon-remove"></i></span>';
                         }elseif($kontak->dibalas == true){
-                            return '<a href="" class="btn btn-success btn-xs" disabled>
-                                        <i class="glyphicon glyphicon-ok"></i>
-                                    </a>';
+                            return '<span class="label label-success"><i class="glyphicon glyphicon-ok"></i></span>';
                         }
                     })
                 ->addColumn('action',function($kontak){
@@ -50,7 +46,7 @@ class KontakController extends Controller
             ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
             ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul'])
             ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'dibalas','name'=>'dibalas','title'=>'Respon'])
+            ->addColumn(['data'=>'dibalas','name'=>'dibalas','title'=>'Balas'])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.kontak.index',compact('html'));
