@@ -139,7 +139,7 @@ class OperatorController extends Controller
 
         $user->update($data);
 
-        Session::flash('flash_message','Data user berhasil diupdate');
+        Session::flash('flash_message','Data Operator berhasil diupdate');
 
         return redirect('admin/operator');
     }

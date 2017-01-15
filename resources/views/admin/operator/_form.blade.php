@@ -39,10 +39,10 @@
                 {!! Form::label('is_blokir','Status',['class'=>'col-md-2 control-label']) !!}
                 <div class="col-md-10">
                     <div class="radio">
-                        <label>{{ Form::radio('is_blokir',false) }} Aktif</label>
+                        <label>{{ Form::radio('is_blokir',0) }} Aktif</label>
                     </div>
                     <div class="radio">
-                        <label>{{ Form::radio('is_blokir',true) }} Blokir</label>
+                        <label>{{ Form::radio('is_blokir',1) }} Blokir</label>
                     </div>
                 </div>
             </div>
