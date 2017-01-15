@@ -51,7 +51,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
 	Route::post('setting/password','SettingController@updatePassword');
 	
 });
-Route::group(['prefix'=>'admin','middleware'=>['auth']],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','operator']],function(){
 	Route::get('/',function(){ //masuk ke UserController edit/update
 		    return view('dashboard.admin');
 		});

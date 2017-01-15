@@ -3,24 +3,22 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use App\Role;
 
-class RedirectIfAuthenticated
+class RedirectIfNotOperator
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
+        if(!(Role::all()->whereIn('name',['admin','operator']))){
             return redirect('/');
         }
-
         return $next($request);
     }
 }

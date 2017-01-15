@@ -56,5 +56,6 @@ class Kernel extends HttpKernel
         'permission' => \Laratrust\Middleware\LaratrustPermission::class,
         'ability' => \Laratrust\Middleware\LaratrustAbility::class,
         'blokir' => \App\Http\Middleware\UserBlokir::class,
+        'operator' => \App\Http\Middleware\RedirectIfNotOperator::class,
     ];
 }
