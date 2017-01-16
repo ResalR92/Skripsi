@@ -15,6 +15,10 @@ use Yajra\Datatables\Datatables;
 
 class PengunjungController extends Controller
 {
+	public function index()
+	{
+		return view('dashboard.pengunjung');
+	}
     public function peserta(Request $request, Builder $htmlBuilder)
     {
     	if($request->ajax()){
