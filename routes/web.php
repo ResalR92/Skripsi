@@ -19,10 +19,12 @@ Route::get('jadwal','PengunjungController@jadwal');
 Route::get('kontak','PengunjungController@kontak');
 Route::post('kontak','PengunjungController@kirim');
 
-Route::get('/biodata', function(){
-	return view('peserta.biodata.index');
-});
-Route::group(['middleware'=>['auth']],function(){
+
+
+Route::group(['middleware'=>['auth','role:peserta']],function(){
+	Route::get('/biodata', function(){
+		return view('peserta.biodata');
+	});
 	Route::get('setting/password','SettingController@editPassword');
 	Route::post('setting/password','SettingController@updatePassword');
 	
