@@ -8,6 +8,7 @@ use App\User;
 use App\Jurusan;
 use App\Sekolah;
 use App\Pengumuman;
+use App\Prosedur;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 
@@ -53,7 +54,12 @@ class PengunjungController extends Controller
     public function pengumuman()
     {
     	$pengumuman_list = Pengumuman::orderBy('updated_at','desc')->paginate(1);
-    	// return $pengumuman_list;
     	return view('pengunjung.pengumuman',compact('pengumuman_list'));
+    }
+
+    public function prosedur()
+    {
+    	$prosedur_list = Prosedur::all()->sortBy('judul');
+    	return view('pengunjung.prosedur',compact('prosedur_list'));
     }
 }
