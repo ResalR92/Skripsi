@@ -21,8 +21,7 @@ class Peserta extends Model
         'no_hp',
         'tahun_lulus',
         'foto',
-        'verifikasi',
-        'lulus',
+        'id_status',
     ];
 
     public function user()
@@ -52,5 +51,10 @@ class Peserta extends Model
     public function wali()
     {
         return $this->hasOne('App\Wali','id_peserta');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\Status','id_status');
     }
 }
