@@ -63,7 +63,7 @@
                             @if(!empty($halaman) && $halaman == 'pendaftaran')
                                 <li class="active"><a href="{{ url('pendaftaran') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran <span class="sr-only">(current)</span> </a> </li>
                             @else
-                                <li><a href="{{ url('pendaftaran') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran</a></li>
+                                <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran</a></li>
                             @endif
 
                             @if(!empty($halaman) && $halaman == 'hasil_seleksi')
@@ -143,8 +143,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Daftar</a></li>
+                            <li><a href="{{ url('/login') }}"><b>Login</b></a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
