@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('dashboard.peserta');
 });
 
-Route::get('/peserta', function(){
-	return view('peserta.index');
-});
+Route::get('peserta','PengunjungController@peserta');
 
 Route::get('/jurusan', function(){
 	return view('peserta.jurusan.index');
