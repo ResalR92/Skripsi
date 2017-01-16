@@ -59,6 +59,7 @@
                                      <i class="fa fa-btn fa-lock"></i> Ubah Password
                                 </a>
                             </li>
+                            <li class="divider"></li>
                             <li>
                                 <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                     <i class="fa fa-btn fa-power-off"></i> Logout
