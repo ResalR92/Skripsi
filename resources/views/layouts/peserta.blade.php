@@ -97,7 +97,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('kontak/create') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
+                                    <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
                                     {{--<li><a href="{{ url('auth.password') }}"><span class="glyphicon glyphicon-barcode"></span> Lupa Password</a></li>--}}
                                 </ul>
                             </li>

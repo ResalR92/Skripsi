@@ -78,7 +78,7 @@ class KontakController extends Controller
         ]);
         $kontak = Kontak::create($request->all());
 
-        Session::flash('flash_message','Data Kontak berhasil disimpan.');
+        Session::flash('flash_message','Data Kontak berhasil dikirim.');
         return redirect('admin/kontak');
     }
 

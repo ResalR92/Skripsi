@@ -16,10 +16,8 @@ Route::get('peserta','PengunjungController@peserta');
 Route::get('pengumuman','PengunjungController@pengumuman');
 Route::get('prosedur','PengunjungController@prosedur');
 Route::get('jadwal','PengunjungController@jadwal');
-
-Route::get('/kontak', function(){
-	return view('peserta.kontak.index');
-});
+Route::get('kontak','PengunjungController@kontak');
+Route::post('kontak','PengunjungController@kirim');
 
 Route::get('/biodata', function(){
 	return view('peserta.biodata.index');

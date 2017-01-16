@@ -10,6 +10,8 @@ use App\Sekolah;
 use App\Pengumuman;
 use App\Prosedur;
 use App\Jadwal;
+use App\Kontak;
+use Session;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 
@@ -68,5 +70,23 @@ class PengunjungController extends Controller
     {
     	$jadwal_list = Jadwal::all()->sortBy('awal');
     	return view('pengunjung.jadwal',compact('jadwal_list'));
+    }
+
+    public function kontak()
+    {
+    	return view('pengunjung.kontak');
+    }
+    public function kirim(Request $request)
+    {
+    	$this->validate($request, [
+            'nama'=>'required|max:30',
+            'email' => 'required|email|max:30',
+            'judul' => 'required|max:50',
+            'isi' =>'required',
+        ]);
+        $kontak = Kontak::create($request->all());
+
+        Session::flash('flash_message','Data Kontak berhasil dikirim.');
+        return redirect('kontak');
     }
 }
