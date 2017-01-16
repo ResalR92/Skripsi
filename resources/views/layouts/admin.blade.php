@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.php">Dashboard PSB SMK Panjatek</a>
+            <a class="navbar-brand" href="{{ url('admin') }}">Dashboard PSB SMK Panjatek</a>
         </div>
         <!-- Top Menu Items -->
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -82,36 +82,78 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                <li class="active">
+                @if(!empty($halaman) && $halaman == 'admindashboard')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
-                <li >
+
+                @if(!empty($halaman) && $halaman == 'adminpeserta')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin/peserta') }}"><i class="fa fa-fw fa-book"></i> Peserta</a>
                 </li>
-                <li >
+
+                @if(!empty($halaman) && $halaman == 'adminjurusan')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin/jurusan') }}"><i class="fa fa-fw fa-th-large"></i> Jurusan</a>
                 </li>
-                <li >
+                @if(!empty($halaman) && $halaman == 'adminpengumuman')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin/pengumuman') }}"><i class="fa fa-fw fa-th-large"></i> Pengumuman</a>
                 </li>
-                <li >
+                @if(!empty($halaman) && $halaman == 'adminprosedur')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin/prosedur') }}"><i class="fa fa-fw fa-th-large"></i> Prosedur</a>
                 </li>
-                <li >
+                @if(!empty($halaman) && $halaman == 'adminjadwal')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin/jadwal') }}"><i class="fa fa-fw fa-th-large"></i> Jadwal</a>
                 </li>
-                <li >
+                @if(!empty($halaman) && $halaman == 'adminkontak')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="{{ url('admin/kontak') }}"><i class="fa fa-fw fa-th-large"></i> Kontak</a>
                 </li>
                 @role('admin')
-                    <li >
+                    @if(!empty($halaman) && $halaman == 'adminoperator')
+                        <li class="active">
+                    @else
+                        <li>
+                    @endif
                         <a href="{{ url('admin/operator') }}"><i class="fa fa-fw fa-th-large"></i> Operator</a>
                     </li>
-                    <li >
+                    @if(!empty($halaman) && $halaman == 'adminakunpeserta')
+                        <li class="active">
+                    @else
+                        <li>
+                    @endif
                         <a href="{{ url('admin/akunpeserta') }}"><i class="fa fa-fw fa-th-large"></i> Akun Peserta</a>
                     </li>
                 @endrole
-                <li >
+                @if(!empty($halaman) && $halaman == 'adminmyadmin')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
                     <a href="#"><i class="fa fa-fw fa-th-large"></i> My Admin</a>
                 </li>
 
