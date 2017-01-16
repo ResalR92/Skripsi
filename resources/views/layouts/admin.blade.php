@@ -75,7 +75,7 @@
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
-                @if(!empty($halaman) && $halaman == 'admindashboard')
+                @if(!empty($dashboard) && $dashboard == 'admindashboard')
                     <li class="active">
                 @else
                     <li>
@@ -83,7 +83,7 @@
                     <a href="{{ url('admin') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                 </li>
 
-                @if(!empty($halaman) && $halaman == 'adminpeserta')
+                @if(!empty($dashboard) && $dashboard == 'adminpeserta')
                     <li class="active">
                 @else
                     <li>
@@ -91,35 +91,35 @@
                     <a href="{{ url('admin/peserta') }}"><i class="fa fa-fw fa-users"></i> Peserta</a>
                 </li>
 
-                @if(!empty($halaman) && $halaman == 'adminjurusan')
+                @if(!empty($dashboard) && $dashboard == 'adminjurusan')
                     <li class="active">
                 @else
                     <li>
                 @endif
                     <a href="{{ url('admin/jurusan') }}"><i class="fa fa-fw fa-graduation-cap"></i> Jurusan</a>
                 </li>
-                @if(!empty($halaman) && $halaman == 'adminpengumuman')
+                @if(!empty($dashboard) && $dashboard == 'adminpengumuman')
                     <li class="active">
                 @else
                     <li>
                 @endif
                     <a href="{{ url('admin/pengumuman') }}"><i class="fa fa-fw fa-newspaper-o"></i> Pengumuman</a>
                 </li>
-                @if(!empty($halaman) && $halaman == 'adminprosedur')
+                @if(!empty($dashboard) && $dashboard == 'adminprosedur')
                     <li class="active">
                 @else
                     <li>
                 @endif
                     <a href="{{ url('admin/prosedur') }}"><i class="fa fa-fw fa-book"></i> Prosedur</a>
                 </li>
-                @if(!empty($halaman) && $halaman == 'adminjadwal')
+                @if(!empty($dashboard) && $dashboard == 'adminjadwal')
                     <li class="active">
                 @else
                     <li>
                 @endif
                     <a href="{{ url('admin/jadwal') }}"><i class="fa fa-fw fa-th-large"></i> Jadwal</a>
                 </li>
-                @if(!empty($halaman) && $halaman == 'adminkontak')
+                @if(!empty($dashboard) && $dashboard == 'adminkontak')
                     <li class="active">
                 @else
                     <li>
@@ -127,14 +127,14 @@
                     <a href="{{ url('admin/kontak') }}"><i class="fa fa-fw fa-phone-square"></i> Kontak</a>
                 </li>
                 @role('admin')
-                    @if(!empty($halaman) && $halaman == 'adminoperator')
+                    @if(!empty($dashboard) && $dashboard == 'adminoperator')
                         <li class="active">
                     @else
                         <li>
                     @endif
                         <a href="{{ url('admin/operator') }}"><i class="fa fa-fw fa-users"></i> Operator</a>
                     </li>
-                    @if(!empty($halaman) && $halaman == 'adminakunpeserta')
+                    @if(!empty($dashboard) && $dashboard == 'adminakunpeserta')
                         <li class="active">
                     @else
                         <li>
@@ -142,7 +142,7 @@
                         <a href="{{ url('admin/akunpeserta') }}"><i class="fa fa-fw fa-users"></i> Akun Peserta</a>
                     </li>
                 @endrole
-                @if(!empty($halaman) && $halaman == 'adminmyadmin')
+                @if(!empty($dashboard) && $dashboard == 'adminmyadmin')
                     <li class="active">
                 @else
                     <li>

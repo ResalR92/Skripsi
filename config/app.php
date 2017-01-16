@@ -173,6 +173,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
         App\Providers\HalamanServiceProvider::class,
+        App\Providers\DashboardServiceProvider::class,
 
         /*
          * Application Service Providers...
