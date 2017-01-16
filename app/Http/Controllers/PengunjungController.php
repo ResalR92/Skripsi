@@ -7,9 +7,7 @@ use App\Peserta;
 use App\User;
 use App\Jurusan;
 use App\Sekolah;
-use App\Ayah;
-use App\Ibu;
-use App\Wali;
+use App\Pengumuman;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 
@@ -50,5 +48,12 @@ class PengunjungController extends Controller
             ->addColumn(['data'=>'verifikasi','name'=>'verifikasi','title'=>'Verifikasi','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'lulus','name'=>'lulus','title'=>'Lulus','orderable'=>false,'searchable'=>false]);
         return view('pengunjung.peserta',compact('html'));
+    }
+
+    public function pengumuman()
+    {
+    	$pengumuman_list = Pengumuman::orderBy('updated_at','desc')->paginate(1);
+    	// return $pengumuman_list;
+    	return view('pengunjung.pengumuman',compact('pengumuman_list'));
     }
 }

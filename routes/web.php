@@ -13,18 +13,8 @@
 
 Route::get('/', 'PengunjungController@index');
 Route::get('peserta','PengunjungController@peserta');
+Route::get('pengumuman','PengunjungController@pengumuman');
 
-Route::get('/jurusan', function(){
-	return view('peserta.jurusan.index');
-});
-
-Route::get('/jurusan', function(){
-	return view('peserta.jurusan.index');
-});
-
-Route::get('/pengumuman', function(){
-	return view('peserta.pengumuman.index');
-});
 
 Route::get('/prosedur', function(){
 	return view('peserta.prosedur.index');
