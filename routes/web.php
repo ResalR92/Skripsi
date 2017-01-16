@@ -30,7 +30,7 @@ Route::group(['middleware'=>['auth','role:peserta']],function(){
 	
 });
 
-Route::group(['prefix'=>'admin','middleware'=>['auth','operator']],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],function(){
 	Route::get('/',function(){ //masuk ke UserController edit/update
 		    return view('dashboard.admin');
 		});
