@@ -56,14 +56,12 @@
                         <ul class="dropdown-menu" role="menu">
                             <li>
                                 <a href="{{ url('admin/password') }}">
-                                    <i class="fa fa-btn fa-lock"></i> Ubah Password
+                                     <i class="fa fa-btn fa-lock"></i> Ubah Password
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ url('/logout') }}"
-                                    onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                    <i class="fa fa-fw fa-power-off"></i> Logout
+                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-btn fa-power-off"></i> Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
