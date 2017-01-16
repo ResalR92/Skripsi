@@ -61,35 +61,47 @@
                         @endif
                         @if (!Auth::check())
                             @if(!empty($halaman) && $halaman == 'pendaftaran')
-                                <li class="active"><a href="{{ url('pendaftaran') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran <span class="sr-only">(current)</span> </a> </li>
+                                <li class="active"><a href="{{ url('register') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran <span class="sr-only">(current)</span> </a> </li>
                             @else
                                 <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran</a></li>
                             @endif
                         @endif
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-info-sign"></span> Informasi
-                                <span class="caret"></span>
-                            </a>
-
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('pengumuman') }}"><span class="glyphicon glyphicon-bullhorn"></span> Pengumuman</a></li>
-                                <li><a href="{{ url('prosedur') }}"><span class="glyphicon glyphicon-sort"></span> Prosedur</a></li>
-                                <li><a href="{{ url('jadwal') }}"><span class="glyphicon glyphicon-calendar"></span> Jadwal</a></li>
-                            </ul>
-                        </li>
-                        @if (!Auth::check())
+                        @if(!empty($halaman) && $halaman == 'informasi')
+                            <li class="dropdown active">
+                        @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-question-sign"></span> Bantuan
+                        @endif
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-info-sign"></span> Informasi
                                     <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
+                                    <li><a href="{{ url('pengumuman') }}"><span class="glyphicon glyphicon-bullhorn"></span> Pengumuman</a></li>
+                                    <li><a href="{{ url('prosedur') }}"><span class="glyphicon glyphicon-sort"></span> Prosedur</a></li>
+                                    <li><a href="{{ url('jadwal') }}"><span class="glyphicon glyphicon-calendar"></span> Jadwal</a></li>
                                 </ul>
                             </li>
+                        @if (!Auth::check())
+                            @if(!empty($halaman) && $halaman == 'bantuan')
+                                <li class="dropdown active">
+                            @else
+                                <li class="dropdown">
+                            @endif
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-question-sign"></span> Bantuan
+                                        <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
+                                    </ul>
+                                </li>
                         @endif
                         @role('peserta')
-                            <li class="dropdown">
+                            @if(!empty($halaman) && $halaman == 'akun')
+                                <li class="dropdown active">
+                            @else
+                                <li class="dropdown">
+                            @endif
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> Akun Saya
                                     <span class="caret"></span>
                                 </a>
@@ -108,7 +120,11 @@
                         @if (Auth::guest())
                             <li><a href="{{ url('/login') }}"><b>Login</b></a></li>
                         @else
-                            <li class="dropdown">
+                            @if(!empty($halaman) && $halaman == 'ubahpwd')
+                                <li class="dropdown active">
+                            @else
+                                <li class="dropdown">
+                            @endif
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

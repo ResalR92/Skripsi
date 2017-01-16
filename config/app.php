@@ -172,6 +172,7 @@ return [
         App\Providers\FormPesertaServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
+        App\Providers\HalamanServiceProvider::class,
 
         /*
          * Application Service Providers...
