@@ -9,6 +9,7 @@ use App\Jurusan;
 use App\Sekolah;
 use App\Pengumuman;
 use App\Prosedur;
+use App\Jadwal;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 
@@ -61,5 +62,11 @@ class PengunjungController extends Controller
     {
     	$prosedur_list = Prosedur::all()->sortBy('judul');
     	return view('pengunjung.prosedur',compact('prosedur_list'));
+    }
+
+    public function jadwal()
+    {
+    	$jadwal_list = Jadwal::all()->sortBy('awal');
+    	return view('pengunjung.jadwal',compact('jadwal_list'));
     }
 }

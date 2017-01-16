@@ -15,10 +15,7 @@ Route::get('/', 'PengunjungController@index');
 Route::get('peserta','PengunjungController@peserta');
 Route::get('pengumuman','PengunjungController@pengumuman');
 Route::get('prosedur','PengunjungController@prosedur');
-
-Route::get('/jadwal', function(){
-	return view('peserta.jadwal.index');
-});
+Route::get('jadwal','PengunjungController@jadwal');
 
 Route::get('/kontak', function(){
 	return view('peserta.kontak.index');
