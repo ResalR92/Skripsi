@@ -19,7 +19,7 @@ Route::get('jadwal','PengunjungController@jadwal');
 Route::get('kontak','PengunjungController@kontak');
 Route::post('kontak','PengunjungController@kirim');
 
-
+Auth::routes();
 
 Route::group(['middleware'=>['auth','role:peserta']],function(){
 	Route::get('/biodata', function(){
@@ -29,6 +29,7 @@ Route::group(['middleware'=>['auth','role:peserta']],function(){
 	Route::post('setting/password','SettingController@updatePassword');
 	
 });
+
 Route::group(['prefix'=>'admin','middleware'=>['auth','operator']],function(){
 	Route::get('/',function(){ //masuk ke UserController edit/update
 		    return view('dashboard.admin');
@@ -48,8 +49,3 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
 	Route::resource('operator','OperatorController');
 	Route::resource('akunpeserta','AkunpesertaController');
 });
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
