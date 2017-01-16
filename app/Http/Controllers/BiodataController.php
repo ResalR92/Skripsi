@@ -127,7 +127,7 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PesertaRequest $request, $id)
     {
         $peserta = Peserta::findOrFail($id);
         $input = $request->all();
@@ -203,5 +203,33 @@ class BiodataController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function uploadFoto(PesertaRequest $request)
+    {
+        $foto = $request->file('foto');
+        $ext  = $foto->getClientOriginalExtension();
+
+        if($request->file('foto')->isValid()){
+            $foto_name = date('YmdHis').".$ext";
+            $upload_path = 'fotoupload';
+            $request->file('foto')->move($upload_path, $foto_name);
+            
+            return $foto_name;
+        }
+        return false;
+    }
+
+    private function hapusFoto(Peserta $peserta)
+    {
+        $exist = Storage::disk('foto')->exists($peserta->foto);
+        if(isset($peserta->foto) && $exist){
+            $delete = Storage::disk('foto')->delete($peserta->foto);
+
+            if($delete){
+                return true;
+            }
+            return false;
+        }
     }
 }
