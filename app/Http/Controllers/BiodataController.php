@@ -68,7 +68,9 @@ class BiodataController extends Controller
      */
     public function show($id)
     {
-        //
+        $peserta = Peserta::findOrFail($id);
+        $this->authorize('modify',$peserta);
+        return view('biodata.show',compact('peserta'));
     }
 
     /**
@@ -203,6 +205,14 @@ class BiodataController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function pdf($id)
+    {
+        $peserta = Peserta::findOrFail($id);
+        $this->authorize('modify',$peserta);
+        $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
+        return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
     }
 
     private function uploadFoto(PesertaRequest $request)

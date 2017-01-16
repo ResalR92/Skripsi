@@ -24,7 +24,7 @@
 						@if($biodata->status->label == 'warning')
 							{{ link_to('biodata/'.$biodata->id.'/edit','Edit',['class'=>'btn btn-warning']) }}
 						@elseif($biodata->status->label == 'success')
-							<a href="#" class="btn btn-success">Cetak PDF</a>
+							{{ link_to('biodata/'.$biodata->id,'Cetak PDF',['class'=>'btn btn-success']) }}
 						@endif
 					</div>
 					<div class="col-md-6">
