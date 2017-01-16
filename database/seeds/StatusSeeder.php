@@ -16,7 +16,7 @@ class StatusSeeder extends Seeder
         	['nama'=>'Data Tidak Valid','label'=>'warning'],
         	['nama'=>'Data Valid','label'=>'primary'],
         	['nama'=>'Tidak Lulus','label'=>'danger'],
-        	['nama'=>'Lulus','label'=>'lulus'],
+        	['nama'=>'Lulus','label'=>'success'],
         ];
 
         //Masukkan data ke database
