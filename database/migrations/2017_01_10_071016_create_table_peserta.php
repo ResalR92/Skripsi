@@ -33,7 +33,7 @@ class CreateTablePeserta extends Migration
             $table->string('telepon')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('tahun_lulus');
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->integer('id_status')->unsigned();
             $table->timestamps();
         });

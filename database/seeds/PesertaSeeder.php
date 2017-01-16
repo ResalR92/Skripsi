@@ -30,7 +30,6 @@ class PesertaSeeder extends Seeder
     	$paulus->telepon = '02124020675';
     	$paulus->no_hp = '082124020675';
     	$paulus->tahun_lulus = '2015';
-    	$paulus->foto = '';
     	$paulus->id_status = 5;
     	$paulus->save();
 
@@ -98,7 +97,6 @@ class PesertaSeeder extends Seeder
     	$yakobus->telepon = '02124020675';
     	$yakobus->no_hp = '082124020675';
     	$yakobus->tahun_lulus = '2015';
-    	$yakobus->foto = '';
     	$yakobus->id_status = 3;
     	$yakobus->save();
 

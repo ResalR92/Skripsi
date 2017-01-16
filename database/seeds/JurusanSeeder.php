@@ -12,10 +12,10 @@ class JurusanSeeder extends Seeder
     public function run()
     {
         $jurusan = [
-        	['nama'=>'Teknik Permesinan'],
-        	['nama'=>'Teknik Kendaraan Ringan'],
-        	['nama'=>'Administrasi Perkantoran'],
-        	['nama'=>'Teknik Komputer Jaringan'],
+        	['nama'=>'Teknik Permesinan','kapasitas'=>30],
+        	['nama'=>'Teknik Kendaraan Ringan','kapasitas'=>31],
+        	['nama'=>'Administrasi Perkantoran','kapasitas'=>34],
+        	['nama'=>'Teknik Komputer Jaringan','kapasitas'=>32],
         ];
 
         //Masukkan data ke database

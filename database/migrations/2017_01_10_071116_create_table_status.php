@@ -17,6 +17,7 @@ class CreateTableStatus extends Migration
             $table->increments('id');
             $table->string('nama',20);
             $table->string('label',10);
+            $table->string('pesan',100);
             $table->timestamps();
         });
         Schema::table('peserta',function(Blueprint $table){

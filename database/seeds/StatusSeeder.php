@@ -12,11 +12,11 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $status = [
-        	['nama'=>'Menunggu Verifikasi','label'=>'info'],
-        	['nama'=>'Data Tidak Valid','label'=>'warning'],
-        	['nama'=>'Data Valid','label'=>'primary'],
-        	['nama'=>'Tidak Lulus','label'=>'danger'],
-        	['nama'=>'Lulus','label'=>'success'],
+        	['nama'=>'Baru','label'=>'info','pesan'=>'Sedang diverifikasi'],
+        	['nama'=>'Tidak Valid','label'=>'warning','pesan'=>'Mohon lengkapi atau perbaiki biodata'],
+        	['nama'=>'Valid','label'=>'primary','pesan'=>'Menunggu keputusan Lulus/Tidak Lulus'],
+        	['nama'=>'Tidak Lulus','label'=>'danger','pesan'=>'Mohon maaf, Anda tidak diterima'],
+        	['nama'=>'Lulus','label'=>'success','pesan'=>'Selamat,segera lakukan Pendaftaran Ulang'],
         ];
 
         //Masukkan data ke database
