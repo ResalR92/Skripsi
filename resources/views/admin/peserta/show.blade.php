@@ -21,7 +21,7 @@
 				<h2 class="bg-info">DATA CALON PESERTA DIDIK</h2>
 				<hr>
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<dl class="dl-horizontal">
 							<dt>No. Pendaftaran</dt>
 							<dd>: {{ $peserta->id }}</dd>
@@ -31,7 +31,7 @@
 							<dd>: {{ $peserta->jurusan->nama }}</dd>
 						</dl>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-4">
 						{!! Html::image(asset('fotoupload/'.$peserta->foto),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
 					</div>
 				</div>
