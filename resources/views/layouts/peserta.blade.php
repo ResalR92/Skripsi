@@ -65,19 +65,6 @@
                             @else
                                 <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran</a></li>
                             @endif
-
-                            @if(!empty($halaman) && $halaman == 'hasil_seleksi')
-                                <li class="active"><a href="{{ url('peserta') }}"><span class="glyphicon glyphicon-flag"></span> Hasil Seleksi <span class="sr-only">(current)</span> </a> </li>
-                            @else
-                                <li><a href="{{ url('hasil_seleksi') }}"><span class="glyphicon glyphicon-flag"></span> Hasil Seleksi</a></li>
-                            @endif
-                        @endif
-                        @if(Auth::check() && (Auth::user()->level == 'operator' || Auth::user()->level == 'admin'))
-                            @if(!empty($halaman) && $halaman == 'jurusan')
-                                <li class="active"><a href="{{ url('jurusan') }}"><span class="glyphicon glyphicon-education"></span> Jurusan <span class="sr-only">(current)</span> </a> </li>
-                            @else
-                                <li><a href="{{ url('jurusan') }}"><span class="glyphicon glyphicon-education"></span> Jurusan</a></li>
-                            @endif
                         @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-info-sign"></span> Informasi
@@ -98,11 +85,10 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
-                                    {{--<li><a href="{{ url('auth.password') }}"><span class="glyphicon glyphicon-barcode"></span> Lupa Password</a></li>--}}
                                 </ul>
                             </li>
                         @endif
-                        @if(Auth::check() && Auth::user()->level == 'peserta')
+                        @role('peserta')
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> Akun Saya
                                     <span class="caret"></span>
@@ -113,30 +99,7 @@
                                     <li><a href="{{ url('biodata') }}"><span class="glyphicon glyphicon-print"></span> Cetak Biodata</a></li><!-- nanti dimasukkan ke show -->
                                 </ul>
                             </li>
-                        @endif
-                        @if(Auth::check() && (Auth::user()->level == 'operator' || Auth::user()->level == 'admin'))
-                            @if(!empty($halaman) && $halaman == 'kontak')
-                                <li class="active"><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak <span class="sr-only">(current)</span> </a> </li>
-                            @else
-                                <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
-                            @endif
-                        @endif
-
-                        @if(Auth::check() && Auth::user()->level == 'admin')
-                            @if(!empty($halaman) && $halaman == 'user')
-                                <li class="active"><a href="{{ url('user') }}"><span class="glyphicon glyphicon-user"></span> User <span class="sr-only">(current)</span> </a> </li>
-                            @else
-                                <li><a href="{{ url('user') }}"><span class="glyphicon glyphicon-user"></span> User</a></li>
-                            @endif
-                        @endif
-
-                        @if(Auth::check() && (Auth::user()->level == 'operator' || Auth::user()->level == 'admin'))
-                            @if(!empty($halaman) && $halaman == 'myadmin')
-                                <li class="active"><a href="{{ url('myadmin') }}"><span class="glyphicon glyphicon-user"></span> MyAdmin <span class="sr-only">(current)</span> </a> </li>
-                            @else
-                                <li><a href="{{ url('myadmin') }}"><span class="glyphicon glyphicon-user"></span> MyAdmin</a></li>
-                            @endif
-                        @endif
+                        @endrole
                     </ul>
 
                     <!-- Right Side Of Navbar -->
