@@ -17,6 +17,9 @@ class FormPesertaServiceProvider extends ServiceProvider
         view()->composer('admin.peserta._form',function($view){
             $view->with('list_jurusan',Jurusan::all()->pluck('nama','id'));
         });
+        view()->composer('biodata._form',function($view){
+            $view->with('list_jurusan',Jurusan::all()->pluck('nama','id'));
+        });
     }
 
     /**

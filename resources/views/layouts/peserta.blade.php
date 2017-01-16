@@ -147,9 +147,9 @@
         </nav>
         @yield('content')
     </div>
-    <div id="footer">
+    {{-- <footer id="footer">
         <p>&copy; 2016 www.psb.smkpanjatek.sch.id</p>
-    </div>
+    </footer> --}}
 
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
