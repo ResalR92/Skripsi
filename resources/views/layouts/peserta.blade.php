@@ -98,19 +98,10 @@
                         @endif
                         @role('peserta')
                             @if(!empty($halaman) && $halaman == 'akun')
-                                <li class="dropdown active">
+                                <li class="active"><a href="{{ url('biodata/') }}"><span class="glyphicon glyphicon-user"></span> Biodata <span class="sr-only">(current)</span> </a> </li>
                             @else
-                                <li class="dropdown">
+                                <li><a href="{{ url('biodata') }}"><span class="glyphicon glyphicon-user"></span> Biodata</a></li>
                             @endif
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-user"></span> Akun Saya
-                                    <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('biodata') }}"><span class="glyphicon glyphicon-book"></span> Biodata</a></li>
-                                    <li><a href="{{ url('biodata') }}"><span class="glyphicon glyphicon-print"></span> Cetak Biodata</a></li><!-- nanti dimasukkan ke show -->
-                                </ul>
-                            </li>
                         @endrole
                     </ul>
 

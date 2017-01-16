@@ -22,9 +22,7 @@ Route::post('kontak','PengunjungController@kirim');
 Auth::routes();
 
 Route::group(['middleware'=>['auth','role:peserta']],function(){
-	Route::get('/biodata', function(){
-		return view('peserta.biodata');
-	});
+	Route::resource('biodata', 'BiodataController');
 	Route::get('setting/password','SettingController@editPassword');
 	Route::post('setting/password','SettingController@updatePassword');
 	
