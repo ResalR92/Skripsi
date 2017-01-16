@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PesertaRequest;
 use App\Peserta;
 use App\User;
@@ -11,6 +12,7 @@ use App\Sekolah;
 use App\Ayah;
 use App\Ibu;
 use App\Wali;
+use App\Status;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
@@ -51,7 +53,7 @@ class PesertaController extends Controller
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Peserta'])
             ->addColumn(['data'=>'jurusan.nama','name'=>'jurusan.nama','title'=>'Program Keahlian'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
-            ->addColumn(['data'=>'status','name'=>'status','title'=>'Status',,'orderable'=>false,'searchable'=>false])
+            ->addColumn(['data'=>'status','name'=>'status','title'=>'Status','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
         return view('admin.peserta.index',compact('html'));
     }
@@ -79,8 +81,8 @@ class PesertaController extends Controller
         if($request->hasFile('foto')){
             $input['foto'] = $this->uploadFoto($request);
         }
-
-        $input['user_id'] = '3';
+        $input['user_id'] = Auth::user()->id;
+        $input['id_status'] = 1;
 
         $peserta = Peserta::create($input);
 

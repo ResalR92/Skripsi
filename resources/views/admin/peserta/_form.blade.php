@@ -1,12 +1,8 @@
 @if(isset($peserta))
     {!! Form::hidden('id', $peserta->id) !!}
     {!! Form::hidden('user_id', $peserta->user_id) !!}
-    {!! Form::hidden('verifikasi', $peserta->verifikasi) !!}
-    {!! Form::hidden('lulus', $peserta->lulus) !!}
+    {!! Form::hidden('id_status', $peserta->status->id) !!}
 @endif
-{{-- {!! Form::hidden('user_id', $user_id) !!} --}}
-
-
 <div class="container-fluid">
     @if($errors->any())
     <div class="form-group {{ $errors->has('id_jurusan') ? 'has-error' : 'has-success' }}">
