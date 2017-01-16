@@ -31,22 +31,18 @@
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{ url('admin') }}">Dashboard PSB SMK Panjatek</a>
-        </div>
-        <!-- Top Menu Items -->
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    
-
-            <!-- Right Side Of Navbar -->
-            <ul class="nav navbar-nav navbar-right">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url('admin') }}">Admin PSB SMK Panjatek</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav top-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}">Login</a></li>
@@ -54,7 +50,7 @@
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                        <i class="fa fa-fw fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>   
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
@@ -67,7 +63,7 @@
                                 <a href="{{ url('/logout') }}"
                                     onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                    Logout
+                                    <i class="fa fa-fw fa-power-off"></i> Logout
                                 </a>
 
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -78,7 +74,6 @@
                     </li>
                 @endif
             </ul>
-        </div
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">
@@ -95,7 +90,7 @@
                 @else
                     <li>
                 @endif
-                    <a href="{{ url('admin/peserta') }}"><i class="fa fa-fw fa-book"></i> Peserta</a>
+                    <a href="{{ url('admin/peserta') }}"><i class="fa fa-fw fa-users"></i> Peserta</a>
                 </li>
 
                 @if(!empty($halaman) && $halaman == 'adminjurusan')
@@ -103,21 +98,21 @@
                 @else
                     <li>
                 @endif
-                    <a href="{{ url('admin/jurusan') }}"><i class="fa fa-fw fa-th-large"></i> Jurusan</a>
+                    <a href="{{ url('admin/jurusan') }}"><i class="fa fa-fw fa-graduation-cap"></i> Jurusan</a>
                 </li>
                 @if(!empty($halaman) && $halaman == 'adminpengumuman')
                     <li class="active">
                 @else
                     <li>
                 @endif
-                    <a href="{{ url('admin/pengumuman') }}"><i class="fa fa-fw fa-th-large"></i> Pengumuman</a>
+                    <a href="{{ url('admin/pengumuman') }}"><i class="fa fa-fw fa-newspaper-o"></i> Pengumuman</a>
                 </li>
                 @if(!empty($halaman) && $halaman == 'adminprosedur')
                     <li class="active">
                 @else
                     <li>
                 @endif
-                    <a href="{{ url('admin/prosedur') }}"><i class="fa fa-fw fa-th-large"></i> Prosedur</a>
+                    <a href="{{ url('admin/prosedur') }}"><i class="fa fa-fw fa-book"></i> Prosedur</a>
                 </li>
                 @if(!empty($halaman) && $halaman == 'adminjadwal')
                     <li class="active">
@@ -131,7 +126,7 @@
                 @else
                     <li>
                 @endif
-                    <a href="{{ url('admin/kontak') }}"><i class="fa fa-fw fa-th-large"></i> Kontak</a>
+                    <a href="{{ url('admin/kontak') }}"><i class="fa fa-fw fa-phone-square"></i> Kontak</a>
                 </li>
                 @role('admin')
                     @if(!empty($halaman) && $halaman == 'adminoperator')
@@ -139,14 +134,14 @@
                     @else
                         <li>
                     @endif
-                        <a href="{{ url('admin/operator') }}"><i class="fa fa-fw fa-th-large"></i> Operator</a>
+                        <a href="{{ url('admin/operator') }}"><i class="fa fa-fw fa-users"></i> Operator</a>
                     </li>
                     @if(!empty($halaman) && $halaman == 'adminakunpeserta')
                         <li class="active">
                     @else
                         <li>
                     @endif
-                        <a href="{{ url('admin/akunpeserta') }}"><i class="fa fa-fw fa-th-large"></i> Akun Peserta</a>
+                        <a href="{{ url('admin/akunpeserta') }}"><i class="fa fa-fw fa-users"></i> Akun Peserta</a>
                     </li>
                 @endrole
                 @if(!empty($halaman) && $halaman == 'adminmyadmin')
@@ -154,7 +149,7 @@
                 @else
                     <li>
                 @endif
-                    <a href="#"><i class="fa fa-fw fa-th-large"></i> My Admin</a>
+                    <a href="#"><i class="fa fa-fw fa-gear"></i> My Admin</a>
                 </li>
 
             </ul>
