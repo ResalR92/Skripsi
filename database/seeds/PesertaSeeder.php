@@ -31,8 +31,7 @@ class PesertaSeeder extends Seeder
     	$paulus->no_hp = '082124020675';
     	$paulus->tahun_lulus = '2015';
     	$paulus->foto = '';
-    	$paulus->verifikasi = 1;
-    	$paulus->lulus = 1;
+    	$paulus->id_status = 5;
     	$paulus->save();
 
     	//membuat sample ayah
@@ -100,8 +99,7 @@ class PesertaSeeder extends Seeder
     	$yakobus->no_hp = '082124020675';
     	$yakobus->tahun_lulus = '2015';
     	$yakobus->foto = '';
-    	$yakobus->verifikasi = 1;
-    	$yakobus->lulus = 0;
+    	$yakobus->id_status = 3;
     	$yakobus->save();
 
     	//membuat sample ayah
