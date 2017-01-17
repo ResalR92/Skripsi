@@ -55,7 +55,10 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['nama'=>'required|max:50|unique:jurusan']);
+        $this->validate($request, [
+            'nama'=>'required|string|max:50|unique:jurusan,nama',
+            'kapasitas' => 'required|numeric|digits_between:1,3',
+        ]);
         $jurusan = Jurusan::create($request->all());
 
         Session::flash('flash_message','Data Jurusan berhasil disimpan.');
@@ -96,7 +99,10 @@ class JurusanController extends Controller
     {
         $jurusan = Jurusan::findOrFail($id);
 
-        $this->validate($request, ['nama'=>'required|max:50|unique:jurusan,nama,'.$id]);
+        $this->validate($request, [
+            'nama'=>'required|string|max:50|unique:jurusan,nama,'.$id,
+            'kapasitas' => 'required|numeric|digits_between:1,3',
+        ]);
 
         $jurusan->update($request->all());
 

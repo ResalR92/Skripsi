@@ -16,6 +16,20 @@
             </div>
         </div>
     <br><br>
+    @if($errors->any())
+        <div class="form-group {{ $errors->has('kapasitas') ? 'has-error' : 'has-success' }}">
+    @else
+        <div class="form-group">
+    @endif
+            {!! Form::label('Kapasitas', 'Kapasitas', ['class'=>'col-md-2 control-label']) !!}
+            <div class="col-md-10">
+                {!! Form::number('kapasitas', null, ['class'=>'form-control']) !!}
+                @if($errors->has('kapasitas'))
+                    <span class="help-block">{{ $errors->first('kapasitas') }}</span>
+                @endif
+            </div>
+        </div>
+    <br><br>
 </div>
 
 <div class="row">
