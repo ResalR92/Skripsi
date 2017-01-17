@@ -18,7 +18,7 @@ class JurusanController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $jurusan = Jurusan::select(['id','nama']);
+            $jurusan = Jurusan::select(['id','nama','kapasitas']);
             return Datatables::of($jurusan)
                 ->addColumn('action',function($jurusan){
                     return view('datatable._action',[
@@ -31,6 +31,7 @@ class JurusanController extends Controller
         }
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan'])
+            ->addColumn(['data'=>'kapasitas','name'=>'kapasitas','title'=>'Kapasitas'])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
 
         return view('admin.jurusan.index',compact('html'));
