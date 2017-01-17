@@ -1,5 +1,5 @@
-@if(isset($jurusan))
-    {!! Form::hidden('id', $jurusan->id) !!}
+@if(isset($status))
+    {!! Form::hidden('id', $status->id) !!}
 @endif
 <div class="row">
     @if($errors->any())
@@ -23,14 +23,12 @@
     @endif
             {!! Form::label('label', 'Label', ['class'=>'col-md-2 control-label']) !!}
             <div class="col-md-10">
-                <select name="label" size="1" class="form-control">
-                    <option value="">- Pilih Warna Label -</option>
-                    <option value="info">Biru Muda</option>
-                    <option value="warning">Kuning</option>
-                    <option value="primary">Biru</option>
-                    <option value="danger">Merah</option>
-                    <option value="success">Hijau</option>
-                </select>
+                {!! Form::select('label', array(
+                    'info' => 'Biru Muda',
+                    'warning' => 'Kuning',
+                    'primary' => 'Biru',
+                    'danger' => 'Merah',
+                    'success' => 'Hijau'), null,['class'=>'form-control']) !!}
                 @if($errors->has('label'))
                     <span class="help-block">{{ $errors->first('label') }}</span>
                 @endif

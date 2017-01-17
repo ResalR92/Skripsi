@@ -62,7 +62,7 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama'=>'required|string|max:20|unique:status',
+            'nama'=>'required|string|max:20|unique:status,nama',
             'label' => 'required',
             'pesan' => 'required|string|max:100',
         ]);
@@ -91,7 +91,8 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        //
+        $status = Status::findOrFail($id);
+        return view('admin.status.edit',compact('status'));
     }
 
     /**
@@ -103,7 +104,18 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $status = Status::findOrFail($id);
+        
+        $this->validate($request, [
+            'nama'=>'required|string|max:20|unique:status,nama,'.$id,
+            'label' => 'required',
+            'pesan' => 'required|string|max:100',
+        ]);
+        
+        $status->update($request->all());
+
+        Session::flash('flash_message','Data Status berhasil diupdate.');
+        return redirect('admin/status');
     }
 
     /**
