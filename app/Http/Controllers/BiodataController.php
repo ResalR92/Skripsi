@@ -27,9 +27,11 @@ class BiodataController extends Controller
     public function index(Request $request)
     {
         $peserta = $request->user()->peserta()->get();
-        // $id = Auth::user()->id;
-        // $peserta = Peserta::all()->where('user_id',$id);
-        return view('biodata.index',compact('peserta'));
+        $status = [];
+        foreach($peserta as $biodata){
+            $status[] = $biodata['id_status'];
+        }
+        return view('biodata.index',compact('peserta','status'));
     }
 
     /**
@@ -37,10 +39,9 @@ class BiodataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $id = Auth::user()->id;
-        $peserta = Peserta::all()->where('user_id',$id);
+        $peserta = $request->user()->peserta()->get();
         $status = [];
         foreach($peserta as $biodata){
             $status[] = $biodata['id_status'];

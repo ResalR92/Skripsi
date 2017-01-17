@@ -5,6 +5,9 @@
 		    <div class="col-lg-12">
 		        <h1 class="page-header">Biodata</h1>
 		        @include('_partial.flash_message')
+		        @if(empty($status))
+		        	{{ link_to('biodata/create','Isi Biodata',['class'=>'btn btn-primary']) }}
+		        @endif
 		    </div>
 		</div>
 		@if(isset($peserta))
