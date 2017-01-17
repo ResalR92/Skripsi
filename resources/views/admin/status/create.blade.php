@@ -12,17 +12,17 @@
 		            <li>
 		                Peserta
 		            </li>
-		            <li class="active">
+		            <li>
 		                Status Peserta
+		            </li>
+		            <li class="active">
+		                Tambah
 		            </li>
 		        </ol>
 		    </div>
 		</div>
-		<p><a href="{{ route('status.create') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a></p>
-		{!! $html->table(['class'=>'table-striped']) !!}
+		{!! Form::open(['url'=>'admin/status']) !!}
+            @include('admin.status._form',['submitButtonText'=>'Tambah'])
+        {!! Form::close() !!}	
 	</div>
 @stop
-
-@section('scripts')
-	{!! $html->scripts() !!}
-@endsection

@@ -50,7 +50,7 @@ class StatusController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.status.create');
     }
 
     /**
@@ -61,7 +61,15 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama'=>'required|string|max:20|unique:status',
+            'label' => 'required',
+            'pesan' => 'required|string|max:100',
+        ]);
+        $status = Status::create($request->all());
+
+        Session::flash('flash_message','Data Status berhasil disimpan.');
+        return redirect('admin/status');
     }
 
     /**
