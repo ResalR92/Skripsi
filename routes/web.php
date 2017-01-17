@@ -49,6 +49,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],fu
 });
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
+	Route::resource('status','StatusController');
 	Route::resource('operator','OperatorController');
 	Route::resource('akunpeserta','AkunpesertaController');
 });

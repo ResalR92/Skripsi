@@ -8,7 +8,7 @@ class Status extends Model
 {
     protected $table = 'status';
 
-    protected $fillable = ['nama','label'];
+    protected $fillable = ['nama','label','pesan'];
 
     public function peserta()
     {
