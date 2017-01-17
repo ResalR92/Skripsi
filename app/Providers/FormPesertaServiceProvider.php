@@ -17,10 +17,12 @@ class FormPesertaServiceProvider extends ServiceProvider
     {
         view()->composer('admin.peserta._form',function($view){
             $view->with('list_jurusan',Jurusan::all()->pluck('nama','id'));
-            $view->with('list_status',Status::all()->pluck('nama','id'));
         });
         view()->composer('biodata._form',function($view){
             $view->with('list_jurusan',Jurusan::all()->pluck('nama','id'));
+        });
+        view()->composer('admin.peserta.status',function($view){
+            $view->with('list_status',Status::all()->pluck('nama','id'));
         });
     }
 

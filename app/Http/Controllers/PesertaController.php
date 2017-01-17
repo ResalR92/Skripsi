@@ -313,9 +313,13 @@ class PesertaController extends Controller
         return view('admin.peserta.status',compact('peserta'));
     }
 
-    public function updateStatus(PesertaRequest $request, $id)
+    public function updateStatus(Request $request, $id)
     {
         $peserta = Peserta::findOrFail($id);
+
+        $this->validate($request,[
+            'id_status' => 'required'
+        ]);
         $input = $request->all();
 
         //Update data peserta
