@@ -111,7 +111,7 @@ class StatusController extends Controller
             'label' => 'required',
             'pesan' => 'required|string|max:100',
         ]);
-        
+
         $status->update($request->all());
 
         Session::flash('flash_message','Data Status berhasil diupdate.');
@@ -126,6 +126,9 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Status::destroy($id);
+        Session::flash('flash_message','Data Status berhasil dihapus.');
+        Session::flash('penting',true);
+        return redirect('admin/status');
     }
 }

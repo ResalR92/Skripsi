@@ -1,7 +1,7 @@
 @if(isset($peserta))
     {!! Form::hidden('id', $peserta->id) !!}
     {!! Form::hidden('user_id', $peserta->user_id) !!}
-    {!! Form::hidden('id_status', $peserta->status->id) !!}
+    {!! Form::hidden('id_status', $peserta->status->id + 1) !!}
 @endif
 <div class="container-fluid">
     @if($errors->any())
