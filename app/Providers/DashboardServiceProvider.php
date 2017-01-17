@@ -21,6 +21,11 @@ class DashboardServiceProvider extends ServiceProvider
         if(Request::segment(2) == 'peserta'){
             $dashboard = 'adminpeserta';
         }
+
+        if(Request::segment(2) == 'status'){
+            $dashboard = 'adminpeserta';
+        }
+
         if(Request::segment(2) == 'jurusan'){
             $dashboard = 'adminjurusan';
         }
