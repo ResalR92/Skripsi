@@ -10,6 +10,16 @@ use Session;
 
 class JurusanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'create',
+            'store',
+            'edit',
+            'update'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +31,7 @@ class JurusanController extends Controller
             $jurusan = Jurusan::select(['id','nama','kapasitas']);
             return Datatables::of($jurusan)
                 ->addColumn('action',function($jurusan){
-                    return view('datatable._action',[
+                    return view('datatable._admin',[
                         'model' => $jurusan,
                         'form_url' => route('jurusan.destroy',$jurusan->id),
                         'edit_url' => route('jurusan.edit',$jurusan->id),
@@ -32,7 +42,7 @@ class JurusanController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan'])
             ->addColumn(['data'=>'kapasitas','name'=>'kapasitas','title'=>'Kapasitas'])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.jurusan.index',compact('html'));
     }

@@ -1,5 +1,5 @@
 {!! Form::model($model, ['url'=>$form_url,'method'=>'delete','class'=>'form-inline js-confirm','data-confirm'=>$confirm_message]) !!}
-	<a href="{{ $cetak_url }}" class="btn btn-success btn-xs" title="verifikasi">
+	<a href="{{ $cetak_url }}" class="btn btn-primary btn-xs" title="verifikasi">
 		<i class="glyphicon glyphicon-ok"></i> Verikasi
 	</a>
 	@role('admin')
