@@ -41,12 +41,17 @@ class BiodataController extends Controller
     {
         $id = Auth::user()->id;
         $peserta = Peserta::all()->where('user_id',$id);
-        if(isset($peserta)){
-            Session::flash('flash_message','Sudah mempunyai Biodata.');
-            return redirect('/biodata');
-        }else{
-            return "daftar";
+        $status = [];
+        foreach($peserta as $biodata){
+            $status[] = $biodata['id_status'];
         }
+
+        if(!empty($status)){
+            Session::flash('flash_error','Maaf, Anda sudah memiliki Biodata');
+            Session::flash('penting',true);
+            return redirect('biodata');
+        }
+        return view('biodata.create');
     }
 
     /**
