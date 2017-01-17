@@ -35,7 +35,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],fu
 		});
 	Route::get('password','SettingController@editPasswordAdmin');
 	Route::post('password','SettingController@updatePasswordAdmin');
-	Route::get('peserta/pdf/{peserta}','PesertaController@pdf');
+	Route::get('peserta/{peserta}/pdf','PesertaController@pdf');
 	Route::resource('peserta','PesertaController');
 	Route::resource('jurusan','JurusanController');
 	Route::resource('pengumuman','PengumumanController');

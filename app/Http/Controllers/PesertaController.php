@@ -21,6 +21,14 @@ use PDF;
 
 class PesertaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'show',
+            'pdf'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,6 +50,7 @@ class PesertaController extends Controller
                         'model' => $peserta,
                         'form_url' => route('peserta.destroy',$peserta->id),
                         'edit_url' => route('peserta.edit',$peserta->id),
+                        // 'status_url' => route('peserta.status',$peserta->id),
                         'cetak_url' => route('peserta.show',$peserta->id),
                         'confirm_message'=>'Apakah Anda yakin menghapus Jurusan '.$peserta->nama.'?'
                     ]);
