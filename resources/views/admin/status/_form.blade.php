@@ -25,10 +25,8 @@
             <div class="col-md-10">
                 {!! Form::select('label', array(
                     'info' => 'Biru Muda',
-                    'warning' => 'Kuning',
                     'primary' => 'Biru',
-                    'danger' => 'Merah',
-                    'success' => 'Hijau'), null,['class'=>'form-control']) !!}
+                    'danger' => 'Merah'), null,['class'=>'form-control']) !!}
                 @if($errors->has('label'))
                     <span class="help-block">{{ $errors->first('label') }}</span>
                 @endif

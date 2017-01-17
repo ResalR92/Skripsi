@@ -22,7 +22,7 @@ class Status extends Model
 
     	self::deleting(function($status){
     		//mengecek apakah peserta masih ada di jurusan ini
-    		if($status->peserta->count() > 0){
+    		if(($status->peserta->count() > 0) || ($status->count() < 7)){
     			//menyiapkan pesan error
     			Session::flash('flash_error','Status tidak dapat dihapus karena masih berlaku');
     			Session::flash('penting',true);
@@ -30,5 +30,15 @@ class Status extends Model
     			return false;
     		}
     	});
+        self::updating(function($status){
+            //mengecek apakah peserta masih ada di jurusan ini
+            if(($status->peserta->count() > 0) || ($status->count() < 7)){
+                //menyiapkan pesan error
+                Session::flash('flash_error','Status tidak dapat diupdate karena masih berlaku');
+                Session::flash('penting',true);
+
+                return false;
+            }
+        });
     }
 }

@@ -185,7 +185,14 @@ class BiodataController extends Controller
         $peserta->no_hp_wali = $peserta->wali->no_hp;
         $peserta->alamat_wali = $peserta->wali->alamat;
 
-        return view('biodata.edit',compact('peserta'));
+        $label = $peserta->status->label;
+        if($label == 'warning'){
+            return view('biodata.edit',compact('peserta'));
+        }else{
+            Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
+            Session::flash('penting',true);
+            return redirect('biodata');
+        }
     }
 
     /**
@@ -278,7 +285,15 @@ class BiodataController extends Controller
         $peserta = Peserta::findOrFail($id);
         $this->authorize('modify',$peserta);
         $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
-        return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
+
+        $label = $peserta->status->label;
+        if($label == 'success'){
+            return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
+        }else{
+            Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
+            Session::flash('penting',true);
+            return redirect('biodata');
+        }   
     }
 
     private function uploadFoto(PesertaRequest $request)
