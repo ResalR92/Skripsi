@@ -136,7 +136,15 @@ class BiodataController extends Controller
     {
         $peserta = Peserta::findOrFail($id);
         $this->authorize('modify',$peserta);
-        return view('biodata.show',compact('peserta'));
+
+        $label = $peserta->status->label;
+        if($label == 'warning'){
+            return view('biodata.show',compact('peserta'));
+        }else{
+            Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
+            Session::flash('penting',true);
+            return redirect('biodata');
+        }
     }
 
     /**
