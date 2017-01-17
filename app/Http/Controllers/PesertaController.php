@@ -65,7 +65,7 @@ class PesertaController extends Controller
             ->addColumn(['data'=>'jurusan.nama','name'=>'jurusan.nama','title'=>'Program Keahlian'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
             ->addColumn(['data'=>'status','name'=>'status','title'=>'Status','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
         return view('admin.peserta.index',compact('html'));
     }
 
