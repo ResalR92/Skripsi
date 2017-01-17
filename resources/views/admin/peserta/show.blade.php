@@ -3,7 +3,10 @@
 	<div class="container-fluid">
     	<div class="row">
 		    <div class="col-lg-12">
-		        <h1 class="page-header">Biodata Peserta</h1>
+		        <h1 class="page-header">Biodata Peserta   
+		        	<small>Status</small>
+					{{ link_to('admin/peserta/status/'.$peserta->id.'/edit',$peserta->status->nama,['class'=>'btn btn-'.$peserta->status->label]) }}
+		        </h1>
 		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li>
@@ -33,7 +36,7 @@
 					{!! Html::image(asset('fotoupload/'.$peserta->foto),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
 				</div>
 			</div>
-			<h3 class="bg-info">A. IDENTITAS PRIBADI CALON SISWA</h3>
+			<h3 class="bg-info">A. IDENTITAS PRIBADI CALON peserta</h3>
 		    <dl class="dl-horizontal">
 		        <dt>1. Nomor Peserta</dt>
 		        <dd>: {{ $peserta->nama }}</dd>

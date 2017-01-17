@@ -26,7 +26,9 @@ class PesertaController extends Controller
         $this->middleware('role:admin',['except'=>[
             'index',
             'show',
-            'pdf'
+            'pdf',
+            'status',
+            'updateStatus',
         ]]);
     }
     /**
@@ -300,6 +302,26 @@ class PesertaController extends Controller
 
         Session::flash('flash_message','Biodata berhasil dihapus');
         Session::flash('penting',true);
+
+        return redirect('admin/peserta');
+    }
+
+    public function status($id)
+    {
+        $peserta = Peserta::findOrFail($id);
+        $peserta->id_status = $peserta->status->id;
+        return view('admin.peserta.status',compact('peserta'));
+    }
+
+    public function updateStatus(PesertaRequest $request, $id)
+    {
+        $peserta = Peserta::findOrFail($id);
+        $input = $request->all();
+
+        //Update data peserta
+        $peserta->update($input);
+
+        Session::flash('flash_message','Status Peserta berhasil diupdate.');
 
         return redirect('admin/peserta');
     }
