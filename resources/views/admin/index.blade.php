@@ -20,11 +20,7 @@
 			@foreach($admin as $user)
 				<div class="row">
 					<div class="col-md-2 col-md-offset-1">
-						@if(isset($user->foto))
-							{!! Html::image(asset('fotoupload/'.$user->foto),null,['class'=>'img-rounded img-responsive','width'=>'200px']) !!}
-						@else
-							<img src="{{ asset('fotoupload/dummymale.jpg') }}">
-						@endif
+						<img src="{{ asset('images/logo.png') }}" class="img-rounded img-responsive" width="200px">
 						<hr>
 						<a href="{{ url('admin/password') }}" class="btn btn-primary">
                              <i class="fa fa-btn fa-lock"></i> Ubah Password

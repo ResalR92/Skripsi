@@ -38,6 +38,7 @@ class UsersSeeder extends Seeder
         $admin->email = 'admin@panjatek.com';
         $admin->password = bcrypt('rahasia');
         $admin->is_blokir = false;
+        $admin->last_login = '2017-01-18 17:18:47';
         $admin->save();
         $admin->attachRole($adminRole);
 
@@ -47,6 +48,7 @@ class UsersSeeder extends Seeder
         $operator->email = 'operator@panjatek.com';
         $operator->password = bcrypt('rahasia');
         $operator->is_blokir = false;
+        $operator->last_login = '2017-01-18 17:18:47';
         $operator->save(); 
         $operator->attachRole($operatorRole); 
 

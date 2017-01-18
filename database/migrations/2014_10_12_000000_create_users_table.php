@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamp('last_login')->nullable();
-            $table->string('foto')->nullable();
             $table->boolean('is_blokir')->default(false);
             $table->timestamps();
         });
