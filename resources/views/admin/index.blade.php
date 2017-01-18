@@ -4,7 +4,7 @@
     	<div class="row">
 		    <div class="col-lg-12">
 		        <h1 class="page-header">My Admin</h1>
-		        
+		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li>
 		                <i class="fa fa-dashboard"></i> Dashboard
@@ -25,6 +25,10 @@
 						@else
 							<img src="{{ asset('fotoupload/dummymale.jpg') }}">
 						@endif
+						<hr>
+						<a href="{{ url('admin/password') }}" class="btn btn-primary">
+                             <i class="fa fa-btn fa-lock"></i> Ubah Password
+                        </a>
 					</div>
 					<div class="col-md-6">
 						<table class="table table-striped">

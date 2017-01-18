@@ -50,6 +50,9 @@ class DashboardServiceProvider extends ServiceProvider
         if(Request::segment(2) == 'myadmin'){
             $dashboard = 'adminmyadmin';
         }
+        if(Request::segment(2) == 'password'){
+            $dashboard = 'adminmyadmin';
+        }
         view()->share('dashboard',$dashboard);
     }
 

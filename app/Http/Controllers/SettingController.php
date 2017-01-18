@@ -55,6 +55,6 @@ class SettingController extends Controller
     	$user->save();
 
     	Session::flash('flash_message','Password berhasil diubah.');
-    	return redirect('admin/password');
+    	return redirect('admin/myadmin');
     }
 }

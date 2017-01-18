@@ -4,10 +4,13 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1 class="page-header">Ubah Password</h1>
-		        @include('_partial.flash_message')
+		        
 		        <ol class="breadcrumb">
 		            <li>
 		                <i class="fa fa-dashboard"></i> Dashboard
+		            </li>
+		            <li>
+		            	My Admin
 		            </li>
 		            <li class="active">
 		                Ubah Password
