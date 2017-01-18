@@ -1,64 +1,44 @@
-/*
- * @style for Lembaga Penelitian dan Pengabdian Masyarakat UNILA
- */
 
-/* Attach fonts */
-@font-face{
-    font-family:"Web-Segoe-UI";
-    src:url('../fonts/SegoeUI/segoeui.eot');
-    src:url('../fonts/SegoeUI/segoeui.eot?#iefix') format("embedded-opentype"),
-    url('../fonts/SegoeUI/segoeui.woff') format("woff"),
-    url('../fonts/SegoeUI/segoeui.ttf') format("truetype"),
-    url('../fonts/SegoeUI/segoeui.svg#web') format("svg");
-    font-style:normal;font-weight:normal;
+#header{
+    background: #e6ea98;
+    /*height:100px;*/
 }
-@font-face{
-    font-family:"Web-Segoe-UI-Light";
-    src:url('../fonts/SegoeUI/segoeuil.eot');
-    src:url('../fonts/SegoeUI/segoeuil.eot?#iefix') format("embedded-opentype"),
-    url('../fonts/SegoeUI/segoeuil.woff') format("woff"),
-    url('../fonts/SegoeUI/segoeuil.ttf') format("truetype"),
-    url('../fonts/SegoeUI/segoeuil.svg#web') format("svg");
-    font-style:normal;font-weight:normal;
+
+.bg{
+    background: #e6ea98;
+    /*height:100px;*/
 }
-@font-face{
-    font-family:"Web-Droid-Sans";
-    src:url('../fonts/DroidSans/DroidSans.eot');
-    src:url('../fonts/DroidSans/DroidSans.eot?#iefix') format("embedded-opentype"),
-    url('../fonts/DroidSans/DroidSans.woff') format("woff"),
-    url('../fonts/DroidSans/DroidSans.ttf') format("truetype"),
-    url('../fonts/droidsans.svg#web') format("svg");
-    font-style:normal;font-weight:normal;
+
+#header h2{
+    color: #82091b;
+    outline-color: #000;
 }
-@font-face{
-    font-family:"Web-Droid-Sans-Bold";
-    src:url('../fonts/DroidSans/DroidSans-Bold.eot');
-    src:url('../fonts/DroidSans/DroidSans-Bold.eot?#iefix') format("embedded-opentype"),
-    url('../fonts/DroidSans/DroidSans-Bold.woff') format("woff"),
-    url('../fonts/DroidSans/DroidSans-Bold.ttf') format("truetype"),
-    url('../fonts/DroidSans/DroidSans-Bold.svg#web') format("svg");
-    font-style:normal;font-weight:normal;
+
+#header h5{
+    color: #82091b;
+    outline-color: #000;
 }
+
+#header address {
+    text-align: right;
+    padding-top: 10px;
+    font-size: 0.9em;
+    color: #82091b;
+    outline-color: #000;
+}
+
+#header address strong {
+    font-size: 1.5em;
+}
+
 body{
     /*background: #4f4f4f;*/
     margin-bottom: 70px; /* Space untuk #footer */
 }
-.form{
+/*.form{
     margin-bottom: 5px;
 }
-/*.form-control{
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    outline: none;*/
-}
-
-/*.btn-primary{
-    font-family: "Web-Segoe-UI";
-    font-weight: normal;
-    border-radius: 0;
-    background: #1b88c5;
-}*/
+*/
 .text-header h1{
     font-size: 19px;
     font-family: "Web-Droid-Sans-Bold";

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
     <!-- Styles -->
     <link href="{{ asset('css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -28,6 +28,30 @@
     </script>
 </head>
 <body>
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 hidden-xs hidden-sm">
+                    <div class="row">
+                        <div class="col-md-3">
+                            {!! Html::image(asset('images/logo.png'),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
+                        </div>
+                        <div class="col-md-">
+                            <h2><strong>Penerimaan Siswa Baru Online</strong></h2>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6 hidden-xs hidden-sm">
+                    <address>
+                        <h5><strong>SMK Panjatek</strong><br></h5>
+                        Jln. Lingkar Luar No.99, Kaliabang Tengah, Bekasi Utara - 17123 <br>
+                        Telepon 021-88981110. Email: admin@panjatek.sch.id<br>
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="app">
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
@@ -42,9 +66,12 @@
                     </button>
 
                     <!-- Branding Image -->
+                    <div class="visible-xs-block visible-sm-block">
+
                     <b><a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a></b>
+                    </div>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
