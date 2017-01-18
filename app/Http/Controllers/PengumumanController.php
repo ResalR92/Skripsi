@@ -10,6 +10,16 @@ use Session;
 
 class PengumumanController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'create',
+            'store',
+            'edit',
+            'update'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +35,7 @@ class PengumumanController extends Controller
                     return $tanggal;
                 })
                 ->addColumn('action',function($pengumuman){
-                    return view('datatable._action',[
+                    return view('datatable._admin',[
                         'model' => $pengumuman,
                         'form_url' => route('pengumuman.destroy',$pengumuman->id),
                         'edit_url' => route('pengumuman.edit',$pengumuman->id),
@@ -36,7 +46,7 @@ class PengumumanController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul Pengumuman','orderable'=>false])
             ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.pengumuman.index',compact('html'));
     }

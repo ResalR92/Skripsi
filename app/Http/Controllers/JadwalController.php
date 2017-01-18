@@ -10,6 +10,16 @@ use Session;
 
 class JadwalController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'create',
+            'store',
+            'edit',
+            'update'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +39,7 @@ class JadwalController extends Controller
                     return $akhir;
                 })
                 ->addColumn('action',function($jadwal){
-                    return view('datatable._action',[
+                    return view('datatable._admin',[
                         'model' => $jadwal,
                         'form_url' => route('jadwal.destroy',$jadwal->id),
                         'edit_url' => route('jadwal.edit',$jadwal->id),
@@ -41,7 +51,7 @@ class JadwalController extends Controller
             ->addColumn(['data'=>'kegiatan','name'=>'kegiatan','title'=>'Kegiatan','orderable'=>false])
             ->addColumn(['data'=>'awal','name'=>'awal','title'=>'Mulai Berlaku','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'akhir','name'=>'akhir','title'=>'Berakhir','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.jadwal.index',compact('html'));
 

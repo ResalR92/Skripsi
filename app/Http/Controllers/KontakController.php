@@ -47,7 +47,7 @@ class KontakController extends Controller
             ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul'])
             ->addColumn(['data'=>'tanggal','name'=>'tanggal','title'=>'Tanggal','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'dibalas','name'=>'dibalas','title'=>'Balas'])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.kontak.index',compact('html'));
     }

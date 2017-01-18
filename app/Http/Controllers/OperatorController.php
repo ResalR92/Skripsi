@@ -46,7 +46,7 @@ class OperatorController extends Controller
             ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
             ->addColumn(['data'=>'login','name'=>'login','title'=>'Login Terakhir','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'blokir','name'=>'blokir','title'=>'Status','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.operator.index',compact('html'));
     }

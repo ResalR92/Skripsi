@@ -10,6 +10,16 @@ use Session;
 
 class ProsedurController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'create',
+            'store',
+            'edit',
+            'update'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +31,7 @@ class ProsedurController extends Controller
             $prosedur = Prosedur::orderBy('judul','asc');
             return Datatables::of($prosedur)
                 ->addColumn('action',function($prosedur){
-                    return view('datatable._action',[
+                    return view('datatable._admin',[
                         'model' => $prosedur,
                         'form_url' => route('prosedur.destroy',$prosedur->id),
                         'edit_url' => route('prosedur.edit',$prosedur->id),
@@ -31,7 +41,7 @@ class ProsedurController extends Controller
         }
         $html = $htmlBuilder
             ->addColumn(['data'=>'judul','name'=>'judul','title'=>'Judul Prosedur','orderable'=>false])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.prosedur.index',compact('html'));
     }

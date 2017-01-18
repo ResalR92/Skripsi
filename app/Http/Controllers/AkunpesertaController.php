@@ -42,7 +42,7 @@ class AkunpesertaController extends Controller
             ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama'])
             ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
             ->addColumn(['data'=>'blokir','name'=>'blokir','title'=>'Status','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.akunpeserta.index',compact('html'));
     }
