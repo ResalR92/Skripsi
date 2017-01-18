@@ -149,7 +149,7 @@
                 @else
                     <li>
                 @endif
-                    <a href="#"><i class="fa fa-fw fa-gear"></i> My Admin</a>
+                    <a href="{{ url('admin/myadmin') }}"><i class="fa fa-fw fa-gear"></i> My Admin</a>
                 </li>
 
             </ul>

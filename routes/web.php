@@ -32,6 +32,7 @@ Route::group(['middleware'=>['auth','role:peserta']],function(){
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],function(){
 	Route::get('/','AdminController@index');
+	route::get('/myadmin','AdminController@myadmin');
 	Route::get('password','SettingController@editPasswordAdmin');
 	Route::post('password','SettingController@updatePasswordAdmin');
 
