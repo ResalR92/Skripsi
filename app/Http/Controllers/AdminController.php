@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Peserta;
+use App\Jurusan;
+use App\Kontak;
 
 class AdminController extends Controller
 {
     public function index()
     {
-		return view('dashboard.admin');
+        $peserta = Peserta::all()->count();
+        $jurusan = Jurusan::all()->count();
+        $kontak = Kontak::all()->count();
+		return view('dashboard.admin',compact('peserta','jurusan','kontak'));
     }
 
     public function myadmin()

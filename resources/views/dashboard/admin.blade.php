@@ -21,7 +21,7 @@
 		                        <i class="fa fa-users fa-5x"></i> 
 		                    </div>
 		                    <div class="col-xs-9 text-right">
-		                        <div class="huge">3</div>
+		                        <div class="huge">{{ $peserta }}</div>
 		                        <div>Peserta</div>
 		                    </div>
 		                </div>
@@ -44,7 +44,7 @@
 		                        <i class="fa fa-graduation-cap fa-5x"></i>
 		                    </div>
 		                    <div class="col-xs-9 text-right">
-		                        <div class="huge">3</div>
+		                        <div class="huge">{{ $jurusan }}</div>
 		                        <div>Jurusan</div>
 		                    </div>
 		                </div>
