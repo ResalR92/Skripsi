@@ -6,6 +6,7 @@
 		        <h1 class="page-header">Biodata</h1>
 		        @include('_partial.flash_message')
 		        @if(empty($status))
+		        	<p><b>Pastikan Anda mengisi biodata sesuai dengan identitas yang sebenarnya.</b></p>
 		        	{{ link_to('biodata/create','Isi Biodata',['class'=>'btn btn-primary']) }}
 		        @endif
 		    </div>

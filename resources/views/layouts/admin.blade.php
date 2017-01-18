@@ -39,7 +39,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('admin') }}">Admin PSB SMK Panjatek</a>
+                <a class="navbar-brand" href="{{ url('admin') }}"><b>Administrator PSB</b> SMK Panjatek</a>
+                {!! Html::image(asset('images/logo.png'),null,['class'=>'img-rounded img-responsive','width'=>'50px']) !!}
             </div>
             <!-- Top Menu Items -->
             <ul class="nav top-nav navbar-right">

@@ -1,7 +1,7 @@
 @extends('layouts.peserta')
 @section('content')
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron" style="opacity:0.8;">
         <h2 class="h1">Selamat Datang!</h2>
         <p>
             Selamat datang di website <strong>Penerimaan Siswa Baru (PSB) SMK Panjatek Bekasi</strong>. Sebelum melakukan pendaftaran,
