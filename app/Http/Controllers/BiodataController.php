@@ -138,7 +138,7 @@ class BiodataController extends Controller
         $this->authorize('modify',$peserta);
 
         $label = $peserta->status->label;
-        if($label == 'warning'){
+        if($label == 'success'){
             return view('biodata.show',compact('peserta'));
         }else{
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
