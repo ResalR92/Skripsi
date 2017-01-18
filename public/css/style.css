@@ -1,24 +1,3 @@
-
-#header{
-    background: #e6ea98;
-    /*height:100px;*/
-}
-
-.bg{
-    background: #e6ea98;
-    /*height:100px;*/
-}
-
-#header h2{
-    color: #82091b;
-    outline-color: #000;
-}
-
-#header h5{
-    color: #82091b;
-    outline-color: #000;
-}
-
 #header address {
     text-align: right;
     padding-top: 10px;
@@ -32,7 +11,7 @@
 }
 
 body{
-    /*background: #4f4f4f;*/
+    background: url("../images/bg.jpg");
     margin-bottom: 70px; /* Space untuk #footer */
 }
 /*.form{

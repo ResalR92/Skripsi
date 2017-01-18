@@ -6,7 +6,7 @@
 		        <h1 class="page-header">Jadwal</h1>
 		    </div>
 		</div>
-		<table class="table">
+		<table class="table table-striped table-responsive">
 			<thead>
 				<tr>
 					<th width="250">Jadwal</th>

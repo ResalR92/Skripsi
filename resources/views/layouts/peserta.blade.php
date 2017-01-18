@@ -68,9 +68,10 @@
                     <!-- Branding Image -->
                     <div class="visible-xs-block visible-sm-block">
 
-                    <b><a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a></b>
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <b>PSB</b> SMK Panjatek
+                    </a>
+                    {!! Html::image(asset('images/logo.png'),null,['class'=>'img-rounded img-responsive','width'=>'50px']) !!}
                     </div>
                 </div>
 
