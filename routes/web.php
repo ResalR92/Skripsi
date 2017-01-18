@@ -20,6 +20,7 @@ Route::get('kontak','PengunjungController@kontak');
 Route::post('kontak','PengunjungController@kirim');
 
 Auth::routes();
+Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware'=>['auth','role:peserta']],function(){
 	Route::get('biodata/{peserta}/pdf','BiodataController@pdf');

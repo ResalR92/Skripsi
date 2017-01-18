@@ -1,17 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.peserta')
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
-        </div>
+    <div class="jumbotron">
+        <p class="h1">Selamat Datang!</p>
+        <p>Halo, <strong> {{ Auth::user()->name }}</strong>.</p>
+        <p>Jika Anda belum melengkapi biodata, silakan melengkapinya. Klik tombol "<strong>Biodata</strong>" di bawah ini!</p>
+        <p>{{ link_to('/biodata/create','Biodata',['class'=>'btn btn-primary btn-lg']) }}</p>
     </div>
 </div>
 @endsection

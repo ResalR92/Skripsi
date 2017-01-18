@@ -14,11 +14,15 @@ use App\Kontak;
 use Session;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
+use Laratrust\LaratrustFacade as Laratrust;
 
 class PengunjungController extends Controller
 {
 	public function index()
 	{
+        if(Laratrust::hasRole('peserta')){
+            return redirect('/home');
+        }
 		return view('dashboard.pengunjung');
 	}
     public function peserta(Request $request, Builder $htmlBuilder)
