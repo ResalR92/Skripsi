@@ -36,6 +36,10 @@
 								<th>Email</th>
 								<td>{{ $user->email }}</td>
 							</tr>
+							<tr>
+								<th>Login Terakhir</th>
+								<td>{{ $user->last_login->format('d-m-Y H:i:s') }}</td>
+							</tr>
 						</table>
 					</div>
 				</div>
