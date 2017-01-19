@@ -12,24 +12,24 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $peserta = Peserta::all();
-        $jurusan = Jurusan::all();
-        $kontak = Kontak::all();
+        $peserta_list = Peserta::all();
+        $jurusan_list = Jurusan::all();
+        $kontak_list = Kontak::all();
 
-        $jml_peserta = $peserta->count();
-        $jml_jurusan = $jurusan->count();
-        $jml_kontak = $kontak->count();
+        $jml_peserta = $peserta_list->count();
+        $jml_jurusan = $jurusan_list->count();
+        $jml_kontak = $kontak_list->count();
 
         $tb_jurusan = [];
         $tb_peserta = [];
 
-        foreach($jurusan as $jurusan){
+        foreach($jurusan_list as $jurusan){
             array_push($tb_jurusan, $jurusan->nama);
             array_push($tb_peserta, $jurusan->peserta->count());
         }
+        
 
-
-		return view('dashboard.admin',compact('jml_peserta','jml_jurusan','jml_kontak','tb_jurusan','tb_peserta'));
+		return view('dashboard.admin',compact('jml_peserta','jml_jurusan','jml_kontak','tb_jurusan','tb_peserta','jurusan_list'));
     }
 
     public function myadmin()
