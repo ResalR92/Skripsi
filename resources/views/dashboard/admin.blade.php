@@ -84,11 +84,11 @@
 		    </div>
 		</div>
 		<div class="row">
-			<div class="col-md-9">
-				<div class="panel panel-default">
-					<div class="panel-body">
-						<h4>Statistik Peserta</h4>
-						<canvas id="chartPenulis" width="400" height="150"></canvas>
+			<div class="col-md-9 visible-md-block visible-lg-block">
+				<div class="panel panel-info">
+					<div class="panel-body" style="opacity:0.9;">
+						<h2><span class="label label-info">Statistik Peserta</span><h2>
+						<canvas id="chartPenulis"></canvas>
 					</div>
 				</div>
 			</div>
@@ -104,8 +104,35 @@
 			datasets: [{
 				label:'Jumlah Peserta',
 				data: {!! json_encode($tb_peserta) !!},
-				backgroundColor: "rgba(151,187,205,0.5)",
-				borderColor: "rgba(151,187,205,0.8)",
+				backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)',
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
 			}]
 		};
 
