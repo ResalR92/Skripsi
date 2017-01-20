@@ -88,7 +88,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Penghasilan</dt>
-			        <dd>: Rp {{ $peserta->ayah->gaji }},00</dd>
+			        <dd>: {{ $peserta->ayah->gaji }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>No. Telp / HP</dt>
@@ -121,7 +121,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Penghasilan</dt>
-			        <dd>: Rp {{ $peserta->ibu->gaji }},00</dd>
+			        <dd>: {{ $peserta->ibu->gaji }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>No. Telp / HP</dt>
@@ -154,7 +154,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Penghasilan</dt>
-			        <dd>: Rp {{ $peserta->wali->gaji }},00</dd>
+			        <dd>: {{ $peserta->wali->gaji }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>No. Telp / HP</dt>

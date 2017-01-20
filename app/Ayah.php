@@ -30,4 +30,9 @@ class Ayah extends Model
     {
     	$this->belongsTo('App\Siswa','id_peserta');
     }
+
+    public function getGajiAttribute($gaji)
+    {
+        return $this->attributes['gaji'] = sprintf('Rp %s', number_format($gaji, 2));
+    }
 }
