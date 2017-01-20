@@ -88,7 +88,7 @@
 				<div class="panel panel-info">
 					<div class="panel-body" style="opacity:0.9;">
 						<h2><span class="label label-info">Statistik Peserta</span><h2>
-						<canvas id="chartPenulis"></canvas>
+						<canvas id="chartJurusan"></canvas>
 					</div>
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 			}
 		};
 
-		var ctx = document.getElementById("chartPenulis").getContext("2d");
+		var ctx = document.getElementById("chartJurusan").getContext("2d");
 
 		var authorChart = new Chart(ctx, {
 			type: 'bar',
