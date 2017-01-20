@@ -33,6 +33,10 @@ class Wali extends Model
 
     public function getGajiAttribute($gaji)
     {
-        return $this->attributes['gaji'] = sprintf('Rp %s', number_format($gaji, 2));
+        $gaji = $this->attributes['gaji'];
+        if(!empty($gaji)){
+            return $gaji = sprintf('Rp %s', number_format($gaji, 2));
+        }
+        return '-';
     }
 }
