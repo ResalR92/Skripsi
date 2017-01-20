@@ -30,6 +30,16 @@ class JurusanController extends Controller
         if($request->ajax()){
             $jurusan = Jurusan::select(['id','nama','kapasitas']);
             return Datatables::of($jurusan)
+                ->addColumn('kuota',function($jurusan){
+                    $kuota = $jurusan->kuota;
+                    if($kuota > 15){
+                        return '<span class="label label-success">'.$kuota.'</span>';
+                    }elseif($kuota >= 5 && $kuota <= 15){
+                        return '<span class="label label-warning">'.$kuota.'</span>';
+                    }elseif($kuota < 5){
+                        return '<span class="label label-danger">'.$kuota.'</span>';
+                    }
+                })
                 ->addColumn('action',function($jurusan){
                     return view('datatable._admin',[
                         'model' => $jurusan,
@@ -41,6 +51,7 @@ class JurusanController extends Controller
         }
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan'])
+            ->addColumn(['data'=>'kuota','name'=>'kuota','title'=>'Sisa Kuota'])
             ->addColumn(['data'=>'kapasitas','name'=>'kapasitas','title'=>'Kapasitas'])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 

@@ -31,4 +31,12 @@ class Jurusan extends Model
     		}
     	});
     }
+
+    public function getKuotaAttribute()
+    {
+        $peserta = $this->peserta()->count();
+        $kuota = $this->kapasitas - $peserta;
+
+        return $kuota;
+    }
 }
