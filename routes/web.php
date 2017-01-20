@@ -48,6 +48,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],fu
 	Route::resource('prosedur','ProsedurController');
 	Route::resource('jadwal','JadwalController');
 	Route::resource('kontak','KontakController');
+
+	Route::get('backup','BackupController@index');
 });
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){

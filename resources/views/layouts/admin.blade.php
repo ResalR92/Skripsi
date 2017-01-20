@@ -143,13 +143,20 @@
                         <a href="{{ url('admin/akunpeserta') }}"><i class="fa fa-fw fa-users"></i> Akun Peserta</a>
                     </li>
                 @endrole
+                @if(!empty($dashboard) && $dashboard == 'backup')
+                    <li class="active">
+                @else
+                    <li>
+                @endif
+                        <a href="{{ url('admin/backup') }}"><i class="fa fa-fw fa-gear"></i> Backup</a>
+                    </li>
                 @if(!empty($dashboard) && $dashboard == 'adminmyadmin')
                     <li class="active">
                 @else
                     <li>
                 @endif
-                    <a href="{{ url('admin/myadmin') }}"><i class="fa fa-fw fa-gear"></i> My Admin</a>
-                </li>
+                        <a href="{{ url('admin/myadmin') }}"><i class="fa fa-fw fa-user"></i> My Admin</a>
+                    </li>
 
             </ul>
         </div>
