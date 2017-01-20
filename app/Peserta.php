@@ -24,6 +24,8 @@ class Peserta extends Model
         'id_status',
     ];
 
+    protected $dates = ['tanggal_lahir'];
+
     public function user()
     {
     	return $this->belongsTo('App\User');

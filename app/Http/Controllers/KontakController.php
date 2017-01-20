@@ -22,7 +22,7 @@ class KontakController extends Controller
             $kontak = Kontak::orderBy('created_at','desc');
             return Datatables::of($kontak)
                 ->addColumn('tanggal',function($kontak){
-                        $tanggal = $kontak->created_at->format('d-m-Y');
+                        $tanggal = $kontak->created_at->formatLocalized('%d %B %Y');
                         return $tanggal;
                     })
                 ->addColumn('dibalas',function($kontak){

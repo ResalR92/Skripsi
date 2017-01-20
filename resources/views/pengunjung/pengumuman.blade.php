@@ -16,7 +16,7 @@
 							<p>{{ $pengumuman->isi }}</p>
 						</div>
 						<div class="panel-footer">
-							<span>{{ $pengumuman->updated_at->diffForHumans() }}</span>
+							<span><i class="glyphicon glyphicon-time"></i> {{ $pengumuman->updated_at->formatLocalized('%d %B %Y') }}</span>
 						</div>
 					</div>
 				</div>

@@ -37,7 +37,7 @@
     </tr>
     <tr>
         <td>2. Tempat Tanggal Lahir </td>
-        <td>: {{ $peserta->tempat_lahir }}, {{ $peserta->tanggal_lahir }}</td>
+        <td>: {{ $peserta->tempat_lahir }}, {{ $peserta->tanggal_lahir->formatLocalized('%d %B %Y') }}</td>
     </tr>
     <tr>
         <td>3. Jenis Kelamin </td>
@@ -79,7 +79,7 @@
     </tr>
     <tr>
         <td>Tempat Tanggal Lahir</td>
-        <td>: {{ $peserta->ayah->tempat_lahir }}, {{ $peserta->ayah->tanggal_lahir }}</td>
+        <td>: {{ $peserta->ayah->tempat_lahir }}, {{ $peserta->ayah->tanggal_lahir->formatLocalized('%d %B %Y') }}</td>
     </tr>
     <tr>
         <td>Agama</td>
@@ -114,7 +114,7 @@
     </tr>
     <tr>
         <td>Tempat Tanggal Lahir</td>
-        <td>: {{ $peserta->ibu->tempat_lahir }}, {{ $peserta->ibu->tanggal_lahir }}</td>
+        <td>: {{ $peserta->ibu->tempat_lahir }}, {{ $peserta->ibu->tanggal_lahir->formatLocalized('%d %B %Y') }}</td>
     </tr>
     <tr>
         <td>Agama</td>
@@ -151,7 +151,7 @@
     </tr>
     <tr>
         <td>Tempat Tanggal Lahir</td>
-        <td>: {{ $peserta->wali->tempat_lahir }}, {{ $peserta->wali->tanggal_lahir }}</td>
+        <td>: {{ $peserta->wali->tempat_lahir }}, {{ $peserta->wali->tanggal_lahir->formatLocalized('%d %B %Y') }}</td>
     </tr>
     <tr>
         <td>Agama</td>

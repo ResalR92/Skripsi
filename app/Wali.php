@@ -24,6 +24,8 @@ class Wali extends Model
     	'alamat',
     ];
 
+    protected $dates = ['tanggal_lahir'];
+
     public function peserta()
     {
     	$this->belongsTo('App\Siswa','id_peserta');

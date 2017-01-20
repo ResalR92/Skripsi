@@ -10,7 +10,8 @@
 			<thead>
 				<tr>
 					<th width="250">Jadwal</th>
-					<th>Tanggal</th>
+					<th>Berlaku</th>
+					<th>Berakhir</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -18,7 +19,8 @@
 					@foreach($jadwal_list as $jadwal)
 						<tr>
 							<td>{{ $jadwal->kegiatan }}</td>
-							<td>{{ $jadwal->awal->format('d-m-Y') }} - {{ $jadwal->akhir->format('d-m-Y') }}</td>
+							<td width="150">{{ $jadwal->awal->formatLocalized('%d %B %Y') }}</td>
+							<td>{{ $jadwal->akhir->formatLocalized('%d %B %Y') }}</td>
 						</tr>
 					@endforeach
 				@else

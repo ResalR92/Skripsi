@@ -31,7 +31,7 @@ class PengumumanController extends Controller
             $pengumuman = Pengumuman::orderBy('updated_at','desc');
             return Datatables::of($pengumuman)
                 ->addColumn('tanggal',function($pengumuman){
-                    $tanggal = $pengumuman->updated_at->format('d-m-Y');
+                    $tanggal = $pengumuman->updated_at->formatLocalized('%d %B %Y');
                     return $tanggal;
                 })
                 ->addColumn('action',function($pengumuman){

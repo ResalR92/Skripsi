@@ -22,7 +22,7 @@ class OperatorController extends Controller
             $operator = Role::where('name','operator')->first()->users;
             return Datatables::of($operator)
                 ->addColumn('login',function($operator){
-                    $operator = $operator->last_login->format('d-m-Y');
+                    $operator = $operator->last_login->format('d-m-Y H:i:s');
                     return $operator;
                     })
                 ->addColumn('blokir',function($operator){

@@ -11,6 +11,8 @@
 |
 */
 
+setlocale(LC_TIME, 'id');
+
 Route::get('/', 'PengunjungController@index');
 Route::get('peserta','PengunjungController@peserta');
 Route::get('pengumuman','PengunjungController@pengumuman');

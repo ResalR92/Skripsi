@@ -31,7 +31,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>2. Tempat Tanggal Lahir</dt>
-			        <dd>: {{ $peserta->tempat_lahir }}, {{ $peserta->tanggal_lahir }}</dd>
+			        <dd>: {{ $peserta->tempat_lahir }}, {{ $peserta->tanggal_lahir->formatLocalized('%d %B %Y') }}</dd>
 			    </dl>
 				<dl class="dl-horizontal">
 			        <dt>3. Jenis Kelamin</dt>
@@ -72,7 +72,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Tempat Tanggal Lahir</dt>
-			        <dd>: {{ $peserta->ayah->tempat_lahir }}, {{ $peserta->ayah->tanggal_lahir }}</dd>
+			        <dd>: {{ $peserta->ayah->tempat_lahir }}, {{ $peserta->ayah->tanggal_lahir->formatLocalized('%d %B %Y') }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Agama</dt>
@@ -105,7 +105,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Tempat Tanggal Lahir</dt>
-			        <dd>: {{ $peserta->ibu->tempat_lahir }}, {{ $peserta->ibu->tanggal_lahir }}</dd>
+			        <dd>: {{ $peserta->ibu->tempat_lahir }}, {{ $peserta->ibu->tanggal_lahir->formatLocalized('%d %B %Y') }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Agama</dt>
@@ -138,7 +138,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Tempat Tanggal Lahir</dt>
-			        <dd>: {{ $peserta->wali->tempat_lahir }}, {{ $peserta->wali->tanggal_lahir }}</dd>
+			        <dd>: {{ $peserta->wali->tempat_lahir }}, {{ $peserta->wali->tanggal_lahir->formatLocalized('%d %B %Y') }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Agama</dt>

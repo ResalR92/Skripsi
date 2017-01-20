@@ -31,11 +31,11 @@ class JadwalController extends Controller
             $jadwal = Jadwal::orderBy('awal','asc');
             return Datatables::of($jadwal)
                 ->addColumn('awal',function($jadwal){
-                    $awal = $jadwal->awal->format('d-m-Y');
+                    $awal = $jadwal->awal->formatLocalized('%d %B %Y');
                     return $awal;
                 })
                 ->addColumn('akhir',function($jadwal){
-                    $akhir = $jadwal->akhir->format('d-m-Y');
+                    $akhir = $jadwal->akhir->formatLocalized('%d %B %Y');
                     return $akhir;
                 })
                 ->addColumn('action',function($jadwal){
