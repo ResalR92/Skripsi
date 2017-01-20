@@ -95,13 +95,14 @@
 			<div class="col-md-3">
 				<div class="panel panel-info">
 					<div class="panel-body">
-						<h3><span class="label label-info">Kuota Jurusan</span><h3>
+						<h3><span class="label label-info">Statistik Jurusan</span><h3>
 						@if(!empty($jurusan_list))
 							@foreach($jurusan_list as $jurusan)
 								<small>{{ $jurusan->nama }}</small>
 								<div class="progress">
-								  	<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ $jurusan->peserta->count() }}" aria-valuemin="0" aria-valuemax="{{ $jurusan->kapasitas }}" style="width: {{ ($jurusan->peserta->count()/$jurusan->kapasitas)*100 }}%">
-										{{ (int)($jurusan->peserta->count()/$jurusan->kapasitas)*100 }}%
+								  	<div class="progress-bar progress-bar-success" 
+								  		role="progressbar" aria-valuenow="{{ $jurusan->peserta->count() }}" aria-valuemin="0" aria-valuemax="{{ $jurusan->kapasitas }}" style="width: {{ ($jurusan->peserta->count()/$jurusan->kapasitas)*100 }}%">
+										{{ floor(($jurusan->peserta->count()/$jurusan->kapasitas)*100) }}%
 								  	</div>
 								</div>
 							@endforeach

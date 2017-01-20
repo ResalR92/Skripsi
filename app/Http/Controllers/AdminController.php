@@ -27,8 +27,6 @@ class AdminController extends Controller
             array_push($tb_jurusan, $jurusan->nama);
             array_push($tb_peserta, $jurusan->peserta->count());
         }
-        
-
 		return view('dashboard.admin',compact('jml_peserta','jml_jurusan','jml_kontak','tb_jurusan','tb_peserta','jurusan_list'));
     }
 
