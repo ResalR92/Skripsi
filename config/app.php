@@ -174,7 +174,7 @@ return [
         Laratrust\LaratrustServiceProvider::class,
         App\Providers\HalamanServiceProvider::class,
         App\Providers\DashboardServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -235,6 +235,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Laratrust' => Laratrust\LaratrustFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];

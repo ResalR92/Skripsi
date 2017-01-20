@@ -15,7 +15,7 @@
 		        </ol>
 		    </div>
 		</div>
-		{!! Form::open(['url'=>'#','method'=>'post','class'=>'form-horizontal']) !!}
+		{!! Form::open(['url'=>'admin/backup','method'=>'post','class'=>'form-horizontal']) !!}
 			@if($errors->any())
 		        <div class="form-group {{ $errors->has('jurusan') ? 'has-error' : 'has-success' }}">
 		    @else
@@ -23,7 +23,7 @@
 		    @endif
 				{!! Form::label('jurusan', 'Jurusan', ['class'=>'col-md-2 control-label']) !!}
 				<div class="col-md-4">
-					{!! Form::select('jurusan', $list_jurusan, null, [
+					{!! Form::select('jurusan[]', $list_jurusan, null, [
 						'class'=>'js-selectize',
 						'multiple',
 						'placeholder'=>'Pilih Jurusan'
@@ -40,7 +40,7 @@
 		    @endif
 				{!! Form::label('status', 'Status', ['class'=>'col-md-2 control-label']) !!}
 				<div class="col-md-4">
-					{!! Form::select('status', $list_status, null, [
+					{!! Form::select('status[]', $list_status, null, [
 						'class'=>'js-selectize',
 						'multiple',
 						'placeholder'=>'Pilih Status'

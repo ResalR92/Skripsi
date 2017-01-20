@@ -50,6 +50,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],fu
 	Route::resource('kontak','KontakController');
 
 	Route::get('backup','BackupController@index');
+	Route::post('backup','BackupController@export');
 });
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){
