@@ -27,13 +27,23 @@ class BackupController extends Controller
     							->whereIn('id_status',$request->get('status'))
     							->get();
 
-    	$excel = Excel::create('Data Buku Larapus2', function($excel) use($peserta_list){
+    	$excel = Excel::create('Data PSB SMK Panjatek', function($excel) use($peserta_list){
             //Set Property
-            $excel->setTitle('Data Buku Larapus2')
+            $excel->setTitle('Data PSB SMK Panjatek')
                   ->setCreator(Auth::user()->name);
 
             $excel->sheet('Data Buku', function($sheet) use($peserta_list){
                 $row = 1;
+                
+                $sheet->freezeFirstRow();
+                $sheet->cells('A1:AT1', function($cells) {
+				    $cells->setFont(array(
+					    'family'     => 'Calibri',
+					    'size'       => '16',
+					    'bold'       =>  true
+					));
+					$cells->setBorder('A1:AT1', 'thin');
+				});
                 $sheet->row($row,[
                     'No.Pendaftaran',
                     'Nama Lengkap',
