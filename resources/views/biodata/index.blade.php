@@ -27,7 +27,7 @@
 						<hr>
 						@if($biodata->status->label == 'warning')
 							{{ link_to('biodata/'.$biodata->id.'/edit','Edit',['class'=>'btn btn-warning']) }}
-						@elseif($biodata->status->label == 'success')
+						@elseif($biodata->status->label == 'primary')
 							{{ link_to('biodata/'.$biodata->id,'Cetak PDF',['class'=>'btn btn-success']) }}
 						@endif
 					</div>

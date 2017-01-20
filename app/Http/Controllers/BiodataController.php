@@ -138,7 +138,7 @@ class BiodataController extends Controller
         $this->authorize('modify',$peserta);
 
         $label = $peserta->status->label;
-        if($label == 'success'){
+        if($label == 'primary'){
             return view('biodata.show',compact('peserta'));
         }else{
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
@@ -295,7 +295,7 @@ class BiodataController extends Controller
         $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
 
         $label = $peserta->status->label;
-        if($label == 'success'){
+        if($label == 'primary'){
             return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
         }else{
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');

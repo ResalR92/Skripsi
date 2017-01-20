@@ -31,12 +31,12 @@ class Ibu extends Model
     	$this->belongsTo('App\Siswa','id_peserta');
     }
 
-    public function getGajiAttribute($gaji)
-    {
-        $gaji = $this->attributes['gaji'];
-        if(!empty($gaji)){
-            return $gaji = sprintf('Rp %s', number_format($gaji, 2));
-        }
-        return '-';
-    }
+    // public function getGajiAttribute($gaji)
+    // {
+    //     $gaji = $this->attributes['gaji'];
+    //     if(!empty($gaji)){
+    //         return $gaji = sprintf('Rp %s', number_format($gaji, 2));
+    //     }
+    //     return '-';
+    // }
 }

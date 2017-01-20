@@ -15,9 +15,9 @@ class StatusSeeder extends Seeder
         	['nama'=>'Baru','label'=>'info','pesan'=>'Sedang diverifikasi'],
         	['nama'=>'Tidak Valid','label'=>'warning','pesan'=>'Mohon lengkapi atau perbaiki biodata'],
             ['nama'=>'Perbaikan','label'=>'info','pesan'=>'Sedang diverifikasi ulang'],
-        	['nama'=>'Valid','label'=>'primary','pesan'=>'Menunggu keputusan Lulus/Tidak Lulus'],
-        	['nama'=>'Tidak Lulus','label'=>'danger','pesan'=>'Mohon maaf, Anda tidak diterima'],
-        	['nama'=>'Lulus','label'=>'success','pesan'=>'Selamat,segera lakukan Pendaftaran Ulang'],
+        	['nama'=>'Valid','label'=>'primary','pesan'=>'Silahkan Cetak Form Pendaftaran untuk Pendaftaran Ulang. Menunggu keputusan Lulus/Tidak Lulus'],
+        	['nama'=>'Tidak Lulus','label'=>'danger','pesan'=>'Mohon maaf, Anda tidak memenuhi persyaratan.'],
+        	['nama'=>'Lulus','label'=>'success','pesan'=>'Selamat, Anda telah diterima di SMK Panjatek'],
         ];
 
         //Masukkan data ke database
