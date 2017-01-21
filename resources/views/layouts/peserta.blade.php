@@ -88,7 +88,7 @@
                             <li><a href="{{ url('peserta') }}"><span class="glyphicon glyphicon-list-alt"></span> Peserta</a></li>
                         @endif
                         @if (!Auth::check())
-                            @if(!empty($halaman) && $halaman == 'pendaftaran')
+                            @if(!empty($halaman) && $halaman == 'register')
                                 <li class="active"><a href="{{ url('register') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran <span class="sr-only">(current)</span> </a> </li>
                             @else
                                 <li><a href="{{ url('/register') }}"><span class="glyphicon glyphicon-pencil"></span> Pendaftaran</a></li>
@@ -152,7 +152,12 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ url('/login') }}"><b>Login</b></a></li>
+                            @if(!empty($halaman) && $halaman == 'login')
+                                <li class="active">
+                            @else
+                                <li>
+                            @endif
+                                <a href="{{ url('/login') }}"><b>Login</b></a></li>
                         @else
                             @if(!empty($halaman) && $halaman == 'ubahpwd')
                                 <li class="dropdown active">

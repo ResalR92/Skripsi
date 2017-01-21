@@ -25,7 +25,7 @@ class HalamanServiceProvider extends ServiceProvider
             $halaman = 'peserta';
         }
         if(Request::segment(1) == 'register'){
-            $halaman = 'pendaftaran';
+            $halaman = 'register';
         }
         if(Request::segment(1) == 'pengumuman'){
             $halaman = 'informasi';
@@ -41,6 +41,9 @@ class HalamanServiceProvider extends ServiceProvider
         }
         if(Request::segment(1) == 'biodata'){
             $halaman = 'akun';
+        }
+        if(Request::segment(1) == 'login'){
+            $halaman = 'login';
         }
         if(Request::segment(2) == 'password'){
             $halaman = 'ubahpwd';
