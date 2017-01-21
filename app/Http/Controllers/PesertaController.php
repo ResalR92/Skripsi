@@ -333,7 +333,8 @@ class PesertaController extends Controller
     public function pdf($id)
     {
         $peserta = Peserta::findOrFail($id);
-        $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
+        $jurusan = Jurusan::all();
+        $pdf = PDF::loadview('pdf.biodata',compact('peserta','jurusan'));
         return $pdf->setPaper('legal', 'portrait')->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
     }
 
