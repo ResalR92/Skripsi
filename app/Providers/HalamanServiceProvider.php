@@ -18,6 +18,9 @@ class HalamanServiceProvider extends ServiceProvider
         if(Request::segment(1) == ''){
             $halaman = '/';
         }
+        if(Request::segment(1) == 'home'){
+            $halaman = '/';
+        }
         if(Request::segment(1) == 'peserta'){
             $halaman = 'peserta';
         }
