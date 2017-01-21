@@ -100,7 +100,7 @@
 		    </dl>
 		    <dl class="dl-horizontal">
 		        <dt>Penghasilan</dt>
-		        <dd>: {{ $peserta->ayah->gaji }}</dd>
+		        <dd>: {{ (!empty($peserta->ayah->gaji)) ? sprintf('Rp %s', number_format($peserta->ayah->gaji, 2))  : '-' }}</dd>
 		    </dl>
 		    <dl class="dl-horizontal">
 		        <dt>No. Telp / HP</dt>
@@ -133,7 +133,7 @@
 		    </dl>
 		    <dl class="dl-horizontal">
 		        <dt>Penghasilan</dt>
-		        <dd>: {{ $peserta->ibu->gaji }}</dd>
+		        <dd>: {{ (!empty($peserta->ibu->gaji)) ? sprintf('Rp %s', number_format($peserta->ibu->gaji, 2))  : '-' }}</dd>
 		    </dl>
 		    <dl class="dl-horizontal">
 		        <dt>No. Telp / HP</dt>
@@ -166,7 +166,7 @@
 		    </dl>
 		    <dl class="dl-horizontal">
 		        <dt>Penghasilan</dt>
-		        <dd>: {{ $peserta->wali->gaji }}</dd>
+		        <dd>: {{ (!empty($peserta->wali->gaji)) ? sprintf('Rp %s', number_format($peserta->wali->gaji, 2))  : '-' }}</dd>
 		    </dl>
 		    <dl class="dl-horizontal">
 		        <dt>No. Telp / HP</dt>

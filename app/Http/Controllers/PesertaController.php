@@ -334,7 +334,7 @@ class PesertaController extends Controller
     {
         $peserta = Peserta::findOrFail($id);
         $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
-        return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
+        return $pdf->setPaper('legal', 'portrait')->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
     }
 
     private function uploadFoto(PesertaRequest $request)

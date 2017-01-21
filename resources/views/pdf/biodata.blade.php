@@ -14,8 +14,27 @@
 </head>
 
 <body>
-<h1>DATA CALON PESERTA DIDIK</h1>
-<hr />
+<table width="500" border="0">
+    <tr>
+        <td width="100">
+            {!! Html::image(asset('images/logo.png'),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
+        </td>
+        <td>
+            <p style="text-align:center;font-size:25px;margin-bottom:0;margin-top:0;"><b>SEKOLAH MENENGAH KEJURUAN</b></p>
+            <p style="text-align:center;font-size:35px;margin-bottom:0;margin-top:0;"><b>SMK PANJATEK</b></p>
+            <hr style="margin-bottom:0;">
+            <p style="text-align:center;margin-top:0;">
+                @foreach($jurusan as $data)
+                    <i>{{ $data->nama }}<i>,
+                @endforeach
+            </p>
+        </td>
+    </tr>
+</table>
+
+<h1 style="margin-bottom:0;margin-top:0;">FORMULIR PENDAFTARAN CALON PESERTA DIDIK BARU</h1>
+<h1 style="margin-top:0;">TAHUN AJARAN {{ date('Y') - 1 }}/{{ date('Y') }}</h1>
+
 <table width="500" border="0">
     <tr>
         <td>No. Pendaftaran </td>
@@ -59,6 +78,12 @@
         <td>7. Tahun Lulus </td>
         <td>: {{ $peserta->tahun_lulus }}</td>
     </tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
     <tr>
         <td colspan="2"><h2>B. IDENTITAS SEKOLAH ASAL</h2></td>
     </tr>
@@ -70,6 +95,12 @@
         <td>2. Alamat Sekolah</td>
         <td>: {{ $peserta->sekolah->alamat }}</td>
     </tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
     <tr>
         <td colspan="2"><h2>C. IDENTITAS ORANG TUA / WALI</h2></td>
     </tr>
@@ -95,7 +126,7 @@
     </tr>
     <tr>
         <td>Penghasilan</td>
-        <td>: {{ $peserta->ayah->gaji }}</td>
+        <td>: {{ (!empty($peserta->ayah->gaji)) ? sprintf('Rp %s', number_format($peserta->ayah->gaji, 2))  : '-' }}</td>
     </tr>
     <tr>
         <td>No. Telp / HP</td>
@@ -105,9 +136,13 @@
         <td>Alamat</td>
         <td>: {{ $peserta->ayah->alamat }}</td>
     </tr>
-</table>
-<p>&nbsp;</p>
-<table width="500" border="0">
+
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
     <tr>
         <td>Nama Ibu</td>
         <td>: {{ $peserta->ibu->nama }}</td>
@@ -130,7 +165,7 @@
     </tr>
     <tr>
         <td>Penghasilan</td>
-        <td>: {{ $peserta->ibu->gaji }}</td>
+        <td>: {{ (!empty($peserta->ibu->gaji)) ? sprintf('Rp %s', number_format($peserta->ibu->gaji, 2))  : '-' }}</td>
     </tr>
     <tr>
         <td>No. Telp / HP</td>
@@ -140,38 +175,96 @@
         <td>Alamat</td>
         <td>: {{ $peserta->ibu->alamat }}</td>
     </tr>
+    <hr style="visibility:hidden;">
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    <tr><td></td></tr>
+    
+
+    <p style="margin-bottom:0;margin-top:0;text-align:center;">
+        <b>___________________________________________________________________________________</b>
+        <br>Jln. Lingkar Utara No.99 Harapan Baru - Bekasi Utara Kota Bekasi 17123
+        <br>Telp. 021-889981110 (hunting), Fax. 021-88981113, E-mail : admin@smkpanjatek.com
+    </p>
+        
 </table>
-<p>&nbsp;</p>
-<br>
-<br>
+
+<table width="500" border="0">
+    <tr>
+        <td width="100">
+            {!! Html::image(asset('images/logo.png'),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
+        </td>
+        <td>
+            <p style="text-align:center;font-size:25px;margin-bottom:0;margin-top:0;"><b>SEKOLAH MENENGAH KEJURUAN</b></p>
+            <p style="text-align:center;font-size:35px;margin-bottom:0;margin-top:0;"><b>SMK PANJATEK</b></p>
+            <hr style="margin-bottom:0;">
+            <p style="text-align:center;margin-top:0;">
+                @foreach($jurusan as $data)
+                    <i>{{ $data->nama }}<i>,
+                @endforeach
+            </p>
+        </td>
+    </tr>
+</table>
+
 <table width="500" border="0">
      <tr>
         <td>Nama Wali</td>
-        <td>: {{ $peserta->wali->nama }}</td>
+        <td>: {{ (!empty($peserta->wali->nama)) ? $peserta->wali->nama : '-' }}</td>
     </tr>
     <tr>
         <td>Tempat Tanggal Lahir</td>
-        <td>: {{ $peserta->wali->tempat_lahir }}, {{ $peserta->wali->tanggal_lahir->formatLocalized('%d %B %Y') }}</td>
+        <td>: {{ (!empty($peserta->wali->tempat_lahir)) ? $peserta->wali->tempat_lahir : '-' }}, {{ (!empty($peserta->wali->tanggal_lahir)) ? $peserta->wali->tanggal_lahir->formatLocalized('%d %B %Y') : '-' }}</td>
     </tr>
     <tr>
         <td>Agama</td>
-        <td>: {{ $peserta->wali->agama }}</td>
+        <td>: {{ (!empty($peserta->wali->agama)) ? $peserta->wali->agama : '-' }}</td>
     </tr>
     <tr>
         <td>Pendidikan Terakhir</td>
-        <td>: {{ $peserta->wali->pendidikan }}</td>
+        <td>: {{ (!empty($peserta->wali->pendidikan)) ? $peserta->wali->pendidikan : '-' }}</td>
     </tr>
     <tr>
         <td>Pekerjaan</td>
-        <td>: {{ $peserta->wali->pekerjaan }}</td>
+        <td>: {{ (!empty($peserta->wali->pekerjaan)) ? $peserta->wali->pekerjaan : '-' }}</td>
     </tr>
     <tr>
         <td>Penghasilan</td>
-        <td>: {{ $peserta->wali->gaji }}</td>
+        <td>: {{ (!empty($peserta->wali->gaji)) ? sprintf('Rp %s', number_format($peserta->wali->gaji, 2))  : '-' }}</td>
     </tr>
     <tr>
         <td>No. Telp / HP</td>
-        <td>: {{ $peserta->wali->telepon }} / {{ $peserta->wali->no_hp }}</td>
+        <td>: {{ (!empty($peserta->wali->telepon)) ? $peserta->wali->telepon : '-' }} / {{ (!empty($peserta->wali->no_hp)) ? $peserta->wali->no_hp : '-' }}</td>
     </tr>
     <tr>
         <td>Alamat</td>
@@ -229,6 +322,17 @@
             <u>{{ $peserta->nama }}</u>
         </td>
     </tr>
+</table>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<table width="600" border="0">
+<hr style="visibility:hidden;">
+<tr><td></td></tr>
+    <tr><td></td></tr>
+<p style="margin-bottom:0;margin-top:0;text-align:center;">
+    <b>___________________________________________________________________________________</b>
+    <br>Jln. Lingkar Utara No.99 Harapan Baru - Bekasi Utara Kota Bekasi 17123
+    <br>Telp. 021-889981110 (hunting), Fax. 021-88981113, E-mail : admin@smkpanjatek.com
+</p>
 </table>
 </body>
 </html>

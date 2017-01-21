@@ -291,12 +291,13 @@ class BiodataController extends Controller
     public function pdf($id)
     {
         $peserta = Peserta::findOrFail($id);
+        $jurusan = Jurusan::all();
         $this->authorize('modify',$peserta);
-        $pdf = PDF::loadview('pdf.biodata',compact('peserta'));
+        $pdf = PDF::loadview('pdf.biodata',compact('peserta','jurusan'));
 
         $label = $peserta->status->label;
         if($label == 'primary'){
-            return $pdf->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
+            return $pdf->setPaper('legal', 'portrait')->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
         }else{
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
