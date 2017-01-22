@@ -69,7 +69,7 @@
         <div class="form-group">
     @endif
             {!! Form::label('tanggal_lahir', 'Tanggal Lahir', ['class'=>'control-label']) !!}
-            {!! Form::date('tanggal_lahir', null, ['class'=>'form-control']) !!}
+            {!! Form::date('tanggal_lahir', !empty($peserta) ? $peserta->tanggal_lahir->format('Y-m-d') : null, ['class'=>'form-control']) !!}
             @if($errors->has('tanggal_lahir'))
                 <span class="help-block">{{ $errors->first('tanggal_lahir') }}</span>
             @endif
@@ -204,7 +204,7 @@
         <div class="form-group">
     @endif
             {!! Form::label('tanggal_lahir_ayah', 'Tanggal Lahir', ['class'=>'control-label']) !!}
-            {!! Form::date('tanggal_lahir_ayah', null, ['class'=>'form-control']) !!}
+            {!! Form::date('tanggal_lahir_ayah', !empty($peserta) ? $peserta->ayah->tanggal_lahir->format('Y-m-d') : null, ['class'=>'form-control']) !!}
             @if($errors->has('tanggal_lahir_ayah'))
                 <span class="help-block">{{ $errors->first('tanggal_lahir_ayah') }}</span>
             @endif
@@ -316,7 +316,7 @@
         <div class="form-group">
     @endif
             {!! Form::label('tanggal_lahir_ibu', 'Tanggal Lahir', ['class'=>'control-label']) !!}
-            {!! Form::date('tanggal_lahir_ibu', null, ['class'=>'form-control']) !!}
+            {!! Form::date('tanggal_lahir_ibu', !empty($peserta) ? $peserta->ibu->tanggal_lahir->format('Y-m-d') : null, ['class'=>'form-control']) !!}
             @if($errors->has('tanggal_lahir_ibu'))
                 <span class="help-block">{{ $errors->first('tanggal_lahir_ibu') }}</span>
             @endif
@@ -429,7 +429,7 @@
         <div class="form-group">
     @endif
             {!! Form::label('tanggal_lahir_wali', 'Tanggal Lahir', ['class'=>'control-label']) !!}
-            {!! Form::date('tanggal_lahir_wali', null, ['class'=>'form-control']) !!}
+            {!! Form::date('tanggal_lahir_wali', !empty($peserta) ? $peserta->wali->tanggal_lahir->format('Y-m-d') : null, ['class'=>'form-control']) !!}
             @if($errors->has('tanggal_lahir_wali'))
                 <span class="help-block">{{ $errors->first('tanggal_lahir_wali') }}</span>
             @endif
