@@ -139,7 +139,7 @@
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Tempat Tanggal Lahir</dt>
-			        <dd>: {{ $peserta->wali->tempat_lahir }}, {{ $peserta->wali->tanggal_lahir->formatLocalized('%d %B %Y') }}</dd>
+			        <dd>: {{ $peserta->wali->tempat_lahir }}, {{ (!empty($peserta->wali->tanggal_lahir)) ? $peserta->wali->tanggal_lahir->formatLocalized('%d %B %Y') : null }}</dd>
 			    </dl>
 			    <dl class="dl-horizontal">
 			        <dt>Agama</dt>

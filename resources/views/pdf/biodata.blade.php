@@ -268,7 +268,7 @@
     </tr>
     <tr>
         <td>Alamat</td>
-        <td>: {{ $peserta->wali->alamat }}</td>
+        <td colspan="2">: {{ (!empty($peserta->wali->alamat)) ? $peserta->wali->alamat : '-' }}</td>
     </tr>   
 </table>
 <p>&nbsp;</p>
@@ -304,10 +304,12 @@
             <br>
             <br>
             <br>
-            @if(isset($peserta->wali->nama))
+            @if(!empty($peserta->wali->nama))
                 <u>{{ $peserta->wali->nama }}</u>
-            @else()
-                <u>{{ $peserta->ayah->nama }}</u>
+                <br><b>Nb, Rekomendasi:</b>
+            @else
+                _________________
+                <br><b>Nb, Rekomendasi:</b>
             @endif
             
         </td>
@@ -323,7 +325,7 @@
         </td>
     </tr>
 </table>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <table width="600" border="0">
 <hr style="visibility:hidden;">
 <tr><td></td></tr>

@@ -429,7 +429,7 @@
         <div class="form-group">
     @endif
             {!! Form::label('tanggal_lahir_wali', 'Tanggal Lahir', ['class'=>'control-label']) !!}
-            {!! Form::date('tanggal_lahir_wali', !empty($peserta) ? $peserta->wali->tanggal_lahir->format('Y-m-d') : null, ['class'=>'form-control']) !!}
+            {!! Form::date('tanggal_lahir_wali', !empty($peserta->wali->tanggal_lahir) ? $peserta->wali->tanggal_lahir->format('Y-m-d') : null, ['class'=>'form-control']) !!}
             @if($errors->has('tanggal_lahir_wali'))
                 <span class="help-block">{{ $errors->first('tanggal_lahir_wali') }}</span>
             @endif

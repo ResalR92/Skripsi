@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Wali extends Model
 {
@@ -29,5 +30,14 @@ class Wali extends Model
     public function peserta()
     {
     	$this->belongsTo('App\Siswa','id_peserta');
+    }
+
+    public function setTanggalLahirAttribute($value)
+    {
+        if (strlen($value)) {
+                $this->attributes['tanggal_lahir'] = $value;
+        } else {
+            $this->attributes['tanggal_lahir'] = null;
+        }
     }
 }
