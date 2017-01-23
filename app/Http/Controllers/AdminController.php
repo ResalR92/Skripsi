@@ -12,6 +12,13 @@ use Session;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'myadmin',
+        ]]);
+    }
     public function index()
     {
         $peserta_list = Peserta::all();

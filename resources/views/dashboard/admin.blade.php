@@ -4,12 +4,22 @@
     	<div class="row">
 		    <div class="col-lg-12">
 		        <h1 class="page-header">
-		        	Dashboard <small>Statistik Website</small> 
-		        	@if(!empty($aktif))
-		        		{{ link_to('admin/daftar/1/edit','DIBUKA',['class'=>'btn btn-success']) }}
-		        	@else
-		        		{{ link_to('admin/daftar/1/edit','DITUTUP',['class'=>'btn btn-warning']) }}
-		        	@endif
+		        	Dashboard <small>Statistik Website</small> <small> - Status Pendaftaran</small>
+		        	@role('admin')
+			        	@if(!empty($aktif))
+			        		{{ link_to('admin/daftar/1/edit','DIBUKA',['class'=>'btn btn-success btn-sm']) }}
+			        	@else
+			        		{{ link_to('admin/daftar/1/edit','DITUTUP',['class'=>'btn btn-danger']) }}
+			        	@endif
+		        	@endrole
+		        	@role('operator')
+			        	@if(!empty($aktif))
+			        		<small><span class="label label-success">DIBUKA</span></small>
+			        	@else
+			        		<small><span class="label label-danger">DITUTUP</span></small>
+			        	@endif
+		        	@endrole
+
 		        </h1>
 		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
