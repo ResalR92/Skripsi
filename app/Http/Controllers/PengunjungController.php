@@ -15,15 +15,17 @@ use Session;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Laratrust\LaratrustFacade as Laratrust;
+use App\Daftar;
 
 class PengunjungController extends Controller
 {
 	public function index()
 	{
+        $daftar = Daftar::all()->where('aktif',1)->toArray();
         if(Laratrust::hasRole('peserta')){
             return redirect('/home');
         }
-		return view('dashboard.pengunjung');
+		return view('dashboard.pengunjung',compact('daftar'));
 	}
     public function peserta(Request $request, Builder $htmlBuilder)
     {

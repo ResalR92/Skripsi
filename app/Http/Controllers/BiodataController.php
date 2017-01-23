@@ -28,9 +28,13 @@ class BiodataController extends Controller
     public function index(Request $request)
     {
         $peserta = $request->user()->peserta()->get();
-        $status = [];
-        foreach($peserta as $biodata){
-            $status[] = $biodata['id_status'];
+        $status = $peserta->toArray();
+        $daftar = Daftar::all()->where('aktif',1)->toArray();
+        if(empty($status) && empty($daftar)){
+            Auth::logout();
+            Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
+            Session::flash('penting',true);
+            return redirect('/');
         }
         return view('biodata.index',compact('peserta','status'));
     }
@@ -43,17 +47,16 @@ class BiodataController extends Controller
     public function create(Request $request)
     {
         $peserta = $request->user()->peserta()->get();
-        $status = [];
-        foreach($peserta as $biodata){
-            $status[] = $biodata['id_status'];
-        }
+        $status = $peserta->toArray();
+        
 
         $daftar = Daftar::all()->where('aktif',1)->toArray();
         // return $daftar;
-        if(empty($daftar)){
+        if(empty($daftar) && empty($status)){
+            Auth::logout();
             Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
             Session::flash('penting',true);
-            return redirect('home');
+            return redirect('/');
         }
 
         if(!empty($status)){
