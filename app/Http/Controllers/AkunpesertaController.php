@@ -22,6 +22,24 @@ class AkunpesertaController extends Controller
         if($request->ajax()){
             $akunpeserta = Role::where('name','peserta')->first()->users;
             return Datatables::of($akunpeserta)
+                ->addColumn('biodata',function($akunpeserta){
+                    if(!empty($akunpeserta->peserta)){
+                        return '<span class="label label-success">Ada</span>';
+                    }else{
+                        return '<span class="label label-danger">Kosong</span>';
+                    }
+                })
+                //Menambah kolom login -> karena Carbon -> konflik -> datatable
+                ->addColumn('login',function($akunpeserta){
+                    //mengecek nilai last_login
+                    if(!empty($akunpeserta->last_login)){
+                        $akunpeserta = $akunpeserta->last_login->format('d-m-Y H:i:s');
+                    }else{
+                        //nilai default untuk menghindari crash datatable
+                        $akunpeserta = '-';
+                    }
+                    return $akunpeserta;
+                    })
                 ->addColumn('blokir',function($akunpeserta){
                         if($akunpeserta->is_blokir == true){
                             return '<span class="label label-danger">Blokir</span>';
@@ -41,6 +59,8 @@ class AkunpesertaController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama'])
             ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
+            ->addColumn(['data'=>'biodata','name'=>'biodata','title'=>'Biodata','orderable'=>false,'searchable'=>false])
+            ->addColumn(['data'=>'login','name'=>'login','title'=>'Login Terakhir','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'blokir','name'=>'blokir','title'=>'Status','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
@@ -79,7 +99,7 @@ class AkunpesertaController extends Controller
         // return $data;
         $akunpeserta = User::create($data);
 
-        //set role 
+        //set role->peserta
         $pesertaRole = Role::where('name','peserta')->first();
         $akunpeserta->attachRole($pesertaRole);
         
@@ -154,13 +174,14 @@ class AkunpesertaController extends Controller
     public function destroy($id)
     {
         $akunpeserta = User::findOrFail($id);
-
+        //mengecek terlebih dahulu role->peserta
         if ($akunpeserta->hasRole('peserta')) {
+
             $akunpeserta->delete();
+
             Session::flash('flash_message','Data Akun Peserta berhasil dihapus.');
             Session::flash('penting',true);
         }
-        
         return redirect('admin/akunpeserta');
     }
 }

@@ -28,7 +28,7 @@ class OperatorController extends Controller
                         $operator = $operator->last_login->format('d-m-Y H:i:s');
                     }else{
                         //nilai default untuk menghindari crash datatable
-                        $operator = '<span class="label label-success">Baru</span>';
+                        $operator = '-';
                     }
                     return $operator;
                     })

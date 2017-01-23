@@ -37,7 +37,7 @@
             <div class="form-group">
         @endif
                 {!! Form::label('is_blokir','Status',['class'=>'col-md-2 control-label']) !!}
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="radio">
                         <label>{{ Form::radio('is_blokir',0) }} Aktif</label>
                     </div>
