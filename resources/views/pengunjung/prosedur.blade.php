@@ -18,7 +18,7 @@
 					@foreach($prosedur_list as $prosedur)
 						<tr>
 							<td>{{ $prosedur->judul }}</td>
-							<td>{{ $prosedur->isi }}</td>
+							<td>{!! $prosedur->isi !!}</td>
 						</tr>
 					@endforeach
 				@else

@@ -104,7 +104,7 @@ class PengumumanController extends Controller
      */
     public function edit($id)
     {
-        //Menemukan model Jurusan atau dihentikan
+        //Menemukan model Pengumuman atau dihentikan
         $pengumuman = Pengumuman::findOrFail($id);
         return view('admin.pengumuman.edit',compact('pengumuman'));
     }

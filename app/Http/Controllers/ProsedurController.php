@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,6 +12,7 @@ class ProsedurController extends Controller
 {
     public function __construct()
     {
+        //Membatasi role->operator
         $this->middleware('role:admin',['except'=>[
             'index',
             'create',
@@ -30,6 +31,7 @@ class ProsedurController extends Controller
         if($request->ajax()){
             $prosedur = Prosedur::orderBy('judul','asc');
             return Datatables::of($prosedur)
+                //menambah kolom ACTION -> edit, delete -> datatable._admin.blade.php
                 ->addColumn('action',function($prosedur){
                     return view('datatable._admin',[
                         'model' => $prosedur,
@@ -64,8 +66,14 @@ class ProsedurController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['judul'=>'required|max:50|unique:prosedur,judul','isi'=>'required']);
-        $peserta = Prosedur::create($request->all());
+        //trait->validasi -> judul, isi
+        $this->validate($request, [
+            'judul'=>'required|max:50|unique:prosedur,judul',
+            'isi'=>'required'
+        ]);
+        //menyimpan data prosedur
+        Prosedur::create($request->all());
+        //Membuat session -> flash_message
         Session::flash('flash_message','Data Prosedur berhasil disimpan.');
         return redirect('admin/prosedur');
     }
@@ -89,6 +97,7 @@ class ProsedurController extends Controller
      */
     public function edit($id)
     {
+        //Menemukan model Prosedur atau dihentikan
         $prosedur = Prosedur::findOrFail($id);
         return view('admin.prosedur.edit',compact('prosedur'));
     }
@@ -103,8 +112,14 @@ class ProsedurController extends Controller
     public function update(Request $request, $id)
     {
         $prosedur = Prosedur::findOrFail($id);
-        $this->validate($request, ['judul'=>'required|max:50|unique:prosedur,judul,'.$id,'isi'=>'required']);
+
+        $this->validate($request, [
+            'judul'=>'required|max:50|unique:prosedur,judul,'.$id,
+            'isi'=>'required'
+        ]);
+
         $prosedur->update($request->all());
+
         Session::flash('flash_message','Data Prosedur berhasil diupdate.');
         return redirect('admin/prosedur');
     }
@@ -117,9 +132,12 @@ class ProsedurController extends Controller
      */
     public function destroy($id)
     {
-        Prosedur::destroy($id);
+        $prosedur = Prosedur::findOrFail($id);
+        $prosedur->destroy($id);
+
         Session::flash('flash_message','Data Prosedur berhasil dihapus.');
         Session::flash('penting',true);
+        
         return redirect('admin/prosedur');
     }
 }
