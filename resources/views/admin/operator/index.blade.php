@@ -7,7 +7,7 @@
 		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 		            </li>
 		            <li class="active">
 		                Operator
@@ -15,8 +15,12 @@
 		        </ol>
 		    </div>
 		</div>
-		<p><a href="{{ route('operator.create') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a></p>
-			{!! $html->table(['class'=>'table-striped']) !!}
+		<p>
+			<a href="{{ route('operator.create') }}" class="btn btn-primary">
+				<i class="glyphicon glyphicon-plus"></i> Tambah
+			</a>
+		</p>
+		{!! $html->table(['class'=>'table-striped']) !!}
 	</div>
 @stop
 

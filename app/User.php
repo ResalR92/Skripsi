@@ -19,7 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password','is_blokir',
     ];
-
+    //Event listener 
     protected $dates = ['last_login'];
 
     /**

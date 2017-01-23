@@ -21,10 +21,18 @@ class OperatorController extends Controller
         if($request->ajax()){
             $operator = Role::where('name','operator')->first()->users;
             return Datatables::of($operator)
+                //Menambah kolom login -> karena Carbon -> konflik -> datatable
                 ->addColumn('login',function($operator){
-                    $operator = $operator->last_login->format('d-m-Y H:i:s');
+                    //mengecek nilai last_login
+                    if(!empty($operator->last_login)){
+                        $operator = $operator->last_login->format('d-m-Y H:i:s');
+                    }else{
+                        //nilai default untuk menghindari crash datatable
+                        $operator = '<span class="label label-success">Baru</span>';
+                    }
                     return $operator;
                     })
+                //menambah kolom blokir->danger,success
                 ->addColumn('blokir',function($operator){
                         if($operator->is_blokir == true){
                             return '<span class="label label-danger">Blokir</span>';
@@ -32,8 +40,9 @@ class OperatorController extends Controller
                             return '<span class="label label-success">Aktif</span>';
                         }
                     })
+                //menambah kolom ACTION -> edit, delete -> datatable._admin.blade.php
                 ->addColumn('action',function($operator){
-                    return view('datatable._action',[
+                    return view('datatable._admin',[
                         'model' => $operator,
                         'form_url' => route('operator.destroy',$operator->id),
                         'edit_url' => route('operator.edit',$operator->id),
@@ -42,8 +51,8 @@ class OperatorController extends Controller
                 })->make(true);
         }
         $html = $htmlBuilder
-            ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama'])
-            ->addColumn(['data'=>'email','name'=>'email','title'=>'Email'])
+            ->addColumn(['data'=>'name','name'=>'name','title'=>'Nama','orderable'=>false])
+            ->addColumn(['data'=>'email','name'=>'email','title'=>'Email','orderable'=>false])
             ->addColumn(['data'=>'login','name'=>'login','title'=>'Login Terakhir','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'blokir','name'=>'blokir','title'=>'Status','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
@@ -80,10 +89,10 @@ class OperatorController extends Controller
         //Hash Password
         $data['password'] = bcrypt($data['password']);
 
-        // return $data;
+        //menyimpan data operator
         $operator = User::create($data);
 
-        //set role 
+        //set role->operator
         $operatorRole = Role::where('name','operator')->first();
         $operator->attachRole($operatorRole);
         
@@ -158,9 +167,11 @@ class OperatorController extends Controller
     public function destroy($id)
     {
         $operator = User::findOrFail($id);
-
+        //mengecek role -> operator
         if ($operator->hasRole('operator')) {
+            //menghapus operator
             $operator->delete();
+
             Session::flash('flash_message','Data Operator berhasil dihapus.');
             Session::flash('penting',true);
         }
