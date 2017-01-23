@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Mail;
 
 class KontakController extends Controller
 {
+    private $dibalas = 1;
+
+    public function __construct()
+    {
+        //Membatasi role->operator
+        $this->middleware('role:admin',['except'=>[
+            'index',
+            'edit',
+            'update'
+        ]]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,12 +30,15 @@ class KontakController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $kontak = Kontak::orderBy('created_at','desc');
+            //Menampilkan pengumuman -> terbaru
+            $kontak = Kontak::latest();
             return Datatables::of($kontak)
+                //Menambah kolom Tanggal -> karena Carbon -> konflik -> datatable
                 ->addColumn('tanggal',function($kontak){
                         $tanggal = $kontak->created_at->formatLocalized('%d %B %Y');
                         return $tanggal;
                     })
+                //Membuat kolom tambahan status balas -> span -> label -> merah , hijau
                 ->addColumn('dibalas',function($kontak){
                         if($kontak->dibalas == false){
                             return '<span class="label label-danger"><i class="glyphicon glyphicon-remove"></i></span>';
@@ -32,6 +46,7 @@ class KontakController extends Controller
                             return '<span class="label label-success"><i class="glyphicon glyphicon-ok"></i></span>';
                         }
                     })
+                //menambah kolom ACTION -> edit, delete -> datatable._kontak.blade.php
                 ->addColumn('action',function($kontak){
                     return view('datatable._kontak',[
                         'model' => $kontak,
@@ -60,6 +75,7 @@ class KontakController extends Controller
     public function create()
     {
         return view('admin.kontak.create');
+        // return redirect('/admin/kontak');
     }
 
     /**
@@ -70,16 +86,16 @@ class KontakController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nama'=>'required|max:30',
-            'email' => 'required|email|max:30',
-            'judul' => 'required|max:50',
-            'isi' =>'required',
-        ]);
-        $kontak = Kontak::create($request->all());
+        // $this->validate($request, [
+        //     'nama'=>'required|max:30',
+        //     'email' => 'required|email|max:30',
+        //     'judul' => 'required|max:50',
+        //     'isi' =>'required',
+        // ]);
+        // $kontak = Kontak::create($request->all());
 
-        Session::flash('flash_message','Data Kontak berhasil dikirim.');
-        return redirect('admin/kontak');
+        // Session::flash('flash_message','Data Kontak berhasil dikirim.');
+        // return redirect('admin/kontak');
     }
 
     /**
@@ -116,6 +132,8 @@ class KontakController extends Controller
     {
         $kontak = Kontak::findOrFail($id);
 
+        $input = $request->all();
+
         $this->validate($request, [
             'nama'=>'required|max:30',
             'email' => 'required|email|max:30',
@@ -124,19 +142,26 @@ class KontakController extends Controller
             're_judul' =>'required|max:50',
             'balasan' => 'required'
         ]);
-        if($kontak){
-            $kirim = Mail::send('admin.kontak.email', compact('balasan'), function ($m) use ($kontak){
-                        $m->to($kontak->email, $kontak->nama)->subject($kontak->re_judul);
-                    });
-            
-            if($kirim){
-                $kontak->update($request->all());
-                Session::flash('flash_message','Balasan Kontak berhasil dikirim.');
-                return redirect('admin/kontak');
-            }else{
-                Session::flash('flash_error','Balasan Kontak GAGAL dikirim.');
-                return redirect('admin/kontak');
-            }  
+        $balasan = $request->input('balasan');
+
+        //mengirimkan email balasan ke email kontak tujuan
+        try{
+        $kirim = Mail::send('admin.kontak.email', compact('balasan'), function ($m) use ($kontak){
+                    $m->to($kontak->email, $kontak->nama)->subject($kontak->re_judul);
+                });
+        throw new Exception('error');
+        
+        }catch(Exception $e){
+            Session::flash('flash_error','Balasan Kontak GAGAL dikirim.');
+            return redirect('admin/kontak');
+        }
+
+        if($kirim === true){
+            $input['dibalas'] = $this->balas;
+            $kontak->update($input);
+
+            Session::flash('flash_message','Balasan Kontak berhasil dikirim.');
+            return redirect('admin/kontak');
         }
     }
 
@@ -148,9 +173,12 @@ class KontakController extends Controller
      */
     public function destroy($id)
     {
-        Kontak::destroy($id);
+        $kontak = Kontak::findOrFail($id);
+        $kontak->delete();
+
         Session::flash('flash_message','Data Kontak berhasil dihapus.');
         Session::flash('penting',true);
+        
         return redirect('admin/kontak');
     }
 }

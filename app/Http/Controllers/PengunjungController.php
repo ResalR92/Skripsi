@@ -48,9 +48,6 @@ class PengunjungController extends Controller
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
             ->addColumn(['data'=>'status','name'=>'status','title'=>'Status','orderable'=>false,'searchable'=>false]);
 
-        $peserta = $request->user()->peserta()->get()->toArray();
-        $daftar = Daftar::all()->where('aktif',1)->toArray();
-
         $this->pendaftaranTutup($request);
 
         return view('pengunjung.peserta',compact('html'));
@@ -98,7 +95,11 @@ class PengunjungController extends Controller
 
     private function pendaftaranTutup($request)
     {
-        $peserta = $request->user()->peserta()->get()->toArray();
+        if(Auth::user()){
+            $peserta = $request->user()->peserta()->get()->toArray();
+        }else{
+            $peserta = '';
+        }
         $daftar = Daftar::all()->where('aktif',1)->toArray();
 
         if(empty($peserta) && empty($daftar) && Laratrust::hasRole('peserta')){

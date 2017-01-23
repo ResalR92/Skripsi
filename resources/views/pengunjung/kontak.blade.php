@@ -8,7 +8,7 @@
 		</div>
 		@include('_partial.flash_message')
 		{!! Form::open(['url'=>'kontak']) !!}
-            <div class="row">
+            <div class="form-horizontal">
 			    @if($errors->any())
 			        <div class="form-group {{ $errors->has('nama') ? 'has-error' : 'has-success' }}">
 			    @else
@@ -22,7 +22,7 @@
 			                @endif
 			            </div>
 			        </div>
-			    <br><br>
+			    
 			    @if($errors->any())
 			        <div class="form-group {{ $errors->has('email') ? 'has-error' : 'has-success' }}">
 			    @else
@@ -36,7 +36,7 @@
 			                @endif
 			            </div>
 			        </div>
-			    <br><br>
+			    
 			    @if($errors->any())
 			        <div class="form-group {{ $errors->has('judul') ? 'has-error' : 'has-success' }}">
 			    @else
@@ -50,7 +50,7 @@
 			                @endif
 			            </div>
 			        </div>
-			    <br><br>
+			    
 			    @if($errors->any())
 			        <div class="form-group {{ $errors->has('isi') ? 'has-error' : 'has-success' }}">
 			    @else
@@ -65,11 +65,8 @@
 			            </div>
 			        </div>
 			    
-			</div>
-			<br><br>
-			<div class="row">
 			    <div class="form-group">
-			        <div class="col-md-2 col-md-offset-2">
+			        <div class="col-md-2 col-md-offset-1">
 			            {!! Form::submit('Kirim', ['class'=>'btn btn-primary form-control']) !!}
 			        </div>
 			    </div>

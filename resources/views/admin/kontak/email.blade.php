@@ -1,1 +1,1 @@
-{{ $balasan }}
+<p>{!! $balasan !!}</p>
