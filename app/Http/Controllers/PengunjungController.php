@@ -16,6 +16,7 @@ use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Laratrust\LaratrustFacade as Laratrust;
 use App\Daftar;
+use Illuminate\Support\Facades\Auth;
 
 class PengunjungController extends Controller
 {
@@ -46,29 +47,39 @@ class PengunjungController extends Controller
             ->addColumn(['data'=>'jurusan.nama','name'=>'jurusan.nama','title'=>'Program Keahlian'])
             ->addColumn(['data'=>'sekolah.nama','name'=>'sekolah.nama','title'=>'Sekolah Asal'])
             ->addColumn(['data'=>'status','name'=>'status','title'=>'Status','orderable'=>false,'searchable'=>false]);
+
+        $peserta = $request->user()->peserta()->get()->toArray();
+        $daftar = Daftar::all()->where('aktif',1)->toArray();
+
+        $this->pendaftaranTutup($request);
+
         return view('pengunjung.peserta',compact('html'));
     }
 
-    public function pengumuman()
+    public function pengumuman(Request $request)
     {
     	$pengumuman_list = Pengumuman::orderBy('updated_at','desc')->paginate(1);
+        $this->pendaftaranTutup($request);
     	return view('pengunjung.pengumuman',compact('pengumuman_list'));
     }
 
-    public function prosedur()
+    public function prosedur(Request $request)
     {
     	$prosedur_list = Prosedur::all()->sortBy('judul');
+        $this->pendaftaranTutup($request);
     	return view('pengunjung.prosedur',compact('prosedur_list'));
     }
 
-    public function jadwal()
+    public function jadwal(Request $request)
     {
     	$jadwal_list = Jadwal::all()->sortBy('awal');
+        $this->pendaftaranTutup($request);
     	return view('pengunjung.jadwal',compact('jadwal_list'));
     }
 
-    public function kontak()
+    public function kontak(Request $request)
     {
+        $this->pendaftaranTutup($request);
     	return view('pengunjung.kontak');
     }
     public function kirim(Request $request)
@@ -83,5 +94,15 @@ class PengunjungController extends Controller
 
         Session::flash('flash_message','Data Kontak berhasil dikirim.');
         return redirect('kontak');
+    }
+
+    private function pendaftaranTutup($request)
+    {
+        $peserta = $request->user()->peserta()->get()->toArray();
+        $daftar = Daftar::all()->where('aktif',1)->toArray();
+
+        if(empty($peserta) && empty($daftar) && Laratrust::hasRole('peserta')){
+            Auth::logout();
+        }
     }
 }

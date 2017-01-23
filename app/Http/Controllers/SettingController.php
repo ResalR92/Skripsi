@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\Daftar;
+use App\Peserta;
+use Laratrust\LaratrustFacade as Laratrust;
 
 class SettingController extends Controller
 {
@@ -13,8 +16,16 @@ class SettingController extends Controller
 		$this->middleware('auth');
 	}
 
-	public function editPassword()
+	public function editPassword(Request $request)
     {	
+        $peserta = $request->user()->peserta()->get()->toArray();
+        $daftar = Daftar::all()->where('aktif',1)->toArray();
+
+        if(empty($peserta) && empty($daftar) && Laratrust::hasRole('peserta')){
+            Auth::logout();
+            return redirect('/');
+        }
+        
     	return view('setting.edit-password');
     }
 

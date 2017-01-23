@@ -13,7 +13,7 @@
 						<div class="panel-body">
 							<h3><b>{{ $pengumuman->judul }}</b></h3>
 							<hr>
-							<p>{{ $pengumuman->isi }}</p>
+							<p>{!! $pengumuman->isi !!}</p>
 						</div>
 						<div class="panel-footer">
 							<span><i class="glyphicon glyphicon-time"></i> {{ $pengumuman->updated_at->formatLocalized('%d %B %Y') }}</span>
