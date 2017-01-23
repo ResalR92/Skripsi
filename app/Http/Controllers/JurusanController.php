@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,6 +12,7 @@ class JurusanController extends Controller
 {
     public function __construct()
     {
+        //Membatasi role->peserta
         $this->middleware('role:admin',['except'=>[
             'index',
             'create',
@@ -28,8 +29,9 @@ class JurusanController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $jurusan = Jurusan::select(['id','nama','kapasitas']);
+            $jurusan = Jurusan::all();
             return Datatables::of($jurusan)
+                //Membuat kolom tambahan jumlah KUOTA -> span -> label -> hijau, kuning, merah
                 ->addColumn('kuota',function($jurusan){
                     $kuota = $jurusan->kuota;
                     if($kuota > 15){
@@ -40,19 +42,22 @@ class JurusanController extends Controller
                         return '<span class="label label-danger">'.$kuota.'</span>';
                     }
                 })
+                //menambah kolom ACTION -> edit, delete -> datatable._admin.blade.php
                 ->addColumn('action',function($jurusan){
                     return view('datatable._admin',[
                         'model' => $jurusan,
                         'form_url' => route('jurusan.destroy',$jurusan->id),
                         'edit_url' => route('jurusan.edit',$jurusan->id),
+                        //pesan alert javascript
                         'confirm_message'=>'Apakah Anda yakin menghapus Jurusan '.$jurusan->nama.'?'
                     ]);
                 })->make(true);
         }
+        //kolom-kolom yang akan ditampilkan
         $html = $htmlBuilder
-            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan'])
-            ->addColumn(['data'=>'kuota','name'=>'kuota','title'=>'Sisa Kuota'])
-            ->addColumn(['data'=>'kapasitas','name'=>'kapasitas','title'=>'Kapasitas'])
+            ->addColumn(['data'=>'nama','name'=>'nama','title'=>'Nama Jurusan','orderable'=>false])
+            ->addColumn(['data'=>'kuota','name'=>'kuota','title'=>'Sisa Kuota','orderable'=>false,'searchable'=>false])
+            ->addColumn(['data'=>'kapasitas','name'=>'kapasitas','title'=>'Kapasitas','orderable'=>false,'searchable'=>false])
             ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.jurusan.index',compact('html'));
@@ -76,12 +81,14 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
+        //trait->validasi -> nama,kapasitas
         $this->validate($request, [
             'nama'=>'required|string|max:50|unique:jurusan,nama',
             'kapasitas' => 'required|numeric|digits_between:1,3',
         ]);
-        $jurusan = Jurusan::create($request->all());
-
+        //Menyimpan data jurusan
+        Jurusan::create($request->all());
+        //Membuat session -> flash_message
         Session::flash('flash_message','Data Jurusan berhasil disimpan.');
         return redirect('admin/jurusan');
     }
@@ -105,6 +112,7 @@ class JurusanController extends Controller
      */
     public function edit($id)
     {
+        //Menemukan model Jurusan atau dihentikan
         $jurusan = Jurusan::findOrFail($id);
         return view('admin.jurusan.edit',compact('jurusan'));
     }
@@ -139,7 +147,9 @@ class JurusanController extends Controller
      */
     public function destroy($id)
     {
-        Jurusan::destroy($id);
+        $jurusan = Jurusan::findOrFail($id);
+        $jurusan->delete();
+
         Session::flash('flash_message','Data Jurusan berhasil dihapus.');
         Session::flash('penting',true);
         return redirect('admin/jurusan');
