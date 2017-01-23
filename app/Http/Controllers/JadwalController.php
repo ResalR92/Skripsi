@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,6 +12,7 @@ class JadwalController extends Controller
 {
     public function __construct()
     {
+        //Membatasi role->operator
         $this->middleware('role:admin',['except'=>[
             'index',
             'create',
@@ -30,14 +31,17 @@ class JadwalController extends Controller
         if($request->ajax()){
             $jadwal = Jadwal::orderBy('awal','asc');
             return Datatables::of($jadwal)
+                //Menambah kolom awal -> karena Carbon -> konflik -> datatable
                 ->addColumn('awal',function($jadwal){
                     $awal = $jadwal->awal->formatLocalized('%d %B %Y');
                     return $awal;
                 })
+                //Menambah kolom akhir -> karena Carbon -> konflik -> datatable
                 ->addColumn('akhir',function($jadwal){
                     $akhir = $jadwal->akhir->formatLocalized('%d %B %Y');
                     return $akhir;
                 })
+                //menambah kolom ACTION -> edit, delete -> datatable._admin.blade.php
                 ->addColumn('action',function($jadwal){
                     return view('datatable._admin',[
                         'model' => $jadwal,
@@ -47,6 +51,7 @@ class JadwalController extends Controller
                     ]);
                 })->make(true);
         }
+        //kolom-kolom yang akan ditampilkan
         $html = $htmlBuilder
             ->addColumn(['data'=>'kegiatan','name'=>'kegiatan','title'=>'Kegiatan','orderable'=>false])
             ->addColumn(['data'=>'awal','name'=>'awal','title'=>'Mulai Berlaku','orderable'=>false,'searchable'=>false])
@@ -80,7 +85,8 @@ class JadwalController extends Controller
             'awal'=>'required|date',
             'akhir'=>'required|date'
         ]);
-        $jadwal = Jadwal::create($request->all());
+        Jadwal::create($request->all());
+
         Session::flash('flash_message','Data Jadwal berhasil disimpan.');
         return redirect('admin/jadwal');
     }
@@ -124,6 +130,7 @@ class JadwalController extends Controller
             'akhir'=>'required|date'
         ]);
         $jadwal->update($request->all());
+
         Session::flash('flash_message','Data Jadwal berhasil diupdate.');
         return redirect('admin/jadwal');
     }
@@ -136,9 +143,12 @@ class JadwalController extends Controller
      */
     public function destroy($id)
     {
-        Jadwal::destroy($id);
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->delete();
+
         Session::flash('flash_message','Data Jadwal berhasil dihapus.');
         Session::flash('penting',true);
+        
         return redirect('admin/jadwal');
     }
 }

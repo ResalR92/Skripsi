@@ -7,10 +7,10 @@
 		        
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 		            </li>
 		            <li>
-		                Jadwal
+		                <a href="{{ url('admin/jadwal') }}">Jadwal</a>
 		            </li>
 		            <li class="active">
 		                Edit
