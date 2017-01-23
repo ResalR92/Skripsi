@@ -12,7 +12,7 @@ class JurusanController extends Controller
 {
     public function __construct()
     {
-        //Membatasi role->peserta
+        //Membatasi role->operator
         $this->middleware('role:admin',['except'=>[
             'index',
             'create',

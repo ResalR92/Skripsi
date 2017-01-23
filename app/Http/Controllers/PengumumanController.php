@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,6 +12,7 @@ class PengumumanController extends Controller
 {
     public function __construct()
     {
+        //Membatasi role->operator
         $this->middleware('role:admin',['except'=>[
             'index',
             'create',
@@ -28,12 +29,15 @@ class PengumumanController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if($request->ajax()){
-            $pengumuman = Pengumuman::orderBy('updated_at','desc');
+            //Menampilkan pengumuman -> terbaru
+            $pengumuman = Pengumuman::latest();
             return Datatables::of($pengumuman)
+                //Menambah kolom Tanggal -> karena Carbon -> konflik -> datatable
                 ->addColumn('tanggal',function($pengumuman){
                     $tanggal = $pengumuman->updated_at->formatLocalized('%d %B %Y');
                     return $tanggal;
                 })
+                //menambah kolom ACTION -> edit, delete -> datatable._admin.blade.php
                 ->addColumn('action',function($pengumuman){
                     return view('datatable._admin',[
                         'model' => $pengumuman,
@@ -69,10 +73,14 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['judul'=>'required|max:50|unique:pengumuman,judul','isi'=>'required']);
-        $pengumuman = Pengumuman::create($request->all());
-
-        // return $pengumuman;
+        //trait->validasi -> judul,isi
+        $this->validate($request, [
+            'judul'=>'required|max:50|unique:pengumuman,judul',
+            'isi'=>'required'
+        ]);
+        //Menyimpan data pengumuman
+        Pengumuman::create($request->all());
+        //Membuat session -> flash_message
         Session::flash('flash_message','Data Pengumuman berhasil disimpan.');
         return redirect('admin/pengumuman');
     }
@@ -96,6 +104,7 @@ class PengumumanController extends Controller
      */
     public function edit($id)
     {
+        //Menemukan model Jurusan atau dihentikan
         $pengumuman = Pengumuman::findOrFail($id);
         return view('admin.pengumuman.edit',compact('pengumuman'));
     }
@@ -110,10 +119,13 @@ class PengumumanController extends Controller
     public function update(Request $request, $id)
     {
         $pengumuman = Pengumuman::findOrFail($id);
-        $this->validate($request, ['judul'=>'required|max:50|unique:pengumuman,judul,'.$id,'isi'=>'required']);
+        $this->validate($request, [
+            'judul'=>'required|max:50|unique:pengumuman,
+            judul,'.$id,'isi'=>'required'
+        ]);
+        //Menyimpan data pengumuman
         $pengumuman->update($request->all());
 
-        // return $pengumuman;
         Session::flash('flash_message','Data Pengumuman berhasil diupdate.');
         return redirect('admin/pengumuman');
     }
@@ -126,9 +138,12 @@ class PengumumanController extends Controller
      */
     public function destroy($id)
     {
-        Pengumuman::destroy($id);
+        $pengumuman = findOrFail($id);
+        $pengumuman->delete();
+
         Session::flash('flash_message','Data Pengumuman berhasil dihapus.');
         Session::flash('penting',true);
+        
         return redirect('admin/pengumuman');
     }
 }
