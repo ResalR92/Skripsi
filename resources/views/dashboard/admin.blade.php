@@ -3,8 +3,15 @@
 	<div class="container-fluid">
     	<div class="row">
 		    <div class="col-lg-12">
-		        <h1 class="page-header">Dashboard <small>Statistik Website</small></h1>
-		        
+		        <h1 class="page-header">
+		        	Dashboard <small>Statistik Website</small> 
+		        	@if(!empty($aktif))
+		        		{{ link_to('admin/daftar/1/edit','DIBUKA',['class'=>'btn btn-success']) }}
+		        	@else
+		        		{{ link_to('admin/daftar/1/edit','DITUTUP',['class'=>'btn btn-warning']) }}
+		        	@endif
+		        </h1>
+		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li class="active">
 		                <i class="fa fa-dashboard"></i> Dashboard

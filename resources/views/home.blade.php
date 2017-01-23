@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+	@include('_partial.flash_message')
     <div class="jumbotron" style="opacity:0.8;">
         <p class="h1">Selamat Datang!</p>
         <p>Halo, <strong> {{ Auth::user()->name }}</strong>.</p>

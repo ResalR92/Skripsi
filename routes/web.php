@@ -51,6 +51,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin|operator']],fu
 
 	Route::get('backup','BackupController@index');
 	Route::post('backup','BackupController@export');
+
+	Route::get('daftar/{daftar}/edit','AdminController@editDaftar');
+	Route::patch('daftar/{daftar}','AdminController@updateDaftar');
 });
 
 Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']],function(){

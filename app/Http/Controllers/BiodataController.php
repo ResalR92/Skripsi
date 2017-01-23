@@ -16,6 +16,7 @@ use App\Status;
 use Session;
 use Storage;
 use PDF;
+use App\Daftar;
 
 class BiodataController extends Controller
 {
@@ -45,6 +46,14 @@ class BiodataController extends Controller
         $status = [];
         foreach($peserta as $biodata){
             $status[] = $biodata['id_status'];
+        }
+
+        $daftar = Daftar::all()->where('aktif',1)->toArray();
+        // return $daftar;
+        if(empty($daftar)){
+            Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
+            Session::flash('penting',true);
+            return redirect('home');
         }
 
         if(!empty($status)){
