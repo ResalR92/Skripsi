@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -16,26 +16,30 @@ class BackupController extends Controller
     	return view('admin.backup.index');
     }
 
+
+    //meng-ekspor file excel sebagai backup
     public function export(Request $request)
     {
+        //trait validasi
     	$this->validate($request,[
     		'jurusan' => 'required',
     		'status'  => 'required',
     	]);
-    	
+    	//mengambil data peserta berdasarkan filter->jurusan dan filter->status
     	$peserta_list = Peserta::whereIn('id_jurusan',$request->get('jurusan'))
     							->whereIn('id_status',$request->get('status'))
     							->get();
-
-    	$excel = Excel::create('Data PSB SMK Panjatek', function($excel) use($peserta_list){
+        //membuat file excel dengan nama-> Data PSB Panjatek
+    	$excel = Excel::create('Data PSB SMK Panjatek-'.date('YmdHis'), function($excel) use($peserta_list){
             //Set Property
             $excel->setTitle('Data PSB SMK Panjatek')
                   ->setCreator(Auth::user()->name);
-
-            $excel->sheet('Data Buku', function($sheet) use($peserta_list){
+            //memberi nama Sheet
+            $excel->sheet('Data PSB SMK Panjatek', function($sheet) use($peserta_list){
                 $row = 1;
-                
+                //style sheeet excel
                 $sheet->freezeFirstRow();
+                //memakai border untuk header
                 $sheet->cells('A1:AT1', function($cells) {
 				    $cells->setFont(array(
 					    'family'     => 'Calibri',
@@ -44,6 +48,7 @@ class BackupController extends Controller
 					));
 					$cells->setBorder('A1:AT1', 'thin');
 				});
+                //header
                 $sheet->row($row,[
                     'No.Pendaftaran',
                     'Nama Lengkap',
@@ -97,6 +102,7 @@ class BackupController extends Controller
                     'Alamat Wali',
 
                 ]);
+                //data peserta PSB
                 foreach($peserta_list as $peserta){
                     $sheet->row(++$row, [
                         $peserta->id,
