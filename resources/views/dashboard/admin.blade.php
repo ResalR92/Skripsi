@@ -5,6 +5,7 @@
 		    <div class="col-lg-12">
 		        <h1 class="page-header">
 		        	Dashboard <small>Statistik Website</small> <small> - Status Pendaftaran</small>
+		        	{{-- Admin mampu mengubah status pendaftaran --}}
 		        	@role('admin')
 			        	@if(!empty($aktif))
 			        		{{ link_to('admin/daftar/1/edit','DIBUKA',['class'=>'btn btn-success btn-sm']) }}
@@ -12,6 +13,7 @@
 			        		{{ link_to('admin/daftar/1/edit','DITUTUP',['class'=>'btn btn-danger']) }}
 			        	@endif
 		        	@endrole
+		        	{{-- Operator hanya dapat melihat status pendaftaran --}}
 		        	@role('operator')
 			        	@if(!empty($aktif))
 			        		<small><span class="label label-success">DIBUKA</span></small>
@@ -105,6 +107,7 @@
 				<div class="panel panel-info">
 					<div class="panel-body" style="opacity:0.9;">
 						<h2><span class="label label-info">Statistik Peserta</span><h2>
+						{{-- menampilkan chart.js --}}
 						<canvas id="chartJurusan"></canvas>
 					</div>
 				</div>
@@ -118,13 +121,17 @@
 								<small>{{ $jurusan->nama }}</small>
 								<div class="progress">
 								  	<div class="progress-bar progress-bar-success" 
-								  		role="progressbar" aria-valuenow="{{ $jurusan->peserta->count() }}" aria-valuemin="0" aria-valuemax="{{ $jurusan->kapasitas }}" style="width: {{ ($jurusan->peserta->count()/$jurusan->kapasitas)*100 }}%">
+								  		  role="progressbar" 
+								  		  aria-valuenow="{{ $jurusan->peserta->count() }}" 
+								  		  aria-valuemin="0" 
+								  		  aria-valuemax="{{ $jurusan->kapasitas }}" 
+								  		  style="width: {{ ($jurusan->peserta->count()/$jurusan->kapasitas)*100 }}%">
 										{{ floor(($jurusan->peserta->count()/$jurusan->kapasitas)*100) }}%
 								  	</div>
 								</div>
 							@endforeach
 						@else
-							tidak ada data	
+							<p>Tidak ada data</p>
 						@endif
 					</div>
 				</div>
@@ -134,26 +141,30 @@
 @stop
 
 @section('scripts')
+	{{-- memanggil chart.js --}}
 	<script src="{{ asset('js/Chart.min.js') }}"></script>
+	{{-- customisasi chart.js --}}
 	<script type="text/javascript">
 		var data = {
+			// mengambil data jurusan ->ke JSON -> label
 			labels: {!! json_encode($tb_jurusan) !!},
 			datasets: [{
 				label:'Jumlah Peserta',
+				//mengambil data peserta -> ke JSON -> dataset
 				data: {!! json_encode($tb_peserta) !!},
 				backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)',
-                'rgba(153, 102, 255, 0.7)',
-                'rgba(255, 159, 64, 0.7)',
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(54, 162, 235, 0.7)',
-                'rgba(255, 206, 86, 0.7)',
-                'rgba(75, 192, 192, 0.7)',
-                'rgba(153, 102, 255, 0.7)',
-                'rgba(255, 159, 64, 0.7)'
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)'
             ],
             borderColor: [
                 'rgba(255,99,132,1)',
@@ -187,8 +198,8 @@
 		var ctx = document.getElementById("chartJurusan").getContext("2d");
 
 		var authorChart = new Chart(ctx, {
-			type: 'bar',
-			data: data,
+			type: 'bar',//tipe chart
+			data: data,//memanggil var data
 			options: options
 		});
 	</script>

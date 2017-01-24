@@ -22,14 +22,14 @@
             @if(isset($daftar))
 			    {!! Form::hidden('id', $daftar->id) !!}
 			@endif
-			<div class="row">
+			<div class="form-horizontal">
 			    @if($errors->any())
 			        <div class="form-group {{ $errors->has('aktif') ? 'has-error' : 'has-success' }}">
 			    @else
 			        <div class="form-group">
 			    @endif
-			            {!! Form::label('aktif', 'Aktif', ['class'=>'col-md-2 control-label']) !!}
-			            <div class="col-md-10">
+			            {!! Form::label('aktif', 'Status', ['class'=>'col-md-1 control-label']) !!}
+			            <div class="col-md-3">
 			                {!! Form::select('aktif', array(
 			                    1 => 'Dibuka',
 			                    0 => 'Ditutup',), null,['class'=>'form-control']) !!}
@@ -38,12 +38,9 @@
 			                @endif
 			            </div>
 			        </div>
-			    <br><br>
-			</div>
-
-			<div class="row">
+			    
 			    <div class="form-group">
-			        <div class="col-md-2 col-md-offset-2">
+			        <div class="col-md-2 col-md-offset-1">
 			            {!! Form::submit('Update', ['class'=>'btn btn-primary form-control']) !!}
 			        </div>
 			    </div>
