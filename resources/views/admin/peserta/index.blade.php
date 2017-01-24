@@ -7,7 +7,7 @@
 		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 		            </li>
 		            <li class="active">
 		                Peserta

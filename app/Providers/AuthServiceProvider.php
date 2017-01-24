@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Gate;
@@ -12,6 +12,7 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @var array
      */
+    //Digunakan oleh BiodataController -> method ->authorize()
     protected $policies = [
         'App\Peserta' => 'App\Policies\PesertaPolicy',
     ];

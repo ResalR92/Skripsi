@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Policies;
 
 use App\User;
@@ -19,7 +19,7 @@ class PesertaPolicy
     {
         //
     }
-
+    //method ini dipanggil oleh BiodataController
     public function modify(User $user, Peserta $peserta)
     {
         return $user->id === $peserta->user_id;

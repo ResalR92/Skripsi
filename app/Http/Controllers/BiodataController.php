@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -20,6 +20,7 @@ use App\Daftar;
 
 class BiodataController extends Controller
 {
+    private $status_baru = 1;
     /**
      * Display a listing of the resource.
      *
@@ -27,11 +28,18 @@ class BiodataController extends Controller
      */
     public function index(Request $request)
     {
+        //memastikan User->Peserta Hanya dapat melihat Biodatanya sendiri
+        //menggunakan relasi User->Peserta
         $peserta = $request->user()->peserta()->get();
+        //mengambil data status -> Array
         $status = $peserta->toArray();
+        //mengambil data status Pendaftaran -> Array
         $daftar = Daftar::all()->where('aktif',1)->toArray();
+        //mengecek apakah TIDAK ADA status dan status pendaftaran
         if(empty($status) && empty($daftar)){
+            //memaksa logout
             Auth::logout();
+
             Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
             Session::flash('penting',true);
             return redirect('/');
@@ -46,20 +54,24 @@ class BiodataController extends Controller
      */
     public function create(Request $request)
     {
+        //memastikan User->Peserta Hanya dapat melihat Biodatanya sendiri
+        //menggunakan relasi User->Peserta
         $peserta = $request->user()->peserta()->get();
+        //mengambil data status -> Array
         $status = $peserta->toArray();
-        
-
+        //mengecek apakah TIDAK ADA status dan status pendaftaran
         $daftar = Daftar::all()->where('aktif',1)->toArray();
-        // return $daftar;
+        //mengecek apakah TIDAK ADA status dan status pendaftaran
         if(empty($daftar) && empty($status)){
+            //memaksa logout
             Auth::logout();
             Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
             Session::flash('penting',true);
             return redirect('/');
         }
-
+        //mengecek apakah User->peserta sudah memiliki Biodata
         if(!empty($status)){
+            //meredirect jika sudah memiliki Biodata
             Session::flash('flash_error','Maaf, Anda sudah memiliki Biodata');
             Session::flash('penting',true);
             return redirect('biodata');
@@ -76,13 +88,16 @@ class BiodataController extends Controller
     public function store(PesertaRequest $request)
     {
         $input = $request->all();
-
+        //mengecek apakah ada file FOTO
         if($request->hasFile('foto')){
+            //memanggil method -> uploadFoto()
             $input['foto'] = $this->uploadFoto($request);
         }
+        //menentukan user ID -> untuk setiap Biodata Peserta (relasi one to one)
         $input['user_id'] = Auth::user()->id;
-        $input['id_status'] = 1;
-
+        //menentukan STATUS awal (default) -> BARU
+        $input['id_status'] = $this->status_baru;
+        //meyimpan data peserta
         $peserta = Peserta::create($input);
 
         //Simpan data sekolah
@@ -147,12 +162,16 @@ class BiodataController extends Controller
     public function show($id)
     {
         $peserta = Peserta::findOrFail($id);
+        //menggunakan PesertaPolicy -> modify() -> mengikat Model User dan Peserta
+        //user->id === $peserta->user_id
         $this->authorize('modify',$peserta);
 
+        //Peserta yang sudah dinyatakan status->VALID dapat melihat detail Biodatanya -> cetak
         $label = $peserta->status->label;
         if($label == 'primary'){
             return view('biodata.show',compact('peserta'));
         }else{
+            //jika tidak, maka langsung diredirect
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
             return redirect('biodata');
@@ -168,10 +187,14 @@ class BiodataController extends Controller
     public function edit($id)
     {
         $peserta = Peserta::findOrFail($id);
+        //menggunakan PesertaPolicy -> modify() -> mengikat Model User dan Peserta
+        //user->id === $peserta->user_id
         $this->authorize('modify',$peserta);
+
+        //mengambil data peserta->sekolah
         $peserta->nama_sekolah = $peserta->sekolah->nama;
         $peserta->alamat_sekolah = $peserta->sekolah->alamat;
-
+        //mengambil data peserta->ayah
         $peserta->nama_ayah = $peserta->ayah->nama;
         $peserta->tempat_lahir_ayah = $peserta->ayah->tempat_lahir;
         $peserta->tanggal_lahir_ayah = $peserta->ayah->tanggal_lahir;
@@ -182,7 +205,7 @@ class BiodataController extends Controller
         $peserta->telepon_ayah = $peserta->ayah->telepon;
         $peserta->no_hp_ayah = $peserta->ayah->no_hp;
         $peserta->alamat_ayah = $peserta->ayah->alamat;
-
+        //mengambil data peserta->ibu
         $peserta->nama_ibu = $peserta->ibu->nama;
         $peserta->tempat_lahir_ibu = $peserta->ibu->tempat_lahir;
         $peserta->tanggal_lahir_ibu = $peserta->ibu->tanggal_lahir;
@@ -193,7 +216,7 @@ class BiodataController extends Controller
         $peserta->telepon_ibu = $peserta->ibu->telepon;
         $peserta->no_hp_ibu = $peserta->ibu->no_hp;
         $peserta->alamat_ibu = $peserta->ibu->alamat;
-
+        //mengambil data peserta->wali
         $peserta->nama_wali = $peserta->wali->nama;
         $peserta->tempat_lahir_wali = $peserta->wali->tempat_lahir;
         $peserta->tanggal_lahir_wali = $peserta->wali->tanggal_lahir;
@@ -205,10 +228,12 @@ class BiodataController extends Controller
         $peserta->no_hp_wali = $peserta->wali->no_hp;
         $peserta->alamat_wali = $peserta->wali->alamat;
 
+        //Peserta yang berada pada STATUS->Edit, dapat mengedit Biodatanya
         $label = $peserta->status->label;
         if($label == 'warning'){
             return view('biodata.edit',compact('peserta'));
         }else{
+            //jika tidak, maka langsung diredirect
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
             return redirect('biodata');
@@ -226,7 +251,7 @@ class BiodataController extends Controller
     {
         $peserta = Peserta::findOrFail($id);
         $input = $request->all();
-
+        //mengecek ada file FOTO
         if($request->hasFile('foto')){
             //Hapus foto lama jika ada foto baru
             $this->hapusFoto($peserta);
@@ -295,22 +320,27 @@ class BiodataController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
+    // public function destroy($id)
+    // {
+    //     //
+    // }
 
     public function pdf($id)
     {
         $peserta = Peserta::findOrFail($id);
         $jurusan = Jurusan::all();
+        //menggunakan PesertaPolicy -> modify() -> mengikat Model User dan Peserta
+        //user->id === $peserta->user_id
         $this->authorize('modify',$peserta);
+        //memanggil file DOM untuk dicetak
         $pdf = PDF::loadview('pdf.biodata',compact('peserta','jurusan'));
-
+        //Peserta yang sudah dinyatakan status->VALID dapat download/mencetak
         $label = $peserta->status->label;
         if($label == 'primary'){
+            //memformat kertas->legal,portrait dan download file PDF
             return $pdf->setPaper('legal', 'portrait')->download('biodata_'.$peserta->nama.'-'.date('YmdHis').'.pdf');
         }else{
+            //jika tidak, maka langsung diredirect
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
             return redirect('biodata');
@@ -319,14 +349,16 @@ class BiodataController extends Controller
 
     private function uploadFoto(PesertaRequest $request)
     {
+        //memastikan ada request FILE -> FOTO
         $foto = $request->file('foto');
+        //mengambil extensi, untuk menyesuaikan dengan validasi STORE/UPDATE
         $ext  = $foto->getClientOriginalExtension();
-
+        //memastikan file -> foto -> VALID
         if($request->file('foto')->isValid()){
             $foto_name = date('YmdHis').".$ext";
             $upload_path = 'fotoupload';
             $request->file('foto')->move($upload_path, $foto_name);
-            
+            //mengembalikan Nama foto untuk keperluan penyimpanan di DB
             return $foto_name;
         }
         return false;
@@ -334,10 +366,13 @@ class BiodataController extends Controller
 
     private function hapusFoto(Peserta $peserta)
     {
+        //mengecek file foto ADA di config/filesystem
         $exist = Storage::disk('foto')->exists($peserta->foto);
+        //mengecek file foto di DB dan filesystem
         if(isset($peserta->foto) && $exist){
+            //jika ada HAPUS file FOTO
             $delete = Storage::disk('foto')->delete($peserta->foto);
-
+            //mengembalikan nilai TRUE, jika proses hapus berhasil
             if($delete){
                 return true;
             }

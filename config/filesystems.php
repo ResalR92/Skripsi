@@ -42,7 +42,7 @@ return [
     */
 
     'disks' => [
-    
+        //mengatur penyimpanan foto
         'foto' => [
             'driver' => 'local',
             'root'   => public_path('fotoupload'),

@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;

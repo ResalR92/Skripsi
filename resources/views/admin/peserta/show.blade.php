@@ -10,16 +10,19 @@
 		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
+		            </li>
+		            <li>
+		                <a href="{{ url('admin/peserta') }}">Peserta</a>
 		            </li>
 		            <li class="active">
-		                Biodata Peserta
+		            	Detail
 		            </li>
 		        </ol>
 		    </div>
 		</div>
 		<div class="jumbotron bio-preview">
-			<h2 class="bg-info">DATA CALON PESERTA DIDIK</h2>
+			<h2 class="bg-info">DATA CALON SISWA</h2>
 			<hr>
 			<div class="row">
 				<div class="col-md-8">
@@ -36,7 +39,7 @@
 					{!! Html::image(asset('fotoupload/'.$peserta->foto),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
 				</div>
 			</div>
-			<h3 class="bg-info">A. IDENTITAS PRIBADI CALON peserta</h3>
+			<h3 class="bg-info">A. IDENTITAS PRIBADI CALON SISWA</h3>
 		    <dl class="dl-horizontal">
 		        <dt>1. Nomor Peserta</dt>
 		        <dd>: {{ $peserta->nama }}</dd>
@@ -177,6 +180,10 @@
 		        <dd>: {{ $peserta->wali->alamat }}</dd>
 		    </dl>
 		</div> <!-- jumbotron end -->
-		{{ link_to('admin/peserta/'.$peserta->id.'/pdf','Cetak',['class'=>'btn btn-success']) }}
+		<div class="row">
+			<div class="col-md-2 col-md-offset-4">
+				{{ link_to('admin/peserta/'.$peserta->id.'/pdf','Cetak',['class'=>'btn btn-success']) }}
+			</div>
+		</div>	
 	</div>
 @stop

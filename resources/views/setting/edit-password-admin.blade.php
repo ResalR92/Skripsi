@@ -7,10 +7,10 @@
 		        
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 		            </li>
 		            <li>
-		            	My Admin
+		            	<a href="{{ url('admin/myadmin') }}">My Admin</a>
 		            </li>
 		            <li class="active">
 		                Ubah Password
