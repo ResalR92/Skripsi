@@ -7,10 +7,10 @@
 		        @include('_partial.flash_message')
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 		            </li>
 		            <li>
-		                Peserta
+		                <a href="{{ url('admin/peserta') }}">Peserta</a>
 		            </li>
 		            <li class="active">
 		                Status Peserta
@@ -18,7 +18,11 @@
 		        </ol>
 		    </div>
 		</div>
-		<p><a href="{{ route('status.create') }}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i> Tambah</a></p>
+		<p>
+			<a href="{{ route('status.create') }}" class="btn btn-primary">
+				<i class="glyphicon glyphicon-plus"></i> Tambah
+			</a>
+		</p>
 		{!! $html->table(['class'=>'table-striped']) !!}
 	</div>
 @stop

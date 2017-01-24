@@ -1,5 +1,5 @@
 <?php
-
+//Resal Ramdahadi (resalramdahadi92@gmail.com)
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -26,8 +26,9 @@ class StatusController extends Controller
                         'label' =>$status->label,
                     ]);
                 })
+                //menambah kolom ACTION -> edit, delete -> datatable._admin.blade.php
                 ->addColumn('action',function($status){
-                    return view('datatable._action',[
+                    return view('datatable._admin',[
                         'model' => $status,
                         'form_url' => route('status.destroy',$status->id),
                         'edit_url' => route('status.edit',$status->id),
@@ -37,8 +38,8 @@ class StatusController extends Controller
         }
         $html = $htmlBuilder
             ->addColumn(['data'=>'status','name'=>'status','title' => 'Status','orderable'=>false,'searchable'=>false])
-            ->addColumn(['data'=>'pesan','name'=>'pesan','title'=>'Pesan'])
-            ->addColumn(['data'=>'action','name'=>'action','title'=>'','orderable'=>false,'searchable'=>false]);
+            ->addColumn(['data'=>'pesan','name'=>'pesan','title'=>'Pesan','orderable'=>false])
+            ->addColumn(['data'=>'action','name'=>'action','title'=>'Action','orderable'=>false,'searchable'=>false]);
 
         return view('admin.status.index',compact('html'));
     }
@@ -66,7 +67,8 @@ class StatusController extends Controller
             'label' => 'required',
             'pesan' => 'required|string|max:100',
         ]);
-        $status = Status::create($request->all());
+        //menyimpan data status
+        Status::create($request->all());
 
         Session::flash('flash_message','Data Status berhasil disimpan.');
         return redirect('admin/status');
@@ -111,7 +113,7 @@ class StatusController extends Controller
             'label' => 'required',
             'pesan' => 'required|string|max:100',
         ]);
-
+        //mengupdate data status
         $status->update($request->all());
 
         Session::flash('flash_message','Data Status berhasil diupdate.');
@@ -126,9 +128,12 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        Status::destroy($id);
+        $status = Status::findOrFail($id);
+        $status->delete();
+
         Session::flash('flash_message','Data Status berhasil dihapus.');
         Session::flash('penting',true);
+        
         return redirect('admin/status');
     }
 }

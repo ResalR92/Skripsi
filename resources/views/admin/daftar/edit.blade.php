@@ -3,17 +3,14 @@
 	<div class="container-fluid">
     	<div class="row">
 		    <div class="col-lg-12">
-		        <h1 class="page-header">Pendaftaran</h1>
+		        <h1 class="page-header">Status Pendaftaran</h1>
 		        
 		        <ol class="breadcrumb">
 		            <li>
-		                <i class="fa fa-dashboard"></i> Dashboard
-		            </li>
-		            <li>
-		                Pendaftaran
+		                <a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i> Dashboard</a>
 		            </li>
 		            <li class="active">
-		                Edit
+		                Status Pendaftaran
 		            </li>
 		        </ol>
 		    </div>
