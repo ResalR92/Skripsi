@@ -147,7 +147,7 @@ class BackupController extends Controller
 
                         $peserta->wali->nama,
                         $peserta->wali->tempat_lahir,
-                        $peserta->wali->tanggal_lahir->format('d-m-Y'),
+                        (!empty($peserta->wali->tanggal_lahir)) ? $peserta->wali->tanggal_lahir->format('d-m-Y') : '-',
                         $peserta->wali->agama,
                         $peserta->wali->pendidikan,
                         $peserta->wali->pekerjaan,

@@ -4,6 +4,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Data Calon Peserta Didik</title>
     <style type="text/css">
+        body{
+            margin-left: 30px;
+        }
         h1 {text-align:center; font-size:18px;}
         h2 {font-size:14px;}
         .tengah {text-align:center;	}
@@ -23,10 +26,11 @@
             <p style="text-align:center;font-size:25px;margin-bottom:0;margin-top:0;"><b>SEKOLAH MENENGAH KEJURUAN</b></p>
             <p style="text-align:center;font-size:35px;margin-bottom:0;margin-top:0;"><b>SMK PANJATEK</b></p>
             <hr style="margin-bottom:0;">
+            <p style="text-align:center;margin-top:0;margin-bottom:0;">
+                <i>Teknik Kendaraan Ringan (TKR), Teknik Permesinan (TP),</i>
+            </p>
             <p style="text-align:center;margin-top:0;">
-                @foreach($jurusan as $data)
-                    <i>{{ $data->nama }}<i>,
-                @endforeach
+                <i>Teknik Komputer Jaringan (TKJ), Administrasi Perkantoran (AP)</i>
             </p>
         </td>
     </tr>
@@ -38,7 +42,7 @@
 <table width="500" border="0">
     <tr>
         <td>No. Pendaftaran </td>
-        <td>: {{ $peserta->id }}</td>
+        <td>: <b>{{ $peserta->id }}</b></td>
         <td rowspan="3">
             {!! Html::image(asset('fotoupload/'.$peserta->foto),null,['class'=>'img-rounded img-responsive','width'=>'100px']) !!}
         </td>
@@ -52,7 +56,7 @@
     </tr>
     <tr>
         <td>1. Nama Lengkap </td>
-        <td>: {{ $peserta->nama }}</td>
+        <td>: <b>{{ $peserta->nama }}</b></td>
     </tr>
     <tr>
         <td>2. Tempat Tanggal Lahir </td>
@@ -228,10 +232,11 @@
             <p style="text-align:center;font-size:25px;margin-bottom:0;margin-top:0;"><b>SEKOLAH MENENGAH KEJURUAN</b></p>
             <p style="text-align:center;font-size:35px;margin-bottom:0;margin-top:0;"><b>SMK PANJATEK</b></p>
             <hr style="margin-bottom:0;">
+            <p style="text-align:center;margin-top:0;margin-bottom:0;">
+                <i>Teknik Kendaraan Ringan (TKR), Teknik Permesinan (TP),</i>
+            </p>
             <p style="text-align:center;margin-top:0;">
-                @foreach($jurusan as $data)
-                    <i>{{ $data->nama }}<i>,
-                @endforeach
+                <i>Teknik Komputer Jaringan (TKJ), Administrasi Perkantoran (AP)</i>
             </p>
         </td>
     </tr>
@@ -239,7 +244,7 @@
 
 <table width="500" border="0">
      <tr>
-        <td>Nama Wali</td>
+        <td width="150">Nama Wali</td>
         <td>: {{ (!empty($peserta->wali->nama)) ? $peserta->wali->nama : '-' }}</td>
     </tr>
     <tr>
