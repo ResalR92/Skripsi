@@ -12,7 +12,9 @@
         "yajra/laravel-datatables-oracle": "~6.0",
         "anhskohbo/no-captcha": "~2.0",
         "maatwebsite/excel": "~2.1",
-        "barryvdh/laravel-dompdf": "^0.7.0"
+        "barryvdh/laravel-dompdf": "^0.7.0",
+        "intervention/image": "^2.3",
+        "unisharp/laravel-filemanager": "^1.6"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

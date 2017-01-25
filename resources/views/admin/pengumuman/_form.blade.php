@@ -22,7 +22,7 @@
     @endif
             {!! Form::label('isi', 'Isi', ['class'=>'col-md-1 control-label']) !!}
             <div class="col-md-10">
-                {!! Form::textarea('isi', null, ['class'=>'form-control editor','rows'=>'7']) !!}
+                {!! Form::textarea('isi', null, ['class'=>'form-control my-editor','rows'=>'7']) !!}
                 @if($errors->has('isi'))
                     <span class="help-block">{{ $errors->first('isi') }}</span>
                 @endif
