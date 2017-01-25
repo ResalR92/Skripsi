@@ -13,17 +13,17 @@
                 <h4>Bagi Peserta yang sudah mendaftar, silahkan {{ link_to('/login','Login',['class'=>'btn btn-success']) }} untuk mengetahui informasi Status Pendaftaran Anda yang lebih detail</h4>
             </div>
         @else
-            <div class="jumbotron" style="opacity:0.8;">
+            <div class="jumbotron">
                 <h2 class="h1">Selamat Datang!</h2>
                 <p>
-                    Selamat datang di website <strong>Penerimaan Siswa Baru (PSB) SMK Panjatek Bekasi</strong>. Sebelum melakukan pendaftaran,
+                    Selamat datang di website <strong>Penerimaan Siswa Baru (PSB) SMK Panjatek Bekasi</strong>. <br>Sebelum melakukan pendaftaran,
                     sebaiknya Anda menyimak prosedur pendaftaran siswa baru di halaman {{ link_to('/prosedur','Prosedur Pendaftaran') }}.
                 </p>
                 <p>
                     Pastikan juga anda juga mengetahui jadwal PSB di halaman {{ link_to('/jadwal','Jadwal') }}.
-                    Semua informasi terbaru mengenai PSB Online SMP Putih Biru bisa anda lihat di halaman {{ link_to('/pengumuman','Pengumuman') }}.
+                    <br>Semua informasi terbaru mengenai PSB Online SMK Panjatek bisa anda lihat di halaman {{ link_to('/pengumuman','Pengumuman') }}.
                 </p>
-                <p>Anda juga dapat mengetahui data pendaftar di SMP Putih Biru di halaman {{ link_to('/peserta','Peserta') }}.</p>
+                <p>Anda juga dapat mengetahui Data Peserta di SMK Panjatek di halaman {{ link_to('/peserta','Peserta') }}.</p>
                 <p>Jika Anda sudah memahami prosedur pendaftaran, silakan klik tombol "<strong>Daftar</strong>" di bawah ini!</p>
                 <p>{{ link_to('/register','Daftar',['class'=>'btn btn-primary btn-lg']) }}</p>
             </div>

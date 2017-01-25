@@ -104,18 +104,18 @@
 		</div>
 		<div class="row">
 			<div class="col-md-9 visible-md-block visible-lg-block">
-				<div class="panel panel-info">
-					<div class="panel-body" style="opacity:0.9;">
-						<h2><span class="label label-info">Statistik Peserta</span><h2>
+				<div class="panel panel-primary">
+					<div class="panel-body">
+						<h2><span class="label label-primary">Statistik Peserta</span><h2>
 						{{-- menampilkan chart.js --}}
 						<canvas id="chartJurusan"></canvas>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-3">
-				<div class="panel panel-info">
+				<div class="panel panel-primary">
 					<div class="panel-body">
-						<h3><span class="label label-info">Statistik Jurusan</span><h3>
+						<h3><span class="label label-primary">Statistik Jurusan</span><h3>
 						@if(!empty($jurusan_list))
 							@foreach($jurusan_list as $jurusan)
 								<small>{{ $jurusan->nama }}</small>
