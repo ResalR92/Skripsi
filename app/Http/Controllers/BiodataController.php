@@ -30,21 +30,22 @@ class BiodataController extends Controller
     {
         //memastikan User->Peserta Hanya dapat melihat Biodatanya sendiri
         //menggunakan relasi User->Peserta
-        $peserta = $request->user()->peserta()->get();
+        // $peserta = $request->user()->peserta()->get();
         //mengambil data status -> Array
-        $status = $peserta->toArray();
+        // $status = $peserta->toArray();
         //mengambil data status Pendaftaran -> Array
-        $daftar = Daftar::all()->where('aktif',1)->toArray();
+        // $daftar = Daftar::all()->where('aktif',1)->toArray();
         //mengecek apakah TIDAK ADA status dan status pendaftaran
-        if(empty($status) && empty($daftar)){
-            //memaksa logout
-            Auth::logout();
+        // if(empty($status) && empty($daftar)){
+        //     //memaksa logout
+        //     Auth::logout();
 
-            Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
-            Session::flash('penting',true);
-            return redirect('/');
-        }
-        return view('biodata.index',compact('peserta','status'));
+        //     Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
+        //     Session::flash('penting',true);
+        //     return redirect('/');
+        // }
+        // return view('biodata.index',compact('peserta','status'));
+        return redirect('/home');
     }
 
     /**
@@ -74,7 +75,7 @@ class BiodataController extends Controller
             //meredirect jika sudah memiliki Biodata
             Session::flash('flash_error','Maaf, Anda sudah memiliki Biodata');
             Session::flash('penting',true);
-            return redirect('biodata');
+            return redirect('/home');
         }
         return view('biodata.create');
     }
@@ -150,7 +151,7 @@ class BiodataController extends Controller
 
         Session::flash('flash_message','Biodata Peserta berhasil disimpan.');
 
-        return redirect('biodata');
+        return redirect('/home');
     }
 
     /**
@@ -174,7 +175,7 @@ class BiodataController extends Controller
             //jika tidak, maka langsung diredirect
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
-            return redirect('biodata');
+            return redirect('/home');
         }
     }
 
@@ -236,7 +237,7 @@ class BiodataController extends Controller
             //jika tidak, maka langsung diredirect
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
-            return redirect('biodata');
+            return redirect('/home');
         }
     }
 
@@ -311,7 +312,7 @@ class BiodataController extends Controller
 
         Session::flash('flash_message','Biodata Peserta berhasil diupdate.');
 
-        return redirect('biodata');
+        return redirect('/home');
     }
 
     /**
@@ -343,7 +344,7 @@ class BiodataController extends Controller
             //jika tidak, maka langsung diredirect
             Session::flash('flash_error','Maaf, Mohon hubungi panitia jika ada masalah');
             Session::flash('penting',true);
-            return redirect('biodata');
+            return redirect('/home');
         }   
     }
 

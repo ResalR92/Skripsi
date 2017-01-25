@@ -40,7 +40,7 @@ class HalamanServiceProvider extends ServiceProvider
             $halaman = 'bantuan';
         }
         if(Request::segment(1) == 'biodata'){
-            $halaman = 'akun';
+            $halaman = '/';
         }
         if(Request::segment(1) == 'login'){
             $halaman = 'login';

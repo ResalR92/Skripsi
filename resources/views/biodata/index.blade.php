@@ -1,17 +1,15 @@
 @extends('layouts.peserta')
 @section('content')
 	<div class="container">
-    	<div class="row">
-		    <div class="col-lg-12">
-		        <h1 class="page-header">Biodata</h1>
-		        @include('_partial.flash_message')
-		        @if(empty($status))
-		        	<p><b>Pastikan Anda mengisi biodata sesuai dengan identitas yang sebenarnya.</b></p>
-		        	{{ link_to('biodata/create','Isi Biodata',['class'=>'btn btn-primary']) }}
-		        @endif
-		    </div>
-		</div>
-		@if(isset($peserta))
+    	
+		@if(!empty($status))
+			<div class="row">
+			    <div class="col-lg-12">
+			        <h1 class="page-header">Biodata</h1>
+			        @include('_partial.flash_message')
+			        
+			    </div>
+			</div>
 			@foreach($peserta as $biodata)
 				<div class="row">
 					<div class="col-md-2 col-md-offset-1">
@@ -62,8 +60,17 @@
 				</div>
 			@endforeach
 		@else
-			<p>create</p>
-			<a href="#">Create</a>
+			{{-- @if(empty($status)) --}}
+	        	{{-- <p><b>Pastikan Anda mengisi biodata sesuai dengan identitas yang sebenarnya.</b></p> --}}
+	        	{{-- {{ link_to('biodata/create','Isi Biodata',['class'=>'btn btn-primary']) }} --}}
+	        {{-- @endif --}}
+	        @include('_partial.flash_message')
+	        <div class="jumbotron" style="opacity:0.8;">
+		        <p class="h1">Selamat Datang!</p>
+		        <p>Halo, <strong> {{ Auth::user()->name }}</strong>.</p>
+		        <p>Jika Anda belum melengkapi biodata, silakan melengkapinya. Klik tombol "<strong>Biodata</strong>" di bawah ini!</p>
+		        <p>{{ link_to('/biodata/create','Biodata',['class'=>'btn btn-primary btn-lg']) }}</p>
+		    </div>
 		@endif
 	</div>	
 @stop

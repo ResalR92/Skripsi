@@ -109,43 +109,20 @@
                                     <li><a href="{{ url('jadwal') }}"><span class="glyphicon glyphicon-calendar"></span> Jadwal</a></li>
                                 </ul>
                             </li>
-                        @if (!Auth::check())
-                            @if(!empty($halaman) && $halaman == 'bantuan')
-                                <li class="dropdown active">
-                            @else
-                                <li class="dropdown">
-                            @endif
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-question-sign"></span> Bantuan
-                                        <span class="caret"></span>
-                                    </a>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
-                                    </ul>
-                                </li>
+                        @if(!empty($halaman) && $halaman == 'bantuan')
+                            <li class="dropdown active">
+                        @else
+                            <li class="dropdown">
                         @endif
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-question-sign"></span> Bantuan
+                                    <span class="caret"></span>
+                                </a>
 
-                        @role('peserta')
-                            @if(!empty($halaman) && $halaman == 'akun')
-                                <li class="active"><a href="{{ url('biodata/') }}"><span class="glyphicon glyphicon-user"></span> Biodata <span class="sr-only">(current)</span> </a> </li>
-                            @else
-                                <li><a href="{{ url('biodata') }}"><span class="glyphicon glyphicon-user"></span> Biodata</a></li>
-                            @endif
-
-                            @if(!empty($halaman) && $halaman == 'bantuan')
-                                <li class="dropdown active">
-                            @else
-                                <li class="dropdown">
-                            @endif
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-question-sign"></span> Bantuan
-                                        <span class="caret"></span>
-                                    </a>
-
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
-                                    </ul>
-                                </li>
-                        @endrole
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('kontak') }}"><span class="glyphicon glyphicon-envelope"></span> Kontak</a></li>
+                                </ul>
+                            </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

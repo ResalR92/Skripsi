@@ -27,16 +27,17 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $peserta = $request->user()->peserta()->get()->toArray();
+        $peserta = $request->user()->peserta()->get();
+        $status = $peserta->toArray();
         $daftar = Daftar::all()->where('aktif',1)->toArray();
 
-        if(empty($peserta) && empty($daftar)){
+        if(empty($status) && empty($daftar)){
             Auth::logout();
             Session::flash('flash_error','Maaf, Pendaftaran sudah DITUTUP.');
             Session::flash('penting',true);
             return redirect('/');
         }
 
-        return view('home');
+        return view('home',compact('peserta','status'));
     }
 }
