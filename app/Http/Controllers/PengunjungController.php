@@ -22,12 +22,16 @@ class PengunjungController extends Controller
 {
 	public function index()
 	{
+        //memastikan pendafftaran masih aktif
         $daftar = Daftar::all()->where('aktif',1)->toArray();
         if(Laratrust::hasRole('peserta')){
+            //meredirect peserta ke home->biodata
             return redirect('/home');
         }
 		return view('dashboard.pengunjung',compact('daftar'));
 	}
+
+    //menampilkan daftar peserta
     public function peserta(Request $request, Builder $htmlBuilder)
     {
     	if($request->ajax()){
@@ -52,33 +56,34 @@ class PengunjungController extends Controller
 
         return view('pengunjung.peserta',compact('html'));
     }
-
+    //menampilkan pengumuman
     public function pengumuman(Request $request)
     {
-    	$pengumuman_list = Pengumuman::orderBy('updated_at','desc')->paginate(1);
+    	$pengumuman_list = Pengumuman::latest()->paginate(1);
         $this->pendaftaranTutup($request);
     	return view('pengunjung.pengumuman',compact('pengumuman_list'));
     }
-
+    //menampilkan prosedur
     public function prosedur(Request $request)
     {
     	$prosedur_list = Prosedur::all()->sortBy('judul');
         $this->pendaftaranTutup($request);
     	return view('pengunjung.prosedur',compact('prosedur_list'));
     }
-
+    //menampilkan jadwal
     public function jadwal(Request $request)
     {
     	$jadwal_list = Jadwal::all()->sortBy('awal');
         $this->pendaftaranTutup($request);
     	return view('pengunjung.jadwal',compact('jadwal_list'));
     }
-
+    //menampilkan kontak
     public function kontak(Request $request)
     {
         $this->pendaftaranTutup($request);
     	return view('pengunjung.kontak');
     }
+    //mengirim kontak->store
     public function kirim(Request $request)
     {
     	$this->validate($request, [
@@ -92,7 +97,7 @@ class PengunjungController extends Controller
         Session::flash('flash_message','Data Kontak berhasil dikirim.');
         return redirect('kontak');
     }
-
+    //fungsi untuk menutup akses pendaftaran->buka/tutup
     private function pendaftaranTutup($request)
     {
         if(Auth::user()){
