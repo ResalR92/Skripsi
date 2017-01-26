@@ -11,8 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" />
     <!-- Styles -->
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.dataTables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap.css') }}" rel="stylesheet">
@@ -169,10 +170,7 @@
         </nav>
         @yield('content')
     </div>
-
-    <footer id="footer">
-        <p>&copy; {{ date('Y') }} www.psb.smkpanjatek.sch.id</p>
-    </footer>
+    @yield('footer')
     <!-- Scripts -->
     <script src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

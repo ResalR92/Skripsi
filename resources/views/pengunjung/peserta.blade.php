@@ -10,6 +10,10 @@
 	</div>
 @stop
 
+@section('footer')
+	@include('layouts.footer')
+@endsection
+
 @section('scripts')
 	{!! $html->scripts() !!}
 @endsection

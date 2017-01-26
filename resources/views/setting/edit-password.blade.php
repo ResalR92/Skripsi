@@ -37,3 +37,7 @@
 		{!! Form::close() !!}
 	</div>
 @endsection
+
+@section('footer')
+	@include('layouts.footer')
+@endsection

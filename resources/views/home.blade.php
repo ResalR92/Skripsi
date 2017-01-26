@@ -60,10 +60,6 @@
 			</div>
 		@endforeach
 	@else
-		{{-- @if(empty($status)) --}}
-        	{{-- <p><b>Pastikan Anda mengisi biodata sesuai dengan identitas yang sebenarnya.</b></p> --}}
-        	{{-- {{ link_to('biodata/create','Isi Biodata',['class'=>'btn btn-primary']) }} --}}
-        {{-- @endif --}}
         @include('_partial.flash_message')
         <div class="jumbotron" style="opacity:0.8;">
 	        <p class="h1">Selamat Datang!</p>
@@ -73,4 +69,8 @@
 	    </div>
 	@endif
 </div>
+@endsection
+
+@section('footer')
+	@include('layouts.footer')
 @endsection

@@ -169,3 +169,7 @@
 		</div>
 	</div>
 @stop
+
+@section('footer')
+	@include('layouts.footer')
+@endsection
