@@ -4,8 +4,8 @@
     <div class="row">
         @include('_partial.flash_message')
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="opacity:0.8;">
-                <div class="panel-heading">Login</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><b>Login</b></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}

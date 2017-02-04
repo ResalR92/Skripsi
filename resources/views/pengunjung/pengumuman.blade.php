@@ -3,24 +3,22 @@
 	<div class="container">
     	<div class="row">
 		    <div class="col-lg-12">
-		        <h1 class="page-header">Pengumuman</h1>
+		        <h1 class="page-header"><b>Pengumuman</b></h1>
 		    </div>
 		</div>
 		@if(!empty($pengumuman_list))
-			@foreach($pengumuman_list as $pengumuman)
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3><b>{{ $pengumuman->judul }}</b></h3>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="container">
+						@foreach($pengumuman_list as $pengumuman)
+							<h3><a href="pengumuman/{{ $pengumuman->id }}"><b>{{ $pengumuman->judul }}</b></a></h3>
+							<span><i class="glyphicon glyphicon-calendar"></i> {{ $pengumuman->updated_at->formatLocalized('%d %B %Y') }}</span>
 							<hr>
-							<p>{!! $pengumuman->isi !!}</p>
-						</div>
-						<div class="panel-footer">
-							<span><i class="glyphicon glyphicon-time"></i> {{ $pengumuman->updated_at->formatLocalized('%d %B %Y') }}</span>
-						</div>
+						@endforeach
 					</div>
+					
 				</div>
-			@endforeach
+			</div>
 			<div>
 				{{ $pengumuman_list->links() }}
 			</div>

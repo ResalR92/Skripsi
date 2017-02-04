@@ -3,8 +3,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="opacity:0.8;">
-                <div class="panel-heading">Register</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><b>Register</b></div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}

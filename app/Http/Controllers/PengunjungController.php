@@ -59,10 +59,18 @@ class PengunjungController extends Controller
     //menampilkan pengumuman
     public function pengumuman(Request $request)
     {
-    	$pengumuman_list = Pengumuman::latest()->paginate(1);
+    	$pengumuman_list = Pengumuman::latest()->paginate(5);
         $this->pendaftaranTutup($request);
     	return view('pengunjung.pengumuman',compact('pengumuman_list'));
     }
+
+    public function pengumumanDetail($id, Request $request)
+    {
+        $pengumuman = Pengumuman::findOrFail($id);
+        $this->pendaftaranTutup($request);
+        return view('pengunjung.pengumuman-detail',compact('pengumuman'));
+    }
+
     //menampilkan prosedur
     public function prosedur(Request $request)
     {

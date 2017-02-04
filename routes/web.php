@@ -16,6 +16,7 @@ setlocale(LC_TIME, 'id');
 Route::get('/', 'PengunjungController@index');
 Route::get('peserta','PengunjungController@peserta');
 Route::get('pengumuman','PengunjungController@pengumuman');
+Route::get('pengumuman/{pengumuman}','PengunjungController@pengumumanDetail');
 Route::get('prosedur','PengunjungController@prosedur');
 Route::get('jadwal','PengunjungController@jadwal');
 Route::get('kontak','PengunjungController@kontak');

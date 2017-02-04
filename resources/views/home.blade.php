@@ -61,11 +61,17 @@
 		@endforeach
 	@else
         @include('_partial.flash_message')
-        <div class="jumbotron" style="opacity:0.8;">
-	        <p class="h1">Selamat Datang!</p>
-	        <p>Halo, <strong> {{ Auth::user()->name }}</strong>.</p>
-	        <p>Jika Anda belum melengkapi biodata, silakan melengkapinya. Klik tombol "<strong>Biodata</strong>" di bawah ini!</p>
-	        <p>{{ link_to('/biodata/create','Biodata',['class'=>'btn btn-primary btn-lg']) }}</p>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="container">
+                    <div class="col-md-12">
+				        <h1><b><u>Selamat Datang!</u></b></h1>
+				        <h3>Halo, <strong> {{ Auth::user()->name }}</strong></h3>
+				        <h4>Jika Anda belum melengkapi biodata, silakan melengkapinya. Klik tombol "<strong>Biodata</strong>" di bawah ini!</h4>
+				        <p>{{ link_to('/biodata/create','Biodata',['class'=>'btn btn-primary btn-lg']) }}</p>
+				    </div>
+				</div>
+			</div>
 	    </div>
 	@endif
 </div>

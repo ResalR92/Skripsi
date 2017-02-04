@@ -3,7 +3,7 @@
 	<div class="container">
     	<div class="row">
 		    <div class="col-lg-12">
-		        <h1 class="page-header">Kontak</h1>
+		        <h1 class="page-header"><b>Kontak</b></h1>
 		    </div>
 		</div>
 		@include('_partial.flash_message')

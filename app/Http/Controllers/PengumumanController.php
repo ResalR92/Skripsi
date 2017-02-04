@@ -138,7 +138,7 @@ class PengumumanController extends Controller
      */
     public function destroy($id)
     {
-        $pengumuman = findOrFail($id);
+        $pengumuman = Pengumuman::findOrFail($id);
         $pengumuman->delete();
 
         Session::flash('flash_message','Data Pengumuman berhasil dihapus.');
