@@ -9,7 +9,7 @@
 		@if(!empty($pengumuman_list))
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<div class="container">
+					<div class="container-fluid">
 						@foreach($pengumuman_list as $pengumuman)
 							<h3><a href="pengumuman/{{ $pengumuman->id }}"><b>{{ $pengumuman->judul }}</b></a></h3>
 							<span><i class="glyphicon glyphicon-calendar"></i> {{ $pengumuman->updated_at->formatLocalized('%d %B %Y') }}</span>
