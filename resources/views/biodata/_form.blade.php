@@ -119,7 +119,7 @@
                         'Kristen' => 'Kristen',
                         'Katholik' => 'Katholik',
                         'Hindu' => 'Hindu',
-                        'Budha' => 'Budha',), null,['class'=>'form-control']) !!}
+                        'Budha' => 'Budha',), null,['class'=>'form-control','placeholder'=>'Pilih Agama']) !!}
                     @if($errors->has('agama'))
                         <span class="help-block">{{ $errors->first('agama') }}</span>
                     @endif
@@ -274,7 +274,7 @@
                                 'Kristen' => 'Kristen',
                                 'Katholik' => 'Katholik',
                                 'Hindu' => 'Hindu',
-                                'Budha' => 'Budha',), null,['class'=>'form-control']) !!}
+                                'Budha' => 'Budha',), null,['class'=>'form-control','placeholder'=>'Pilih Agama']) !!}
                             @if($errors->has('agama_ayah'))
                                 <span class="help-block">{{ $errors->first('agama_ayah') }}</span>
                             @endif
@@ -426,7 +426,7 @@
                                 'Kristen' => 'Kristen',
                                 'Katholik' => 'Katholik',
                                 'Hindu' => 'Hindu',
-                                'Budha' => 'Budha',), null,['class'=>'form-control']) !!}
+                                'Budha' => 'Budha',), null,['class'=>'form-control','placeholder'=>'Pilih Agama']) !!}
                             @if($errors->has('agama_ibu'))
                                 <span class="help-block">{{ $errors->first('agama_ibu') }}</span>
                             @endif
@@ -577,7 +577,7 @@
                                 'Kristen' => 'Kristen',
                                 'Katholik' => 'Katholik',
                                 'Hindu' => 'Hindu',
-                                'Budha' => 'Budha',), null,['class'=>'form-control']) !!}
+                                'Budha' => 'Budha',), null,['class'=>'form-control','placeholder'=>'Pilih Agama']) !!}
                             @if($errors->has('agama_wali'))
                                 <span class="help-block">{{ $errors->first('agama_wali') }}</span>
                             @endif

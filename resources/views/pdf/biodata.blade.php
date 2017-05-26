@@ -37,7 +37,7 @@
 </table>
 
 <h1 style="margin-bottom:0;margin-top:0;">FORMULIR PENDAFTARAN CALON PESERTA DIDIK BARU</h1>
-<h1 style="margin-top:0;">TAHUN AJARAN {{ date('Y') - 1 }}/{{ date('Y') }}</h1>
+<h1 style="margin-top:0;">TAHUN AJARAN {{ date('Y')  }}/{{ date('Y') + 1 }}</h1>
 
 <table width="500" border="0">
     <tr>
